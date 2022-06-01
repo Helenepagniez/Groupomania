@@ -21,10 +21,12 @@
     color: white;
     font-size: 15px;
     cursor: pointer;
-    display: flex;
     align-items: center;
     padding: 8px;
     border-radius: 0 10px 10px 0;
+    text-align: center;
+    transition: 0.5s;
+    display: block;
 }
 
 .barre-de-recherche .boutons .loupe

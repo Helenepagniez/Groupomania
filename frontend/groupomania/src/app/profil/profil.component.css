@@ -5,12 +5,13 @@
 
 .form-group {
     margin: 10px auto;
-    width: 60%;
+    width: 50%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: #FD2D01;
 }
-  
+
 input {
     width: 50%;
     background-color: #FFD7D7;
