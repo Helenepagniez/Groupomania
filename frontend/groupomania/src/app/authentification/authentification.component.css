@@ -1,0 +1,56 @@
+.form-connexion {
+    box-sizing: border-box;
+    width: 50%;
+    margin: 130px auto;
+    padding: 10px 30px;
+    box-shadow: #FD2D01 4px 4px 20px;
+}
+  
+.form-connexion nav{
+    display: flex;
+    justify-content: space-around;
+}
+
+.form-connexion nav h2{
+    width: 30%;
+    text-align: center;
+}
+
+.form-connexion nav h2:hover{
+    background-color: #FD2D01;
+    cursor: pointer;
+}
+
+.form-connexion nav h2:active{
+    background-color: #FD2D01;
+}
+
+.form-group {
+    margin: 10px auto;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+  
+input, textarea {
+    width: 50%;
+    background-color: #FFD7D7;
+}
+  
+.action-buttons {
+    width: 100%;
+}
+  
+button {
+    display: block;
+    margin: 20px auto;
+    background-color: #4E5166;
+    color: white;
+    transition: 0.5s;
+}
+
+button:hover
+{
+    box-shadow: #FD2D01 4px 4px 10px;
+}

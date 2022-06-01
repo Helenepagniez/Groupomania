@@ -1,0 +1,47 @@
+nav{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    background-color: #FD2D01;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    
+}
+
+nav li {
+    float: left;
+}
+
+nav li .lien {
+    display: flex;
+    color: white;
+    padding: 14px 100px;
+    text-decoration: none;
+}
+
+nav li .lien i {
+    color: white;
+}
+
+nav li .lien:hover {
+    background-color: #FFD7D7;
+}
+
+nav .lien .active {
+    background-color: #FFD7D7;
+}
+
+.logo {
+    width: 100%;
+    height: 100%;
+}
+
+.logo img{
+    width: 500px;
+    height: 1000px;
+}
