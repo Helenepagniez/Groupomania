@@ -66,3 +66,91 @@ h2{
 .profil .boutons button:hover{
     box-shadow: #FD2D01 4px 4px 10px;
 }
+
+/************PUBLICATIONS***************/
+
+.colonne{
+    flex-direction: column;
+    width: 100%;
+}
+
+.post{
+    border: #4E5166 3px solid;
+    width: 30%;
+    padding: 0;
+    height: 335px;
+    margin-bottom: 30px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.post .utilisateur{
+    display: flex;
+    background-color:#FFD7D7;
+    text-align: start;
+    align-items: center;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    border-bottom: #4E5166 2px solid;
+}
+
+.post .utilisateur img{
+    width: 70px;
+    height: auto;
+    border-radius: 50px;
+    margin: 10px;
+}
+
+.post .composition{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: white;
+    border-bottom: #4E5166 2px solid;
+    height: 200px;
+}
+
+.post .composition .texte p{
+    text-align: center;
+    padding-top: 5px;
+}
+
+.post .composition .image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post .composition img{
+    width: 200px;
+    height: auto;
+    padding-bottom: 10px;
+}
+
+.post .boutons{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-around;
+    background-color: #FFD7D7;
+}
+
+.post button{
+    background-color: #4E5166;
+    color: white;
+    text-align: center;
+    transition: 0.5s;
+    display: block;
+    margin: 20px auto;
+    width: 30%;
+}
+
+.post button:hover{
+    box-shadow: #FD2D01 4px 4px 10px;
+}

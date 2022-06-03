@@ -55,7 +55,7 @@
     color: white;
     text-align: center;
 }
-/************POSTS***************/
+/************COLONNE***************/
 .colonne{
     flex-direction: column;
     width: 100%;
@@ -106,6 +106,12 @@
 .post .composition .texte p{
     text-align: center;
     padding-top: 5px;
+}
+
+.post .composition .image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .post .composition img{

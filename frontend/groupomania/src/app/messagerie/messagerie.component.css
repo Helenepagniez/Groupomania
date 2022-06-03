@@ -1,0 +1,54 @@
+
+
+.general .colonne{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #FFD7D7;
+    width: 35%;
+    height: 500px;
+}
+
+.general .colonne .profil{
+    background-color: #FD2D01;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.general .colonne .messages{
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    flex-direction: column;
+    width: 100%;
+}
+
+.general .colonne .messages .message{
+    display: flex;
+    border: #FD2D01 2px solid;
+    margin: 3px;
+    width: 50%;
+    justify-content: center;
+    padding: 0 5px;
+}
+
+.general .colonne .messages .moi{
+    margin-left: 45%;
+}
+
+.general .colonne .messages .lui{
+    margin-left: 5%;
+}
+
+
+.general .colonne .clavier input{
+    
+    display: flex;
+    width: 98%;
+    text-align: center;
+    justify-items: center;
+}
