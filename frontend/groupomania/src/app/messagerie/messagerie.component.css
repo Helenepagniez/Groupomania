@@ -27,6 +27,11 @@
     text-align: center;
 }
 
+.general .conversations .contacts:hover{
+    background-color: #FD2D01;
+    cursor: pointer;
+}
+
 .general .colonne{
     display: flex;
     flex-direction: column;
