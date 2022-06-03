@@ -1,4 +1,31 @@
+.general{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
 
+.general .conversations{
+    width: 20%;
+    height: 500px;
+    background-color: #FFD7D7;
+    
+}
+
+.general .conversations h3{
+    background-color: #FD2D01;
+    margin-top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+}
+
+.general .conversations .contacts{
+    border: black 2px solid;
+    width: 80%;
+    margin-left: 10px;
+    text-align: center;
+}
 
 .general .colonne{
     display: flex;

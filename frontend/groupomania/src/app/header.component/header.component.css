@@ -38,8 +38,12 @@ nav li .lien:hover {
     background-color: #FFD7D7;
 }
 
-nav .lien .active {
+nav li .lien.active {
     background-color: #FFD7D7;
+}
+
+nav li .lien.active i{
+    color: black;
 }
 
 .logo {
