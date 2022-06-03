@@ -22,10 +22,16 @@ nav li .lien {
     color: white;
     padding: 14px 100px;
     text-decoration: none;
+    transition: 0.5s;
 }
 
 nav li .lien i {
     color: white;
+    transition: 0.5s;
+}
+
+nav li .lien:hover i {
+    color: black;
 }
 
 nav li .lien:hover {
