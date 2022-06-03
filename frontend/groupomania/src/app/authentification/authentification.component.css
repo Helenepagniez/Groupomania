@@ -2,8 +2,8 @@
     box-sizing: border-box;
     width: 50%;
     margin: 130px auto;
-    padding: 10px 30px;
     box-shadow: #FD2D01 4px 4px 20px;
+    padding-bottom: 5px;
 }
   
 .form-connexion nav{
@@ -11,17 +11,20 @@
     justify-content: space-around;
 }
 
-.form-connexion nav h2{
-    width: 30%;
+.form-connexion nav .section{
+    margin-top: 0;
+    padding: 20px;
+    width: 100%;
     text-align: center;
+
 }
 
-.form-connexion nav h2:hover{
+.form-connexion nav .section:hover{
     background-color: #FD2D01;
     cursor: pointer;
 }
 
-.form-connexion nav h2:active{
+.form-connexion nav .section.active{
     background-color: #FD2D01;
 }
 

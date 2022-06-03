@@ -1,4 +1,5 @@
 import { style } from '@angular/animations';
+import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../core/services/auth.services';
@@ -16,6 +17,11 @@ export class AuthentificationComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+    
+    let button : any = document.querySelector(".section");
+    button.onclick = function(){
+      this.classList.toggle("active");
+    }
   }
 
   onLogin() {
