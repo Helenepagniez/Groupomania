@@ -142,6 +142,7 @@
 
 .post button:hover{
     box-shadow: #FD2D01 4px 4px 10px;
+    cursor: pointer;
 }
 
 

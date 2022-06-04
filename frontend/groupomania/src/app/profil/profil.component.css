@@ -65,6 +65,7 @@ h2{
 
 .profil .boutons button:hover{
     box-shadow: #FD2D01 4px 4px 10px;
+    cursor: pointer;
 }
 
 /************PUBLICATIONS***************/
@@ -153,4 +154,5 @@ h2{
 
 .post button:hover{
     box-shadow: #FD2D01 4px 4px 10px;
+    cursor: pointer;
 }
