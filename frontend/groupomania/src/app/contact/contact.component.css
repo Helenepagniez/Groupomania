@@ -1,0 +1,134 @@
+/************BARRE DE RECHERCHE***************/
+.barre-de-recherche
+{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.barre-de-recherche .info .recherche
+{
+    border-width: 6px;
+    border-color: #4E5166;
+    border-style: solid;
+    padding: 3px;
+    text-align: center;
+}
+
+.barre-de-recherche .boutons
+{
+    background-color: #4E5166;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    align-items: center;
+    padding: 8px;
+    border-radius: 0 10px 10px 0;
+    text-align: center;
+    transition: 0.5s;
+    display: block;
+}
+
+.barre-de-recherche .boutons .loupe
+{
+    display: none;/*caché*/
+}
+
+/************NOUVEAUX***************/
+.nouveaux .profil .photo{
+    width: 260px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 60px;
+}
+
+.nouveaux .profil .photo img{
+    width: 250px;
+    height: auto;
+    border: #4E5166 3px solid;
+}
+
+.nouveaux .profil .description{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background-color: #FFD7D7;
+    width: 250px;
+    margin-right: auto;
+    margin-left: auto;
+    border: #4E5166 3px solid;
+    margin-top: 5px;
+}
+
+.nouveaux .profil .description p{
+    text-align: center;
+    margin: 2px;
+}
+
+/************BOUTONS***************/
+.nouveaux .profil .boutons{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-around;
+    width: 255px;
+}
+
+.nouveaux .profil .boutons button{
+    background-color: #4E5166;
+    color: white;
+    text-align: center;
+    transition: 0.5s;
+    display: block;
+    margin: 20px auto;
+    width: 30%;
+    font-size: large;
+}
+
+.nouveaux .profil .boutons button:hover{
+    box-shadow: #FD2D01 4px 4px 10px;
+}
+
+/************SWIPER***********/
+
+.nouveaux{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nouveaux .swiper{
+    background-color: #FD2D01;
+    display: flex;
+    width: 60px;
+    height: 260px;
+    font-size: 103px;
+    align-items: center;
+    margin: 40px;
+}
+
+.nouveaux .swiper:hover{
+    background-color: #FFD7D7;
+    cursor: pointer;
+    color: #FD2D01;
+}
+
+/************MEDIA QUERIES***********/
+@media (max-width: 6OOpx) {
+    .barre-de-recherche .boutons .loupe
+    {
+        display: block;
+        font-size: small;
+    }
+
+    .barre-de-recherche .boutons .rechercher
+    {
+        display: none;
+    }
+}
