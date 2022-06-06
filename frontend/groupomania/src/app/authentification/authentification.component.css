@@ -28,17 +28,23 @@
     background-color: #FD2D01;
 }
 
+
 .form-group {
     margin: 10px auto;
     width: 80%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-direction: column;
+    padding: 20px;
+    width: 100%;
+    text-align: center;
 }
   
 input, textarea {
     width: 50%;
     background-color: #FFD7D7;
+    margin: 5px;
 }
   
 .action-buttons {

@@ -1,45 +1,28 @@
 <div class="form-connexion">
-    <nav>
-      <h2 (click)="onLoginPage()" class="section">Connexion</h2>
-      <h2 (click)="onRegisterPage()" class="section">Incription</h2>
-    </nav>
-    <div *ngIf="loginActive" class="login-page">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="text" id="email" required>
-      </div>
-      <div class="form-group">
-        <label for="password">Mot de passe</label>
-        <input type="password" id="password" required>
-      </div>
-      <button>Tu as oublié ton mot de passe</button>
-      <div class="action-buttons">
-        <button (click)="onLogin()">Connexion</button>
-      </div>
-    </div>
-    <div *ngIf="registerActive" class="login-page">
-      <div class="form-group">
-        <label for="nom">Nom</label>
-        <input type="text" id="nom" required>
-      </div>
-      <div class="form-group">
-        <label for="prenom">Prénom</label>
-        <input type="text" id="prenom" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="text" id="email" required>
-      </div>
-      <div class="form-group">
-        <label for="password">Mot de passe</label>
-        <input type="password" id="password" required>
-      </div>
-      <div class="form-group">
-        <label for="password">Confirmation de mot de passe</label>
-        <input type="password" id="password" required>
-      </div>
-      <div class="action-buttons">
-        <button (click)="onLogin()">Connexion</button>
-      </div>
-    </div>
+  <nav>
+    <h2 (click)="onLoginPage()" class="section">Connexion</h2>
+    <h2 (click)="onRegisterPage()" class="section">Incription</h2>
+  </nav>
+  <div *ngIf="registerActive" class="inscription">
+    <form class="form-group" [formGroup]="signinForm" (ngSubmit)="register(signinForm.value)">
+        <input placeholder="Votre nom" formControlName="name">
+        <input placeholder="Votre prénom" formControlName="firstname">
+        <input placeholder="Votre email" formControlName="email">
+        <input type="password" placeholder="Votre mot de passe" formControlName="password">
+        <input type="password" placeholder="Confirmation de votre mot de passe" formControlName="confirmPassword">
+        <div class="action-buttons">
+            <button class="validButton" title="sign in" [disabled]="signinForm.invalid" type="submit">S'inscrire</button>
+        </div>
+    </form>
+  </div>
+
+  <div *ngIf="loginActive" class="connexion">
+    <form class="form-group" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+        <input placeholder="Votre email" formControlName="email">
+        <input type="password" placeholder="Votre mot de passe" formControlName="password">
+        <div class="action-buttons">
+            <button class="validButton" title="log in" [disabled]="loginForm.invalid" type="submit">Se connecter</button>
+        </div>
+    </form>
+  </div>
 </div>
