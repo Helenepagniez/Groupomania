@@ -13,20 +13,28 @@
     border-style: solid;
     padding: 3px;
     text-align: center;
+    border-radius: 50px;
+    margin-right: 8px;
 }
 
-.barre-de-recherche .boutons
-{
+.barre-de-recherche button{
     background-color: #4E5166;
     color: white;
-    font-size: 15px;
-    cursor: pointer;
-    align-items: center;
-    padding: 8px;
-    border-radius: 0 10px 10px 0;
     text-align: center;
     transition: 0.5s;
-    display: block;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 90%;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 50px;
+}
+
+.barre-de-recherche button:hover{
+    box-shadow: #FD2D01 4px 4px 10px;
+    cursor: pointer;
 }
 
 .barre-de-recherche .boutons .loupe
@@ -39,27 +47,13 @@
     padding: 10px;
 }
 
-/************FILTRES***************/
-.filtres{
-    background-color: #FD2D01;
-    width: 17%;
-    height: 400px;
-}
-
-.filtres ul li{
-    list-style-type: none;
-}
-
-.filtres p{
-    text-decoration: underline white;
-    color: white;
-    text-align: center;
-}
 /************COLONNE***************/
 .colonne{
     flex-direction: column;
     width: 100%;
-    margin-left: -18%;
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 /************POSTS***************/
@@ -137,7 +131,8 @@
     transition: 0.5s;
     display: block;
     margin: 20px auto;
-    width: 30%;
+    width: 25%;
+    border-radius: 50px;
 }
 
 .post button:hover{

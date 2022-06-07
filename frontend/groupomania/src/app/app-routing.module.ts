@@ -9,10 +9,10 @@ import { ProfilComponent } from './profil/profil.component';
 
 const routes: Routes = [
   {path:'', component: AuthentificationComponent},
-  {path:'accueil', component: AccueilComponent, canActivate:[AuthGuard] },
-  {path:'profil', component: ProfilComponent, canActivate:[AuthGuard] },
-  {path:'messagerie', component: MessagerieComponent, canActivate:[AuthGuard] },
-  {path:'contact', component: ContactComponent, canActivate:[AuthGuard] }
+  {path:'accueil', component: AccueilComponent,},
+  {path:'profil', component: ProfilComponent},
+  {path:'messagerie', component: MessagerieComponent},
+  {path:'contact', component: ContactComponent}
 ];
 
 @NgModule({

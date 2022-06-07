@@ -13,20 +13,28 @@
     border-style: solid;
     padding: 3px;
     text-align: center;
-}
+    border-radius: 50px;
+    margin-right: 8px;
+} 
 
-.barre-de-recherche .boutons
-{
+.barre-de-recherche button{
     background-color: #4E5166;
     color: white;
-    font-size: 15px;
-    cursor: pointer;
-    align-items: center;
-    padding: 8px;
-    border-radius: 0 10px 10px 0;
     text-align: center;
     transition: 0.5s;
-    display: block;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 90%;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 50px;
+}
+
+.barre-de-recherche button:hover{
+    box-shadow: #FD2D01 4px 4px 10px;
+    cursor: pointer;
 }
 
 .barre-de-recherche .boutons .loupe
@@ -49,6 +57,7 @@
     width: 250px;
     height: auto;
     border: #4E5166 3px solid;
+    border-radius: 50px;
 }
 
 .nouveaux .profil .description{
@@ -57,11 +66,12 @@
     justify-content: center;
     align-content: center;
     background-color: #FFD7D7;
-    width: 250px;
+    width: 230px;
     margin-right: auto;
     margin-left: auto;
     border: #4E5166 3px solid;
     margin-top: 5px;
+    border-radius: 25px;
 }
 
 .nouveaux .profil .description p{
@@ -87,8 +97,9 @@
     transition: 0.5s;
     display: block;
     margin: 20px auto;
-    width: 30%;
     font-size: large;
+    width: 25%;
+    border-radius: 50px;
 }
 
 .nouveaux .profil .boutons button:hover{
@@ -112,6 +123,7 @@
     font-size: 103px;
     align-items: center;
     margin: 40px;
+    border-radius: 90px;
 }
 
 .nouveaux .swiper:hover{

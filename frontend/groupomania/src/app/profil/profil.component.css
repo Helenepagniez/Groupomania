@@ -24,6 +24,7 @@ h2{
 .profil form .form-group input {
     width: 50%;
     background-color: #FFD7D7;
+    border-radius: 50px;
 }
 
 .profil .photo
@@ -61,6 +62,8 @@ h2{
     transition: 0.5s;
     display: block;
     margin: 20px auto;
+    border-radius: 50px;
+    width: 80px;
 }
 
 .profil .boutons button:hover{
@@ -149,7 +152,8 @@ h2{
     transition: 0.5s;
     display: block;
     margin: 20px auto;
-    width: 30%;
+    border-radius: 50px;
+    width: 25%;
 }
 
 .post button:hover{

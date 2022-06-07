@@ -67,6 +67,7 @@ button {
     background-color: #4E5166;
     color: white;
     transition: 0.5s;
+    border-radius: 50px;
 }
 
 button:hover
