@@ -55,13 +55,14 @@ export class AuthentificationComponent implements OnInit {
   }
 
   onRegisterPage(){
+    document.getElementById("register")?.classList.add("active");
+    document.getElementById("login")?.classList.remove("active");
     this.registerActive = true;
     this.loginActive = false;
   }
 
   onLoginPage(){
-    this.registerActive = false;
-    this.loginActive = true;
+    location.reload();
   }
   
 }

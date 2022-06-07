@@ -84,3 +84,27 @@
     text-align: center;
     justify-items: center;
 }
+
+input[type='file'] {
+    display: none;
+}
+
+.boutons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    cursor: pointer;
+    transition: 0.5s;
+    border-radius: 10px;
+}
+
+label {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.boutons:hover {
+    background-color: #FD2D01;
+    color: black;
+}

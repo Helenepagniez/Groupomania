@@ -1,7 +1,7 @@
 <div class="form-connexion">
   <nav>
-    <h2 (click)="onLoginPage()" class="section">Connexion</h2>
-    <h2 (click)="onRegisterPage()" class="section">Incription</h2>
+    <h2 (click)="onLoginPage()" id="login" class="section active">Connexion</h2>
+    <h2 (click)="onRegisterPage()" id="register" class="section">Incription</h2>
   </nav>
   <div *ngIf="registerActive" class="inscription">
     <form class="form-group" [formGroup]="signinForm" (ngSubmit)="register(signinForm.value)">

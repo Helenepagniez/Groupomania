@@ -1,8 +1,6 @@
 nav{
-    display: flex;
-    align-content: center;
-    justify-content: center;
     background-color: #FD2D01;
+    margin-bottom: 20px;
 }
 
 nav ul {
@@ -10,7 +8,9 @@ nav ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    
+    display: flex;
+    align-content: center;
+    justify-content: space-evenly;
 }
 
 nav li {
@@ -46,12 +46,21 @@ nav li .lien.active i{
     color: black;
 }
 
+.pages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .logo {
-    width: 100%;
-    height: 100%;
+    width: 100px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .logo img{
-    width: 500px;
-    height: 1000px;
+    width: 100px;
+    height: auto;
 }
