@@ -4,6 +4,8 @@
     margin: 130px auto;
     box-shadow: #FD2D01 4px 4px 20px;
     padding-bottom: 5px;
+    border-radius: 50px;
+    background: linear-gradient(#FFD7D7, #FD2D01);
 }
   
 .form-connexion nav{
@@ -16,18 +18,18 @@
     padding: 20px;
     width: 100%;
     text-align: center;
-
 }
 
 .form-connexion nav .section:hover{
     background-color: #FD2D01;
     cursor: pointer;
+    border-radius: 50px 50px;
 }
 
 .form-connexion nav .section.active{
     background-color: #FD2D01;
+    border-radius: 50px 0;
 }
-
 
 .form-group {
     margin: 10px auto;
@@ -45,8 +47,16 @@ input, textarea {
     width: 50%;
     background-color: #FFD7D7;
     margin: 5px;
+    border-radius: 50px;
+    border: #FFD7D7 2px solid;
+    color: #FD2D01;
 }
-  
+
+
+input:hover, textarea:hover{
+    border: black 2px solid;
+}
+
 .action-buttons {
     width: 100%;
 }

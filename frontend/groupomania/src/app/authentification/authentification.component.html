@@ -6,10 +6,30 @@
   <div *ngIf="registerActive" class="inscription">
     <form class="form-group" [formGroup]="signinForm" (ngSubmit)="register(signinForm.value)">
         <input placeholder="Votre nom" formControlName="name">
+        <span *ngIf="signinForm.get('name')!.hasError('required') && signinForm.get('name')!.touched">Votre nom est requis</span>
+        <span *ngIf="signinForm.get('name')!.hasError('maxlength')">Votre nom est trop long</span>
+        <span *ngIf="signinForm.get('name')!.hasError('minlength')">Votre nom est trop court</span>
+
         <input placeholder="Votre prénom" formControlName="firstname">
+        <span *ngIf="signinForm.get('firstname')!.hasError('required') && signinForm.get('firstname')!.touched">Votre prénom est requis</span>
+        <span *ngIf="signinForm.get('firstname')!.hasError('maxlength')">Votre prénom est trop long</span>
+        <span *ngIf="signinForm.get('firstname')!.hasError('minlength')">Votre prénom est trop court</span>
+
         <input placeholder="Votre email" formControlName="email">
+        <span *ngIf="signinForm.get('email')!.hasError('required') && signinForm.get('email')!.touched">Votre email est requis</span>
+        <span *ngIf="signinForm.get('email')!.hasError('email')">Votre email est invalide</span>
+        <span *ngIf="signinForm.get('email')!.hasError('maxlength')">Votre email est trop long</span>
+
         <input type="password" placeholder="Votre mot de passe" formControlName="password">
+        <span *ngIf="signinForm.get('password')!.hasError('required') && signinForm.get('password')!.touched">Votre mot de passe est requis</span>
+        <span *ngIf="signinForm.get('password')!.hasError('minlength')">Votre mot de passe est trop court</span>
+        <span *ngIf="signinForm.get('password')!.hasError('maxlength')">Votre mot de passe est trop long</span>
+
         <input type="password" placeholder="Confirmation de votre mot de passe" formControlName="confirmPassword">
+        <span *ngIf="signinForm.get('password')!.hasError('required') && signinForm.get('password')!.touched">Votre mot de passe est requis</span>
+        <span *ngIf="signinForm.get('password')!.hasError('minlength')">Votre mot de passe est trop court</span>
+        <span *ngIf="signinForm.get('password')!.hasError('maxlength')">Votre mot de passe est trop long</span>
+
         <div class="action-buttons">
             <button class="validButton" title="sign in" [disabled]="signinForm.invalid" type="submit">S'inscrire</button>
         </div>
@@ -19,7 +39,15 @@
   <div *ngIf="loginActive" class="connexion">
     <form class="form-group" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
         <input placeholder="Votre email" formControlName="email">
+        <span *ngIf="loginForm.get('email')!.hasError('required') && loginForm.get('email')!.touched">Votre email est requis</span>
+        <span *ngIf="loginForm.get('email')!.hasError('email')">Votre email est invalide</span>
+        <span *ngIf="loginForm.get('email')!.hasError('maxlength')">Votre email est trop long</span>
+
         <input type="password" placeholder="Votre mot de passe" formControlName="password">
+        <span *ngIf="loginForm.get('password')!.hasError('required') && loginForm.get('password')!.touched">Votre mot de passe est requis</span>
+        <span *ngIf="loginForm.get('password')!.hasError('minlength')">Votre mot de passe est trop court</span>
+        <span *ngIf="loginForm.get('password')!.hasError('maxlength')">Votre mot de passe est trop long</span>
+
         <div class="action-buttons">
             <button class="validButton" title="log in" [disabled]="loginForm.invalid" type="submit">Se connecter</button>
         </div>
