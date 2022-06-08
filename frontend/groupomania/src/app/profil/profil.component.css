@@ -86,6 +86,7 @@ h2{
     margin-bottom: 30px;
     margin-right: auto;
     margin-left: auto;
+    border-radius: 50px;
 }
 
 .post .utilisateur{
@@ -97,6 +98,7 @@ h2{
     margin-right: auto;
     margin-left: auto;
     border-bottom: #4E5166 2px solid;
+    border-radius: 50px 50px 0 0px;
 }
 
 .post .utilisateur img{
@@ -143,6 +145,7 @@ h2{
     margin-right: auto;
     justify-content: space-around;
     background-color: #FFD7D7;
+    border-radius: 0 0 50px 50px;
 }
 
 .post button{
