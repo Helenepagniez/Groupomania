@@ -1,7 +1,6 @@
 const postModel = require("../models/post.model");
 const PostModel = require("../models/post.model");
 const UserModel = require("../models/user.model");
-const { uploadErrors } = require("../utils/errors.utils");
 const ObjectID = require("mongoose").Types.ObjectId;
 const fs = require("fs");
 const { promisify } = require("util");
@@ -17,36 +16,10 @@ module.exports.readPost = (req, res) => {
 
 //créer post
 module.exports.createPost = async (req, res) => {
-  let fileName;
-
-  if (req.file !== null) {
-    try {
-      if (
-        req.file.detectedMimeType !== "image/jpg" &&
-        req.file.detectedMimeType !== "image/png" &&
-        req.file.detectedMimeType !== "image/jpeg"
-      )
-        throw Error("invalid file");
-
-      if (req.file.size > 100000000) throw Error("max size");
-    } catch (err) {
-      const errors = uploadErrors(err);
-      return res.status(201).json({ errors });
-    }
-    const fileName = req.body.posterId + Date.now() + ".jpg";
-
-    await pipeline(
-      req.file.stream,
-      fs.createWriteStream(
-        `${__dirname}/../../../frontend/groupomania/src/assets/images/posts/${fileName}`
-      )
-    );
-  }
-
+  
   const newPost = new postModel({
     posterId: req.body.posterId,
     message: req.body.message,
-    picture: req.file !== null ? "./images/posts/" + fileName : "",
     video: req.body.video,
     likers: [],
     comments: [],

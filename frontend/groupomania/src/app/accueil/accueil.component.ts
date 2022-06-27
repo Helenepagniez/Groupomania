@@ -11,6 +11,7 @@ import { PostService } from '../core/services/post.services';
 })
 export class AccueilComponent implements OnInit {
   posts!: Post[];
+  post!: Post;
 
   constructor(private router: Router, private postService: PostService ) { }
 
@@ -28,5 +29,38 @@ export class AccueilComponent implements OnInit {
       }
     )
   };
-  
+
+  addPost(post: Post) {
+    this.postService.addPost(post).subscribe(
+      (response: Post) => {
+        this.post = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  };
+
+  updatePost(post: Post, postId: number) {
+    this.postService.updatePost(post, postId).subscribe(
+      (response: Post) => {
+        this.post = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  };
+/*
+  deletePost(postId: number) {
+    this.postService.deletePost(postId).subscribe(
+      (response: PostId) => {
+        this.post = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  };
+  */
 }
