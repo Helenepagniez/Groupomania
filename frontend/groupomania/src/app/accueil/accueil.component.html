@@ -49,3 +49,30 @@
         </div>
     </div>
 </div>
+
+
+
+
+<div class="milieu">
+    <div *ngFor="let post of posts" class="colonne">
+        <div class="post">
+            <div class="utilisateur">
+                <img src="https://cdn.pixabay.com/photo/2021/09/25/15/46/step-by-step-6655274_960_720.jpg" alt="photo profil">
+                <p>Hélène Pagniez</p>
+                <button>Partager</button>
+            </div>
+            <div class="composition">
+                <div class="texte">
+                    <p>{{post?.message}}</p>
+                </div>
+                <div class="image">
+                    <img type="jpg" id="image" src="https://cdn.pixabay.com/photo/2016/09/07/11/37/tropical-1651423_960_720.jpg"  alt="image">
+                </div>
+            </div>
+            <div class="boutons">
+                <button>J'aime</button>
+                <button>Commenter</button>
+            </div>
+        </div>
+    </div>
+</div>

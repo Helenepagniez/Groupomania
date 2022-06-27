@@ -1,8 +1,8 @@
 export class Post {
-    id!: string;
-    title!: string;
-    description!: string;
-    imageUrl!: string;
-    createdDate!: Date;
-    like!: number
+    _id!: number;
+    picture!: string;
+    video!: string;
+    likers!: string[];
+    posterId!: string;
+    message!: string;
 }
