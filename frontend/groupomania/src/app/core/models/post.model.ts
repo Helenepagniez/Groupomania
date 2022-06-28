@@ -1,8 +1,8 @@
 export class Post {
-    _id!: number;
-    picture!: string;
-    video!: string;
-    likers!: string[];
+    _id: any;
+    picture!: string | null;
+    video!: string | null;
+    likers!: string[] | null;
     posterId!: string;
-    message!: string;
+    message!: string | null;
 }

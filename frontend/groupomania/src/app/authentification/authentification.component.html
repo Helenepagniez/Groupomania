@@ -37,7 +37,7 @@
   </div>
 
   <div *ngIf="loginActive" class="connexion">
-    <form class="form-group" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+    <form class="form-group" [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)">
         <input placeholder="Votre email" formControlName="email">
         <span *ngIf="loginForm.get('email')!.hasError('required') && loginForm.get('email')!.touched">Votre email est requis</span>
         <span *ngIf="loginForm.get('email')!.hasError('email')">Votre email est invalide</span>

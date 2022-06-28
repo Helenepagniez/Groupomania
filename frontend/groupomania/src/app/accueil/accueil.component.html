@@ -5,8 +5,10 @@
     <div class="boutons">
         <button class="rechercher">Rechercher</button>
         <a class="loupe"><i class="fas fa-search"></i></a>
+        <button (click)="ajouterPost()">+</button>
     </div>
 </div>
+<!--
 <div class="milieu">
     <div class="colonne">
         <div class="post">
@@ -49,30 +51,34 @@
         </div>
     </div>
 </div>
-
+-->
 
 
 
 <div class="milieu">
     <div *ngFor="let post of posts" class="colonne">
         <div class="post">
-            <div class="utilisateur">
-                <img src="https://cdn.pixabay.com/photo/2021/09/25/15/46/step-by-step-6655274_960_720.jpg" alt="photo profil">
-                <p>Hélène Pagniez</p>
-                <button>Partager</button>
-            </div>
-            <div class="composition">
-                <div class="texte">
-                    <p>{{post?.message}}</p>
+            <form #form="ngForm">
+                <div class="utilisateur">
+                    <img src="https://cdn.pixabay.com/photo/2021/09/25/15/46/step-by-step-6655274_960_720.jpg" alt="photo profil">
+                    <p>Hélène Pagniez</p>
+                    <button>Partager</button>
                 </div>
-                <div class="image">
-                    <img type="jpg" id="image" src="https://cdn.pixabay.com/photo/2016/09/07/11/37/tropical-1651423_960_720.jpg"  alt="image">
+                <div class="composition">
+                    <div class="texte">
+                        <input type="hidden" class="id" placeholder="{{post?._id}}" name="id" ngModel="{{post?._id}}">
+                        <p>{{post?.message}}</p>
+                    </div>
+                    <div class="image">
+                        <img type="jpg" id="image" src="https://cdn.pixabay.com/photo/2016/09/07/11/37/tropical-1651423_960_720.jpg"  alt="image">
+                    </div>
                 </div>
-            </div>
-            <div class="boutons">
-                <button>J'aime</button>
-                <button>Commenter</button>
-            </div>
+                <div class="boutons">
+                    <button>J'aime</button>
+                    <button>Commenter</button>
+                    <button (click)="supprimerPost(post?._id)">Supprimer</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
