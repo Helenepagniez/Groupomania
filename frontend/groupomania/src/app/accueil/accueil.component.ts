@@ -42,6 +42,7 @@ export class AccueilComponent implements OnInit {
 
   //Ajouter un post
   addPost(post: Post) {
+    post.posterId="62b58703cf8fe478d3f52b03";
     this.postService.addPost(post).subscribe(
       (response: Post) => {
         this.getPosts();
@@ -74,24 +75,4 @@ export class AccueilComponent implements OnInit {
       }
     )
   };
-
-  ajouterPost() {
-    if(this.loggedInUser === null) {
-      //alert("Veuillez vous connecter");
-    } else {
-    }
-    const post: Post = {
-      "_id": null,
-      "picture": null,
-      "video": null,
-      "likers": null,
-      "posterId": "62b58703cf8fe478d3f52b03",
-      "message": "Ecrivez un post"
-    }
-    this.addPost(post);
-  };
-
-  supprimerPost(postId: number) {
-    this.deletePost(postId);
-  }
 }

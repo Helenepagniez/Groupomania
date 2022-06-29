@@ -33,25 +33,29 @@
 </div>
 <div class="mur">
     <h2>Mes Publications</h2>
-    <div class="colonne">
+    <div *ngFor="let post of userPosts" class="colonne">
         <div class="post">
-            <div class="utilisateur">
-                <img src="https://media.istockphoto.com/photos/golden-retriever-with-computer-picture-id161955993?s=612x612" alt="photo profil">
-                <p>Marie</p>
-                <button>Partager</button>
-            </div>
-            <div class="composition">
-                <div class="texte">
-                    <p>L'automne est de retour !!</p>
+            <form #form="ngForm">
+                <div class="utilisateur">
+                    <img src="https://cdn.pixabay.com/photo/2021/09/25/15/46/step-by-step-6655274_960_720.jpg" alt="photo profil">
+                    <p>Patrice</p>
+                    <button>Partager</button>
                 </div>
-                <div class="image">
-                    <img type="jpg" id="image" src="https://cdn.pixabay.com/photo/2022/03/30/19/06/leaves-7101716_960_720.jpg"  alt="image">
+                <div class="composition">
+                    <div class="texte">
+                        <input type="hidden" class="id" placeholder="{{post?._id}}" name="id" ngModel="{{post?._id}}">
+                        <p>{{post?.message}}</p>
+                    </div>
+                    <div class="image">
+                        <img type="jpg" id="image" src="https://cdn.pixabay.com/photo/2016/09/07/11/37/tropical-1651423_960_720.jpg"  alt="image">
+                    </div>
                 </div>
-            </div>
-            <div class="boutons">
-                <button>J'aime</button>
-                <button>Commenter</button>
-            </div>
+                <div class="boutons">
+                    <button>J'aime</button>
+                    <button>Commenter</button>
+                    <button (click)="deletePost(post?._id)">Supprimer</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
