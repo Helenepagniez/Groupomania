@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 })
 export class ProfilComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    ) { }
 
   ngOnInit(): void {
   }

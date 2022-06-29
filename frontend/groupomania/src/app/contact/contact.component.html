@@ -7,6 +7,7 @@
         <a class="loupe"><i class="fas fa-search"></i></a>
     </div>
 </div>
+<!--
 <div class="nouveaux">
     <div class="swiper"><</div>
     <div class="profil">
@@ -30,18 +31,17 @@
     </div>
     <div class="swiper">></div>
 </div>
-
+-->
 
 
 
 <div *ngFor="let user of users" class="nouveaux">
-    <div class="swiper"><</div>
     <div class="profil">
         <div class="photo">
             <img src="https://cdn.pixabay.com/photo/2021/09/25/15/46/step-by-step-6655274_960_720.jpg" alt="photo profil">
         </div>
         <div class="description">
-            <div class="nom">
+            <div class="pseudo">
                 <p>{{user?.pseudo}}</p>
             </div>
             <div class="prenom">
@@ -52,9 +52,8 @@
             </div>
         </div>
         <div class="boutons">
-            <button>+</button>
+            <button>Me suivre</button>
         </div>
     </div>
-    <div class="swiper">></div>
 </div>
 

@@ -14,7 +14,8 @@ export class ContactComponent implements OnInit {
   user!: User;
   users!: User[];
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router,
+     private userService: UserService) { }
 
   ngOnInit(): void {
     this.getUsers();

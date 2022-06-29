@@ -26,6 +26,10 @@ const userSchema = new mongoose.Schema(
             max: 1024,
             minlength: 6
         },
+        job : {
+            type: String,
+            required: true
+        },
         picture : {
             type : String,
             default : "./uploads/profil/random-user.png"

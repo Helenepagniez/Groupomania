@@ -43,6 +43,13 @@
 }
 
 /************NOUVEAUX***************/
+.nouveaux{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
 .nouveaux .profil .photo{
     width: 260px;
     display: flex;
@@ -97,39 +104,14 @@
     transition: 0.5s;
     display: block;
     margin: 20px auto;
-    font-size: large;
-    width: 25%;
+    font-size: medium;
+    width: 30%;
     border-radius: 50px;
 }
 
 .nouveaux .profil .boutons button:hover{
     box-shadow: #FD2D01 4px 4px 10px;
     cursor: pointer;
-}
-
-/************SWIPER***********/
-
-.nouveaux{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.nouveaux .swiper{
-    background-color: #FD2D01;
-    display: flex;
-    width: 60px;
-    height: 260px;
-    font-size: 103px;
-    align-items: center;
-    margin: 40px;
-    border-radius: 90px;
-}
-
-.nouveaux .swiper:hover{
-    background-color: #FFD7D7;
-    cursor: pointer;
-    color: #FD2D01;
 }
 
 /************MEDIA QUERIES***********/
