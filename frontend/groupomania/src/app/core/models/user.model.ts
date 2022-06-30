@@ -1,5 +1,5 @@
 export interface User {
-    _id: number;
+    _id: string;
     name: string;
     firstname: string;
     picture: string;
@@ -7,6 +7,6 @@ export interface User {
     email: string;
     password: string;
     role: string;
-    follower: string;
-    following: string;
+    follower: string|null;
+    following: string|null;
 }

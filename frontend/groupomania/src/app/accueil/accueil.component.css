@@ -54,6 +54,7 @@
     height: 180px;
     width: 60%;
     border-radius: 50px;
+    border: #4E5166 3px solid;
 }
 
 .formulaire-post .formulaire {
@@ -78,6 +79,19 @@
 
 .formulaire-post .formulaire button {
     margin-top: 20px;
+    background-color: #4E5166;
+    color: white;
+    text-align: center;
+    transition: 0.5s;
+    display: block;
+    margin: 20px auto;
+    border-radius: 50px;
+    width: 25%;
+}
+
+.formulaire-post .formulaire button:hover{
+    box-shadow: #FD2D01 4px 4px 10px;
+    cursor: pointer;
 }
 
 .formulaire-post .formulaire .conteneur-input textarea {
@@ -101,7 +115,7 @@
     border: #4E5166 3px solid;
     width: 60%;
     padding: 0;
-    height: 335px;
+    height: auto;
     margin: 15px auto;
     border-radius: 50px;
 }
@@ -134,7 +148,7 @@
     margin-left: auto;
     background-color: white;
     border-bottom: #4E5166 2px solid;
-    height: 200px;
+    height: auto;
 }
 
 .post .composition .texte p{
@@ -149,7 +163,7 @@
 }
 
 .post .composition img{
-    width: 200px;
+    width: 70%;
     height: auto;
     padding-bottom: 10px;
 }

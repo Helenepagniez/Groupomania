@@ -6,20 +6,16 @@
     </div>
     <form>
         <div class="form-group">
-            <label for="prenom">Prénom</label>
-            <input type="text" id="prenom">
+            <input type="text" id="prenom" placeholder="{{loggedInUser?.firstname}}">
         </div>
         <div class="form-group">
-            <label for="nom">Nom</label>
-            <input type="text" id="nom">
+            <input type="text" id="nom" placeholder="{{loggedInUser?.name}}">
         </div>
         <div class="form-group">
-            <label for="poste">Nom de poste</label>
-            <input type="text" id="poste">
+            <input type="text" id="poste" placeholder="{{loggedInUser?.job}}">
         </div>
         <div class="form-group">
-            <label for="mdp">Mot de passe</label>
-            <input type="text" id="mdp">
+            <input type="text" id="mdp" placeholder="{{loggedInUser?.password}}">
         </div>
     </form>
     <div class="boutons">
@@ -40,6 +36,7 @@
                     <img src="https://cdn.pixabay.com/photo/2021/09/25/15/46/step-by-step-6655274_960_720.jpg" alt="photo profil">
                     <p>Patrice</p>
                     <button>Partager</button>
+                    <p>{{post?.createdAt}}</p>
                 </div>
                 <div class="composition">
                     <div class="texte">

@@ -93,6 +93,10 @@
     margin: 2px;
 }
 
+.nouveaux .profil .description .poste {
+    color: #FD2D01;
+}
+
 /************BOUTONS***************/
 .nouveaux .profil .boutons{
     display: flex;

@@ -5,4 +5,6 @@ export class Post {
     likers!: string[] | null;
     posterId!: string;
     message!: string | null;
+    createdAt!: string| null;
+    updatedAt!: string| null;
 }
