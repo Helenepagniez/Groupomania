@@ -63,16 +63,4 @@ export class AccueilComponent implements OnInit {
       }
     )
   };
-
-  //supprimer un post
-  deletePost(postId: number) {
-    this.postService.deletePost(postId).subscribe(
-      (response: void) => {
-        this.getPosts();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    )
-  };
 }

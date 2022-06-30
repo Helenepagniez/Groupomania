@@ -7,33 +7,6 @@
         <a class="loupe"><i class="fas fa-search"></i></a>
     </div>
 </div>
-<!--
-<div class="nouveaux">
-    <div class="swiper"><</div>
-    <div class="profil">
-        <div class="photo">
-            <img src="https://cdn.pixabay.com/photo/2021/09/25/15/46/step-by-step-6655274_960_720.jpg" alt="photo profil">
-        </div>
-        <div class="description">
-            <div class="nom">
-                <p>Pagniez</p>
-            </div>
-            <div class="prenom">
-                <p>Hélène</p>
-            </div>
-            <div class="poste">
-                <p>Développeuse Web</p>
-            </div>
-        </div>
-        <div class="boutons">
-            <button>+</button>
-        </div>
-    </div>
-    <div class="swiper">></div>
-</div>
--->
-
-
 
 <div class="nouveaux">
     <div *ngFor="let user of users" class="profil">
@@ -41,8 +14,8 @@
             <img src="https://cdn.pixabay.com/photo/2021/09/25/15/46/step-by-step-6655274_960_720.jpg" alt="photo profil">
         </div>
         <div class="description">
-            <div class="pseudo">
-                <p>{{user?.pseudo}}</p>
+            <div class="name">
+                <p>{{user?.name}}</p>
             </div>
             <div class="prenom">
                 <p>{{user?.firstname}}</p>
