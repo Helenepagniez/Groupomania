@@ -33,4 +33,12 @@ export class UserService {
     public logoutUser(user: User): Observable<User> {
         return this.http.post<User>(`${this.apiServerUrl}/api/user/logout`, user);
     };
+
+    public followUser(userId: number, user: User): Observable<User> {
+        return this.http.patch<User>(`${this.apiServerUrl}/api/user/follow/${userId}`, user);
+    };
+
+    public unfollowUser(userId: number, user: User): Observable<User> {
+        return this.http.patch<User>(`${this.apiServerUrl}/api/user/unfollow/${userId}`, user);
+    };
 }
