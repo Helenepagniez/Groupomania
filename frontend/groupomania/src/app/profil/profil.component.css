@@ -102,6 +102,15 @@ h2{
     border-radius: 50px 50px 0 0px;
 }
 
+.post .utilisateur .date {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    width: 25%;
+    margin: auto;
+}
+
 .post .utilisateur img{
     width: 70px;
     height: auto;
@@ -155,7 +164,8 @@ h2{
     text-align: center;
     transition: 0.5s;
     display: block;
-    margin: 20px auto;
+    margin: 20px 0;
+    margin-left: 19% ;
     border-radius: 50px;
     width: 25%;
 }

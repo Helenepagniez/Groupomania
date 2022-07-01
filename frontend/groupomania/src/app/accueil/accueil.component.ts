@@ -40,7 +40,8 @@ export class AccueilComponent implements OnInit {
       "name": "Dupont",
       "password": "test33",
       "role": "CLIENT"
-    }
+    };
+    
   };
 
   //Afficher tous les posts

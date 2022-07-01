@@ -36,7 +36,7 @@
                     <img src="https://cdn.pixabay.com/photo/2021/09/25/15/46/step-by-step-6655274_960_720.jpg" alt="photo profil">
                     <p>Patrice</p>
                     <button>Partager</button>
-                    <p>{{post?.createdAt}}</p>
+                    <p class="date">{{post?.createdAt | date: 'à HH:mm, le d MMMM yyyy'}}</p>
                 </div>
                 <div class="composition">
                     <div class="texte">
