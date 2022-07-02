@@ -94,7 +94,7 @@
     cursor: pointer;
 }
 
-.formulaire-post .formulaire .conteneur-input textarea {
+ textarea {
     height: 100px;
     width: 100%;
     resize: none;
@@ -118,10 +118,13 @@
     height: auto;
     margin: 15px auto;
     border-radius: 50px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .post .utilisateur{
     display: flex;
+    flex-wrap: wrap;
     background-color:#FFD7D7;
     text-align: start;
     align-items: center;
@@ -137,8 +140,8 @@
     justify-content: center;
     align-content: center;
     flex-wrap: wrap;
-    width: 25%;
-    margin: auto;
+    width: 50%;
+    margin-left: 10%;
 }
 
 .post .utilisateur img{
@@ -177,15 +180,27 @@
     padding-bottom: 10px;
 }
 
+.post .bas-post{
+    background-color: #FFD7D7;
+    width: 100%;
+    border-radius: 0 0 50px 50px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
 .post .boutons{
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     margin-left: auto;
     margin-right: auto;
-    justify-content: space-around;
-    background-color: #FFD7D7;
     border-radius: 0 0 50px 50px;
+    width: 100%;
+    justify-content: space-evenly;
+
 }
 
 .post button{
@@ -193,11 +208,11 @@
     color: white;
     text-align: center;
     transition: 0.5s;
-    display: block;
+    display: flex;
     margin: 20px 0;
-    margin-left: 19% ;
-    width: 25%;
+    width: 30%;
     border-radius: 50px;
+    justify-content: center;
 }
 
 .post button:hover{
@@ -205,6 +220,63 @@
     cursor: pointer;
 }
 
+.conteneur-commentaire {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 65%;
+    border: #FD2D01 2px solid;
+    border-radius: 50px;
+    margin-bottom: 1%;
+    background-color: white;
+    color: black;
+}
+
+.conteneur-commentaire .commenterName{
+    margin-right: 10px;
+    margin-left: 10px;
+    font-weight: 700;
+    font-size: large;
+    color: #FD2D01;
+}
+
+.conteneur-commentaire .text{
+    margin-right: 10px;
+    width: auto;
+    max-width: 50%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.conteneur-commentaire #supprimer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.conteneur-commentaire #modifier{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.commentaire {
+    margin: auto;
+    margin-bottom: 10%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.commentaire textarea {
+    height: 50px;
+    width: 62%;
+    border-radius: 50px;
+    padding-left: 20px;
+    text-align: center;
+}
 
 
 /************MEDIA QUERIES***********/

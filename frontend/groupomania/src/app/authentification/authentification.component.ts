@@ -134,11 +134,12 @@ export class AuthentificationComponent implements OnInit {
   };
 
   //connecter un utilisateur
-  loginUser(user : User) {
+  loginUser(user : User) {    
     this.userService.loginUser(user).subscribe(
       (response: User) => {
         localStorage.setItem('loggedInUser', JSON.stringify(response));
         this.loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
+        location.href="/accueil";
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

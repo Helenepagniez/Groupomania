@@ -6,6 +6,9 @@ import { User } from '../core/models/user.model';
 import { PostService } from '../core/services/post.services';
 import { UserService } from '../core/services/user.services';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Comment } from '../core/models/comment.model';
+import { AppComponentDialog } from '../dialog.component/dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-accueil',
@@ -16,10 +19,13 @@ export class AccueilComponent implements OnInit {
   posts!: Post[];
   post!: Post;
   loggedInUser!: User | null;
+  comment!: Comment;
 
   constructor(private router: Router,
      private postService: PostService,
-     private userService: UserService, private snackBar: MatSnackBar ) { }
+     private userService: UserService, 
+     private snackBar: MatSnackBar,
+     private dialog: MatDialog ) { }
 
   ngOnInit() {
     if (localStorage.getItem('loggedInUser')===null) {
@@ -63,6 +69,7 @@ export class AccueilComponent implements OnInit {
     this.postService.addPost(post).subscribe(
       (response: Post) => {
         this.getPosts();
+        location.reload();
         this.snackBar.open("Message publié", "Fermer", {duration: 2000});
       },
       (error: HttpErrorResponse) => {
@@ -72,9 +79,71 @@ export class AccueilComponent implements OnInit {
   };
 
   //modifier un post
-  updatePost(post: Post, postId: number) {
-    this.postService.updatePost(post, postId).subscribe(
+  updatePost(postId: number, posterId: string) {
+    if (posterId === this.loggedInUser?._id) {
+      this.postService.updatePost(postId, posterId).subscribe(
+        (response: Post) => {
+          this.snackBar.open("Message modifié", "Fermer", {duration: 2000});
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
+      );
+    }
+  };
+
+  
+  //aimer un post (à assembler avec unlikePost)
+  likePost(postId: string) {
+    this.postService.likePost(postId,this.loggedInUser?._id!).subscribe(
       (response: Post) => {
+        this.snackBar.open("Vous aimez cette publication", "Fermer", {duration: 2000});
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  };
+
+  //ne plus aimer un post (à assembler avec likePost)
+  unlikePost(postId: string) {
+    this.postService.unlikePost(postId,this.loggedInUser?._id!).subscribe(
+      (response: Post) => {
+        this.snackBar.open("Vous n'aimez plus cette publication", "Fermer", {duration: 2000});
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  };
+
+  
+  //ajouter un commentaire
+  addCommentPost(postId: string, comment: Comment) {
+    if (comment?.text !== null && comment?.text !== "") {
+      comment.commenterName = this.loggedInUser?.firstname! +" "+ this.loggedInUser?.name!;
+      comment.commenterId = this.loggedInUser?._id!;
+      this.postService.addCommentPost(postId, comment).subscribe(
+        (response: Post) => {
+          this.getPosts();
+          this.snackBar.open("Commentaire publié", "Fermer", {duration: 2000});
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
+      )
+    }
+    else {
+      alert ("commentaire vide");
+    }
+  };
+
+  //modifier un commentaire (à revérifier)
+  editCommentPost(postId: string, commentId: any) {
+    this.postService.editCommentPost(postId,commentId).subscribe(
+      (response: Post) => {
+        this.getPosts();
+        this.snackBar.open("Commentaire modifié", "Fermer", {duration: 2000});
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -82,16 +151,21 @@ export class AccueilComponent implements OnInit {
     )
   };
 
-  /*
-  //déconnecter un utilisateur
-  logoutUser(user : User) {
-    this.userService.logoutUser(user).subscribe(
-      (response: User) => {
-        localStorage.removeItem('loggedInUser');
-        this.loggedInUser = null;
-        //éventuellement renvoyer à la page de connexion
+  //supprimer un commentaire
+  deleteCommentPost(postId: string, commentId: any) {
+    const dialogRef = this.dialog.open(AppComponentDialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.postService.deleteCommentPost(postId,commentId).subscribe(
+          (response: Post) => {
+            this.getPosts();
+          },
+          (error: HttpErrorResponse) => {
+            alert(error.message);
+          }
+        );
       }
-    )
+    });
   };
-  */
 }

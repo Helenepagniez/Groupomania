@@ -8,11 +8,11 @@ import { MessagerieComponent } from './messagerie/messagerie.component';
 import { ProfilComponent } from './profil/profil.component';
 
 const routes: Routes = [
-  {path:'', component: AuthentificationComponent},
-  {path:'accueil', component: AccueilComponent,},
-  {path:'profil', component: ProfilComponent},
+  {path:'contact', component: ContactComponent},
   {path:'messagerie', component: MessagerieComponent},
-  {path:'contact', component: ContactComponent}
+  {path:'profil', component: ProfilComponent},
+  {path:'accueil', component: AccueilComponent},
+  {path:'', component: AuthentificationComponent}
 ];
 
 @NgModule({

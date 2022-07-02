@@ -6,6 +6,8 @@ import { User } from '../core/models/user.model';
 import { PostService } from '../core/services/post.services';
 import { UserService } from '../core/services/user.services';
 import { MatDialog} from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AppComponentDialog } from '../dialog.component/dialog.component';
 
 @Component({
   selector: 'app-profil',
@@ -19,7 +21,9 @@ export class ProfilComponent implements OnInit {
   constructor(private router: Router,
     private postService: PostService,
     private userService: UserService,
-    private matDialog: MatDialog) { }
+    private matDialog: MatDialog,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
     if (localStorage.getItem('loggedInUser')===null) {
@@ -62,28 +66,36 @@ export class ProfilComponent implements OnInit {
     )
   };
 
-  //modifier un post
-  updatePost(post: Post, postId: number) {
-    this.postService.updatePost(post, postId).subscribe(
-      (response: Post) => {
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    )
+  //modifier un post (à revérifier)
+  updatePost(postId: number, posterId: string) {
+    if (posterId.toString() === this.loggedInUser?._id) {
+      this.postService.updatePost(postId, posterId).subscribe(
+        (response: Post) => {
+          this.snackBar.open("Message modifié", "Fermer", {duration: 2000});
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
+      );
+    }
   };
 
   //supprimer un post
-  deletePost(postId: number) {
-    this.postService.deletePost(postId).subscribe(
-      (response: void) => {
+  deletePost(postId: number, posterId: string) {
+    const dialogRef = this.dialog.open(AppComponentDialog);
 
-        this.getUserPosts();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true && posterId === this.loggedInUser?._id) {
+        this.postService.deletePost(postId).subscribe(
+          (response: void) => {
+            location.reload();
+          },
+          (error: HttpErrorResponse) => {
+            alert(error.message);
+          }
+        );
       }
-    )
+    });
   };
 
   //supprimer l'utilisateur connecté

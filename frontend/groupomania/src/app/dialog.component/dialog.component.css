@@ -1,0 +1,45 @@
+h1 {
+    color: #FD2D01;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.buttons .delete {
+    cursor: pointer;
+    color: #FD2D01;
+    border-radius: 15px;
+    font-weight: 600;
+    padding: 5px;
+    transition: 0.5s;
+}
+
+.buttons .delete:hover {
+    color: black;
+    background-color: #FD2D01;
+    box-shadow: 0 0 5px #FD2D01,
+    0 0 25px #FD2D01,
+    0 0 50px #FD2D01,
+    0 0 100px #FD2D01;
+}
+
+.buttons .cancel {
+    cursor: pointer;
+    color: black;
+    border-radius: 15px;
+    font-weight: 600;
+    padding: 5px;
+    transition: 0.5s;
+}
+
+.buttons .cancel:hover {
+    color: white;
+    background-color: black;
+    box-shadow: 0 0 5px black,
+    0 0 25px black,
+    0 0 50px black,
+    0 0 100px black;
+}

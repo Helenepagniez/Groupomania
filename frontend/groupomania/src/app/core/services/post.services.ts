@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { Post } from "../models/post.model";
+import { Comment } from '../models/comment.model';
 
 @Injectable({providedIn: 'root'})
 export class PostService {
@@ -18,31 +19,31 @@ export class PostService {
         return this.http.post<Post>(`${this.apiServerUrl}/api/post`, post);
     };
 
-    public updatePost(post: Post, postId: number): Observable<Post> {
-        return this.http.put<Post>(`${this.apiServerUrl}/api/post/${postId}`, post);
+    public updatePost(postId: number, posterId: string): Observable<Post> {
+        return this.http.put<Post>(`${this.apiServerUrl}/api/post/${postId}`, posterId);
     };
 
     public deletePost(postId: number): Observable<void> {
         return this.http.delete<void>(`${this.apiServerUrl}/api/post/${postId}`);
     };
 
-    public likePost(postId: number, post: Post): Observable<Post> {
-        return this.http.patch<Post>(`${this.apiServerUrl}/api/post/like-post/${postId}`, post);
+    public likePost(postId: string, userId: string): Observable<Post> {
+        return this.http.patch<Post>(`${this.apiServerUrl}/api/post/like-post/${postId}`, {"id":userId});
     };
 
-    public unlikePost(postId: number, post: Post): Observable<Post> {
-        return this.http.patch<Post>(`${this.apiServerUrl}/api/post/unlike-post/${postId}`, post);
+    public unlikePost(postId: string, userId: string): Observable<Post> {
+        return this.http.patch<Post>(`${this.apiServerUrl}/api/post/unlike-post/${postId}`, {"id":userId});
     };
     
-    public addCommentPost(post: Post, postId: number): Observable<Post> {
-        return this.http.post<Post>(`${this.apiServerUrl}/api/post/comment-post/${postId}`, post);
+    public addCommentPost(postId: string, comment: Comment): Observable<Post> {
+        return this.http.patch<Post>(`${this.apiServerUrl}/api/post/comment-post/${postId}`, comment);
     };
 
-    public editCommentPost(post: Post, postId: number): Observable<Post> {
-        return this.http.put<Post>(`${this.apiServerUrl}/api/post/edit-comment-post/${postId}`, post);
+    public editCommentPost(postId: string, commentId: any): Observable<Post> {
+        return this.http.patch<Post>(`${this.apiServerUrl}/api/post/edit-comment-post/${postId}`, {"commentId":commentId});
     };
 
-    public deleteCommentPost(postId: number): Observable<void> {
-        return this.http.delete<void>(`${this.apiServerUrl}/api/post/delete-comment-post/${postId}`);
+    public deleteCommentPost(postId: string, commentId: any): Observable<Post> {
+        return this.http.patch<Post>(`${this.apiServerUrl}/api/post/delete-comment-post/${postId}`, {"commentId":commentId});
     };
 }
