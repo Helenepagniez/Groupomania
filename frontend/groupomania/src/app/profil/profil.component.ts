@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Post } from '../core/models/post.model';
 import { User } from '../core/models/user.model';
+import { Comment } from '../core/models/comment.model';
 import { PostService } from '../core/services/post.services';
 import { UserService } from '../core/services/user.services';
 import { MatDialog} from '@angular/material/dialog';
@@ -17,6 +18,7 @@ import { AppComponentDialog } from '../dialog.component/dialog.component';
 export class ProfilComponent implements OnInit {
   userPosts: Post[] = [];
   loggedInUser!: User | null;
+  comment!: Comment;
 
   constructor(private router: Router,
     private postService: PostService,
@@ -47,7 +49,7 @@ export class ProfilComponent implements OnInit {
     }
   };
 
-  //Afficher tous les posts
+  //Afficher les posts de l'utilisateur
   getUserPosts() {
     this.postService.getPosts().subscribe(
       (response: Post[]) => {
@@ -66,7 +68,7 @@ export class ProfilComponent implements OnInit {
     )
   };
 
-  //modifier un post (à revérifier)
+  //modifier les posts de l'utilisateur (à revérifier et essayer avec ajout du bouton)
   updatePost(postId: number, posterId: string) {
     if (posterId.toString() === this.loggedInUser?._id) {
       this.postService.updatePost(postId, posterId).subscribe(
@@ -80,7 +82,7 @@ export class ProfilComponent implements OnInit {
     }
   };
 
-  //supprimer un post
+  //supprimer les posts de l'utilisateur
   deletePost(postId: number, posterId: string) {
     const dialogRef = this.dialog.open(AppComponentDialog);
 
@@ -98,7 +100,26 @@ export class ProfilComponent implements OnInit {
     });
   };
 
-  //supprimer l'utilisateur connecté
+  //Modifier l'utilisateur connecté (à tester)
+  updateUser(user : User, userId: number) {
+    if (this.loggedInUser?.role === "ADMIN") {
+      user.role="ADMIN";
+    }
+    else {
+      user.role="CLIENT";
+    }
+    this.userService.updateUser(user, userId).subscribe(
+      (response: User) => {
+        localStorage.setItem('loggedInUser', JSON.stringify(response));
+        this.loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  };
+
+  //supprimer l'utilisateur connecté (à tester)
   deleteUser(userId: number) {
     if (userId.toString() === this.loggedInUser?._id) {
       this.userService.deleteUser(userId).subscribe(
@@ -109,5 +130,93 @@ export class ProfilComponent implements OnInit {
           alert(error.message);
         });
     }
+  };
+
+  
+  //aimer un post (à assembler avec unlikePost + ajout au html et css)
+  likePost(postId: string) {
+    this.postService.likePost(postId,this.loggedInUser?._id!).subscribe(
+      (response: Post) => {
+        this.snackBar.open("Vous aimez cette publication", "Fermer", {duration: 2000});
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  };
+
+  //ne plus aimer un post (à assembler avec likePost + ajout au html et css)
+  unlikePost(postId: string) {
+    this.postService.unlikePost(postId,this.loggedInUser?._id!).subscribe(
+      (response: Post) => {
+        this.snackBar.open("Vous n'aimez plus cette publication", "Fermer", {duration: 2000});
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  };
+
+  
+  //ajouter un commentaire ( ajout au html et css)
+  addCommentPost(postId: string, comment: Comment) {
+    if (comment?.text !== null && comment?.text !== "") {
+      comment.commenterName = this.loggedInUser?.firstname! +" "+ this.loggedInUser?.name!;
+      comment.commenterId = this.loggedInUser?._id!;
+      this.postService.addCommentPost(postId, comment).subscribe(
+        (response: Post) => {
+          this.getUserPosts();
+          this.snackBar.open("Commentaire publié", "Fermer", {duration: 2000});
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
+      )
+    }
+    else {
+      alert ("commentaire vide");
+    }
+  };
+
+  //modifier un commentaire (à revérifier + ajout au html et css)
+  editCommentPost(postId: string, commentId: any) {
+    this.postService.editCommentPost(postId,commentId).subscribe(
+      (response: Post) => {
+        this.getUserPosts();
+        this.snackBar.open("Commentaire modifié", "Fermer", {duration: 2000});
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  };
+
+  //supprimer un commentaire (ajout au html et css)
+  deleteCommentPost(postId: string, commentId: any) {
+    const dialogRef = this.dialog.open(AppComponentDialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.postService.deleteCommentPost(postId,commentId).subscribe(
+          (response: Post) => {
+            this.getUserPosts();
+          },
+          (error: HttpErrorResponse) => {
+            alert(error.message);
+          }
+        );
+      }
+    });
+  };
+
+  //déconnecter l'utilisateur connecté (à tester)
+  logoutUser(user : User) {
+    this.userService.logoutUser(user).subscribe(
+      (response: User) => {
+        localStorage.removeItem('loggedInUser');
+        this.loggedInUser = null;
+        //éventuellement renvoyer à la page de connexion
+      }
+    )
   };
 }

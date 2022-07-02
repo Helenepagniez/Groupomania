@@ -107,8 +107,8 @@ h2{
     justify-content: center;
     align-content: center;
     flex-wrap: wrap;
-    width: 25%;
-    margin: auto;
+    width: 50%;
+    margin-left: 10%;
 }
 
 .post .utilisateur img{
@@ -147,15 +147,26 @@ h2{
     padding-bottom: 10px;
 }
 
+.post .bas-post{
+    background-color: #FFD7D7;
+    width: 100%;
+    border-radius: 0 0 50px 50px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
 .post .boutons{
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     margin-left: auto;
     margin-right: auto;
-    justify-content: space-around;
-    background-color: #FFD7D7;
+    justify-content: space-evenly;
     border-radius: 0 0 50px 50px;
+    width: 100%;
 }
 
 .post button{
@@ -165,12 +176,69 @@ h2{
     transition: 0.5s;
     display: block;
     margin: 20px 0;
-    margin-left: 19% ;
     border-radius: 50px;
-    width: 25%;
+    width: 20%;
 }
 
 .post button:hover{
     box-shadow: #FD2D01 4px 4px 10px;
     cursor: pointer;
+}
+
+.conteneur-commentaire {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 65%;
+    border: #FD2D01 2px solid;
+    border-radius: 50px;
+    margin-bottom: 1%;
+    background-color: white;
+    color: black;
+}
+
+.conteneur-commentaire .commenterName{
+    margin-right: 10px;
+    margin-left: 10px;
+    font-weight: 700;
+    font-size: large;
+    color: #FD2D01;
+}
+
+.conteneur-commentaire .text{
+    margin-right: 10px;
+    width: auto;
+    max-width: 50%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.conteneur-commentaire #supprimer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.conteneur-commentaire #modifier{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.commentaire {
+    margin: auto;
+    margin-bottom: 10%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.commentaire textarea {
+    height: 50px;
+    width: 62%;
+    border-radius: 50px;
+    padding-left: 20px;
+    text-align: center;
 }

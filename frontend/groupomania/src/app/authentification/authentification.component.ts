@@ -52,8 +52,6 @@ export class AuthentificationComponent implements OnInit {
     else {
       this.loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
     }
-
-    this.getUsers();
     
   };
   
@@ -75,62 +73,6 @@ export class AuthentificationComponent implements OnInit {
 
   onLoginPage(){
     location.reload();
-  };
-
-  //Afficher tous les utilisateurs
-  getUsers() {
-    this.userService.getUsers().subscribe(
-      (response: User[]) => {
-        this.users = response;
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    )
-  };
-
-  //Ajouter un utilisateur
-  addUser(user : User) {
-    user.role="CLIENT";
-    this.userService.addUser(user).subscribe(
-      (response: User) => {
-        this.loginUser(response);
-        this.getUsers();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  };
-
-  //Modifier un utilisateur
-  updateUser(user : User, userId: number) {
-    if (this.loggedInUser?.role === "ADMIN") {
-      user.role="ADMIN";
-    }
-    else {
-      user.role="CLIENT";
-    }
-    this.userService.updateUser(user, userId).subscribe(
-      (response: User) => {
-        localStorage.setItem('loggedInUser', JSON.stringify(response));
-        this.loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  };
-
-  //supprimer un utilisateur
-  deleteUser(userId: number) {
-    this.userService.deleteUser(userId).subscribe(
-    (response: void) => {
-      this.getUsers();
-    },
-    (error: HttpErrorResponse) => {
-      alert(error.message);
-    });
   };
 
   //connecter un utilisateur

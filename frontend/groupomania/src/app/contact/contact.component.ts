@@ -13,6 +13,7 @@ export class ContactComponent implements OnInit {
   
   user!: User;
   users!: User[];
+  loggedInUser!: User | null;
 
   constructor(private router: Router,
      private userService: UserService) { }
@@ -29,6 +30,17 @@ export class ContactComponent implements OnInit {
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
+      }
+    )
+  };
+
+  //déconnecter l'utilisateur connecté (à tester)
+  logoutUser(user : User) {
+    this.userService.logoutUser(user).subscribe(
+      (response: User) => {
+        localStorage.removeItem('loggedInUser');
+        this.loggedInUser = null;
+        //éventuellement renvoyer à la page de connexion
       }
     )
   };

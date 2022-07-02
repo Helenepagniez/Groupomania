@@ -78,21 +78,6 @@ export class AccueilComponent implements OnInit {
     )
   };
 
-  //modifier un post
-  updatePost(postId: number, posterId: string) {
-    if (posterId === this.loggedInUser?._id) {
-      this.postService.updatePost(postId, posterId).subscribe(
-        (response: Post) => {
-          this.snackBar.open("Message modifié", "Fermer", {duration: 2000});
-        },
-        (error: HttpErrorResponse) => {
-          alert(error.message);
-        }
-      );
-    }
-  };
-
-  
   //aimer un post (à assembler avec unlikePost)
   likePost(postId: string) {
     this.postService.likePost(postId,this.loggedInUser?._id!).subscribe(
@@ -167,5 +152,15 @@ export class AccueilComponent implements OnInit {
         );
       }
     });
+  };
+  //déconnecter l'utilisateur connecté (à tester)
+  logoutUser(user : User) {
+    this.userService.logoutUser(user).subscribe(
+      (response: User) => {
+        localStorage.removeItem('loggedInUser');
+        this.loggedInUser = null;
+        //éventuellement renvoyer à la page de connexion
+      }
+    )
   };
 }
