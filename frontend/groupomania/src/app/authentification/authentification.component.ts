@@ -89,14 +89,28 @@ export class AuthentificationComponent implements OnInit {
     );
   };
 
-  //déconnecter un utilisateur
-  logoutUser(user : User) {
-    this.userService.logoutUser(user).subscribe(
-      (response: User) => {
-        localStorage.removeItem('loggedInUser');
-        this.loggedInUser = null;
-        //éventuellement renvoyer à la page de connexion
+  getUsers() {
+    this.userService.getUsers().subscribe(
+      (response: User[]) => {
+        this.users = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
       }
     )
+  };
+
+  //Ajouter un utilisateur
+  addUser(user : User) {
+    user.role="CLIENT";
+    this.userService.addUser(user).subscribe(
+      (response: User) => {
+        this.loginUser(response);
+        this.getUsers();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   };
 }
