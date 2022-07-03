@@ -1,4 +1,5 @@
 <div class="profil">
+    <a (click)="logoutUser()" title="Se déconnecter"><i class="fas fa-sign-out-alt"></i></a>
     <h2>Mon Profil</h2>
     <div class="photo">
         <label for="image"></label>
@@ -15,15 +16,15 @@
             <input type="text" id="poste" placeholder="{{loggedInUser?.job}}">
         </div>
         <div class="form-group">
-            <input type="text" id="mdp" placeholder="{{loggedInUser?.password}}">
+            <input type="password" id="mdp" placeholder="{{loggedInUser?.password}}">
         </div>
     </form>
     <div class="boutons">
         <div class="modifier">
-            <button>Modifier</button>
+            <button title="modifier votre profil">Modifier</button>
         </div>
         <div class="supprimer">
-            <button>Supprimer</button>
+            <button title="supprimer votre profil">Supprimer</button>
         </div>
     </div>
 </div>
@@ -33,31 +34,36 @@
         <div class="post">
             <div class="utilisateur">
                 <img src="https://cdn.pixabay.com/photo/2021/09/25/15/46/step-by-step-6655274_960_720.jpg" alt="photo profil">
-                <p>Patrice</p>
+                <p>{{getPosterName(post.posterId)}}</p>
                 <p class="date">{{post?.createdAt | date: 'à HH:mm, le d MMMM yyyy'}}</p>
             </div>
-            <div class="composition">
-                <div class="texte">
-                    <input type="hidden" class="id" placeholder="{{post?._id}}" name="id" ngModel="{{post?._id}}">
-                    <p>{{post?.message}}</p>
+            <form #form="ngForm">
+                <div class="composition">
+                    <div class="texte">
+                        <input type="hidden" class="id" placeholder="{{post?._id}}" name="id" ngModel="{{post?._id}}">
+                        <input type="hidden" class="posterId" placeholder="{{post?.posterId}}" name="posterId" ngModel="{{post?.posterId}}">
+                        <input *ngIf="!isUserPost(post)" type="text" class="message" placeholder="{{post?.message}}" name="message" ngModel="{{post?.message}}" disabled>
+                        <input *ngIf="isUserPost(post)" type="text" class="message" placeholder="{{post?.message}}" name="message" ngModel="{{post?.message}}">
+                        <a (click)="updatePost(post?._id,form.value)"><i class="fas fa-edit" id="modifier" title="modifier votre publication"></i></a>
+                    </div>
+                    <div class="image">
+                        <img type="jpg" id="image" src="https://cdn.pixabay.com/photo/2016/09/07/11/37/tropical-1651423_960_720.jpg"  alt="image">
+                    </div>
                 </div>
-                <div class="image">
-                    <img type="jpg" id="image" src="https://cdn.pixabay.com/photo/2016/09/07/11/37/tropical-1651423_960_720.jpg"  alt="image">
-                </div>
-            </div>
+            </form>
             <div class="bas-post">
                 <div class="boutons">
-                    <button (click)="likePost(post?._id)">J'aime</button>
-                    <button (click)="unlikePost(post?._id)">Je n'aime plus</button>
-                    <button (click)="addCommentPost(post?._id, form.value)">Commenter</button>
-                    <button (click)="deletePost(post?._id, post.posterId)">Supprimer</button>
+                    <button (click)="likePost(post?._id)" title="aimer ce post">J'aime</button>
+                    <button (click)="unlikePost(post?._id)" title="ne plus aimer ce post">Je n'aime plus</button>
+                    <button (click)="addCommentPost(post?._id, form.value)" title="envoyer votre commentaire">Commenter</button>
+                    <button (click)="deletePost(post?._id, post.posterId)" title="supprimer votre publication">Supprimer</button>
                 </div>
                 <div *ngFor="let comment of post?.comments" class="conteneur-commentaire">
                     <input type="hidden" class="id" placeholder="{{comment?._id}}" name="id" ngModel="{{comment?._id}}">
                     <p class="commenterName"><i class="fas fa-user"></i>  {{comment?.commenterName}} : </p>
                     <p class="text">{{comment?.text}}</p>
-                    <a (click)="deleteCommentPost(post?._id, comment?._id)"><i class="fas fa-trash-alt" id="supprimer"></i></a>
-                    <a (click)="editCommentPost(post?._id, comment?._id)"><i class="fas fa-edit" id="modifier"></i></a>
+                    <a (click)="deleteCommentPost(post?._id, comment?._id)" title="supprimer votre commentaire"><i class="fas fa-trash-alt" id="supprimer"></i></a>
+                    <a (click)="editCommentPost(post?._id, comment?._id)" title="modifier votre commentaire"><i class="fas fa-edit" id="modifier"></i></a>
                 </div>
                 <form #form="ngForm" class="formulaire-commentaire">
                     <div class="commentaire">

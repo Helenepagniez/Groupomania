@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Comment } from '../core/models/comment.model';
 import { AppComponentDialog } from '../dialog.component/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { LoggedInUserId } from '../core/models/loggedInUserId.model';
 
 @Component({
   selector: 'app-accueil',
@@ -19,6 +20,8 @@ export class AccueilComponent implements OnInit {
   posts!: Post[];
   post!: Post;
   loggedInUser!: User | null;
+  loggedInUserId!: LoggedInUserId | null;
+  users: User[] = [];
   comment!: Comment;
 
   constructor(private router: Router,
@@ -28,27 +31,42 @@ export class AccueilComponent implements OnInit {
      private dialog: MatDialog ) { }
 
   ngOnInit() {
-    if (localStorage.getItem('loggedInUser')===null) {
-      this.loggedInUser = null;
+    if (localStorage.getItem('loggedInUserId')===null) {
+      this.loggedInUserId = null;
     }
     else {
-      this.loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
+      this.loggedInUserId = JSON.parse(localStorage.getItem('loggedInUserId') || '{}');
     };
     this.getPosts();
-    this.loggedInUser={
-      "_id": "62b58703cf8fe478d3f52b03",
-      "email": "patrice@gmail.com",
-      "picture": "./uploads/profil/random-user.png",
-      "follower": null,
-      "following": null,
-      "job": "Business Analyst",
-      "firstname": "Patrice",
-      "name": "Dupont",
-      "password": "test33",
-      "role": "CLIENT"
-    };
-    
+    this.getLoggedInUser();
   };
+
+  //récupère l'utilisateur connecté
+  getLoggedInUser() {
+    this.userService.getUsers().subscribe(
+      (response: User[]) => {
+        this.users=response;   
+        for (let user of response) {
+          if (user?._id === this.loggedInUserId?.user) {
+            this.loggedInUser = user;
+          }
+        }   
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    ) 
+  }
+
+  getPosterName(posterId: string) : string {
+    let name: string = "";
+    for (let user of this.users) {
+      if (user?._id === posterId) {
+        name = user?.firstname +" "+ user?.name;
+      }
+    }
+    return name;
+  }
 
   //Afficher tous les posts
   getPosts() {

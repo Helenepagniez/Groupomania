@@ -31,7 +31,7 @@ export class UserService {
     };
 
     public logoutUser(user: User): Observable<User> {
-        return this.http.post<User>(`${this.apiServerUrl}/api/user/logout`, user);
+        return this.http.get<any>(`${this.apiServerUrl}/api/user/logout`);
     };
 
     public followUser(userId: number, user: User): Observable<User> {

@@ -1,7 +1,7 @@
 <div class="form-connexion">
   <nav>
-    <h2 (click)="onLoginPage()" id="login" class="section active">Connexion</h2>
-    <h2 (click)="onRegisterPage()" id="register" class="section">Incription</h2>
+    <h2 (click)="onLoginPage()" id="login" class="section active" title="Connectez-vous">Connexion</h2>
+    <h2 (click)="onRegisterPage()" id="register" class="section" title="Inscrivez-vous">Incription</h2>
   </nav>
   <div *ngIf="registerActive" class="inscription">
     <form class="form-group" [formGroup]="signinForm" (ngSubmit)="register(signinForm.value)">
@@ -31,7 +31,7 @@
         <span *ngIf="signinForm.get('password')!.hasError('maxlength')">Votre mot de passe est trop long</span>
 
         <div class="action-buttons">
-            <button class="validButton" title="sign in" [disabled]="signinForm.invalid" type="submit">S'inscrire</button>
+            <button class="validButton" title="S'inscrire" [disabled]="signinForm.invalid" type="submit">S'inscrire</button>
         </div>
     </form>
   </div>
@@ -49,7 +49,7 @@
         <span *ngIf="loginForm.get('password')!.hasError('maxlength')">Votre mot de passe est trop long</span>
 
         <div class="action-buttons">
-            <button class="validButton" title="log in" [disabled]="loginForm.invalid" type="submit">Se connecter</button>
+            <button class="validButton" title="Se connecter" [disabled]="loginForm.invalid" type="submit">Se connecter</button>
         </div>
     </form>
   </div>

@@ -3,7 +3,7 @@
         <input class="recherche" type="text" name="recherche" placeholder="Recherchez ici !">
     </div>
     <div class="boutons">
-        <button class="rechercher">Rechercher</button>
+        <button class="rechercher" title="Rechercher une publication">Rechercher</button>
         <a class="loupe"><i class="fas fa-search"></i></a>
     </div>
 </div>
@@ -21,7 +21,7 @@
         <div class="post">
             <div class="utilisateur">
                 <img src="https://cdn.pixabay.com/photo/2021/09/25/15/46/step-by-step-6655274_960_720.jpg" alt="photo profil">
-                <p>Patrice</p>
+                <p>{{getPosterName(post.posterId)}}</p>
                 <p class="date">{{post?.createdAt | date: 'à HH:mm, le d MMMM yyyy'}}</p>
             </div>
             <div class="composition">
@@ -35,16 +35,16 @@
             </div>
             <div class="bas-post">
                 <div class="boutons">
-                    <button (click)="likePost(post?._id)">J'aime</button>
-                    <button (click)="unlikePost(post?._id)">Je n'aime plus</button>
-                    <button (click)="addCommentPost(post?._id, form.value)">Commenter</button>
+                    <button (click)="likePost(post?._id)" title="aimer ce post">J'aime</button>
+                    <button (click)="unlikePost(post?._id)" title="ne plus aimer ce post">Je n'aime plus</button>
+                    <button (click)="addCommentPost(post?._id, form.value)" title="envoyer votre commentaire">Commenter</button>
                 </div>
                 <div *ngFor="let comment of post?.comments" class="conteneur-commentaire">
                     <input type="hidden" class="id" placeholder="{{comment?._id}}" name="id" ngModel="{{comment?._id}}">
                     <p class="commenterName"><i class="fas fa-user"></i>  {{comment?.commenterName}} : </p>
                     <p class="text">{{comment?.text}}</p>
-                    <a (click)="deleteCommentPost(post?._id, comment?._id)"><i class="fas fa-trash-alt" id="supprimer"></i></a>
-                    <a (click)="editCommentPost(post?._id, comment?._id)"><i class="fas fa-edit" id="modifier"></i></a>
+                    <a (click)="deleteCommentPost(post?._id, comment?._id)" title="supprimer votre commentaire"><i class="fas fa-trash-alt" id="supprimer"></i></a>
+                    <a (click)="editCommentPost(post?._id, comment?._id)" title="modifier votre commentaire"><i class="fas fa-edit" id="modifier"></i></a>
                 </div>
                 <form #form="ngForm" class="formulaire-commentaire">
                     <div class="commentaire">

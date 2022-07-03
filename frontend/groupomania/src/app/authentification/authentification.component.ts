@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoggedInUserId } from '../core/models/loggedInUserId.model';
 import { User } from '../core/models/user.model';
 import { AuthService } from '../core/services/auth.services';
 import { UserService } from '../core/services/user.services';
@@ -14,12 +15,13 @@ import { UserService } from '../core/services/user.services';
 export class AuthentificationComponent implements OnInit {
 
   user!: User;
-  users!: User[];
+  users: User[]=[];
   signinForm!: FormGroup;
   loginForm!: FormGroup;
   registerActive: boolean = false;
   loginActive : boolean = true;
   loggedInUser!: User | null;
+  loggedInUserId!: LoggedInUserId | null;
 
 
   constructor(private fb: FormBuilder,
@@ -46,11 +48,11 @@ export class AuthentificationComponent implements OnInit {
       this.classList.toggle("active");
     };
 
-    if (localStorage.getItem('loggedInUser')===null) {
-      this.loggedInUser = null;
+    if (localStorage.getItem('loggedInUserId')===null) {
+      this.loggedInUserId = null;
     }
     else {
-      this.loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
+      this.loggedInUserId = JSON.parse(localStorage.getItem('loggedInUserId') || '{}');
     }
     
   };
@@ -79,8 +81,8 @@ export class AuthentificationComponent implements OnInit {
   loginUser(user : User) {    
     this.userService.loginUser(user).subscribe(
       (response: User) => {
-        localStorage.setItem('loggedInUser', JSON.stringify(response));
-        this.loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
+        localStorage.setItem('loggedInUserId', JSON.stringify(response));
+        this.loggedInUserId = JSON.parse(localStorage.getItem('loggedInUserId') || '{}');
         location.href="/accueil";
       },
       (error: HttpErrorResponse) => {

@@ -9,6 +9,7 @@ import { UserService } from '../core/services/user.services';
 import { MatDialog} from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AppComponentDialog } from '../dialog.component/dialog.component';
+import { LoggedInUserId } from '../core/models/loggedInUserId.model';
 
 @Component({
   selector: 'app-profil',
@@ -18,6 +19,8 @@ import { AppComponentDialog } from '../dialog.component/dialog.component';
 export class ProfilComponent implements OnInit {
   userPosts: Post[] = [];
   loggedInUser!: User | null;
+  loggedInUserId!: LoggedInUserId | null;
+  users: User[]=[];
   comment!: Comment;
 
   constructor(private router: Router,
@@ -28,25 +31,14 @@ export class ProfilComponent implements OnInit {
     private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    if (localStorage.getItem('loggedInUser')===null) {
-      this.loggedInUser = null;
+    if (localStorage.getItem('loggedInUserId')===null) {
+      this.loggedInUserId = null;
     }
     else {
-      this.loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
+      this.loggedInUserId = JSON.parse(localStorage.getItem('loggedInUserId') || '{}');
     };
     this.getUserPosts();
-    this.loggedInUser={
-      "_id": "62b58703cf8fe478d3f52b03",
-      "email": "patrice@gmail.com",
-      "picture": "./uploads/profil/random-user.png",
-      "follower": null,
-      "following": null,
-      "job": "Business Analyst",
-      "firstname": "Patrice",
-      "name": "Dupont",
-      "password": "test33",
-      "role": "CLIENT"
-    }
+    this.getLoggedInUser();
   };
 
   //Afficher les posts de l'utilisateur
@@ -55,7 +47,7 @@ export class ProfilComponent implements OnInit {
       (response: Post[]) => {
         if (response !== []) {
           for (let post of response) {
-            if (post?.posterId === this.loggedInUser?._id) {
+            if (post?.posterId === this.loggedInUserId?.user) {
               this.userPosts.unshift(post);
               this.userPosts.sort((a, b) => b.updatedAt!.localeCompare(a.updatedAt!));
             }
@@ -68,10 +60,37 @@ export class ProfilComponent implements OnInit {
     )
   };
 
+   //récupère l'utilisateur connecté
+   getLoggedInUser() {
+    this.userService.getUsers().subscribe(
+      (response: User[]) => {
+        this.users=response;   
+        for (let user of response) {
+          if (user?._id === this.loggedInUserId?.user) {
+            this.loggedInUser = user;
+          }
+        }   
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    ) 
+  }
+
+  getPosterName(posterId: string) : string {
+    let name: string = "";
+    for (let user of this.users) {
+      if (user?._id === posterId) {
+        name = user?.firstname +" "+ user?.name;
+      }
+    }
+    return name;
+  }
+
   //modifier les posts de l'utilisateur (à revérifier et essayer avec ajout du bouton)
-  updatePost(postId: number, posterId: string) {
-    if (posterId.toString() === this.loggedInUser?._id) {
-      this.postService.updatePost(postId, posterId).subscribe(
+  updatePost(postId: number, post: Post) {
+    if (post?.posterId === this.loggedInUserId?.user) {
+      this.postService.updatePost(postId, post).subscribe(
         (response: Post) => {
           this.snackBar.open("Message modifié", "Fermer", {duration: 2000});
         },
@@ -87,7 +106,7 @@ export class ProfilComponent implements OnInit {
     const dialogRef = this.dialog.open(AppComponentDialog);
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === true && posterId === this.loggedInUser?._id) {
+      if (result === true && posterId === this.loggedInUserId?.user) {
         this.postService.deletePost(postId).subscribe(
           (response: void) => {
             location.reload();
@@ -110,8 +129,8 @@ export class ProfilComponent implements OnInit {
     }
     this.userService.updateUser(user, userId).subscribe(
       (response: User) => {
-        localStorage.setItem('loggedInUser', JSON.stringify(response));
-        this.loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
+        localStorage.setItem('loggedInUserId', JSON.stringify(response));
+        this.loggedInUserId = JSON.parse(localStorage.getItem('loggedInUserId') || '{}');
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -121,10 +140,13 @@ export class ProfilComponent implements OnInit {
 
   //supprimer l'utilisateur connecté (à tester)
   deleteUser(userId: number) {
-    if (userId.toString() === this.loggedInUser?._id) {
+    if (userId.toString() === this.loggedInUserId?.user) {
       this.userService.deleteUser(userId).subscribe(
         (response: void) => {
-          this.loggedInUser=null;
+          localStorage.removeItem('loggedInUserId');
+          this.loggedInUser = null;
+          this.loggedInUserId = null;
+          location.href="/";
         },
         (error: HttpErrorResponse) => {
           alert(error.message);
@@ -133,9 +155,9 @@ export class ProfilComponent implements OnInit {
   };
 
   
-  //aimer un post (à assembler avec unlikePost + ajout au html et css)
+  //aimer un post (à assembler avec unlikePost)
   likePost(postId: string) {
-    this.postService.likePost(postId,this.loggedInUser?._id!).subscribe(
+    this.postService.likePost(postId,this.loggedInUserId?.user!).subscribe(
       (response: Post) => {
         this.snackBar.open("Vous aimez cette publication", "Fermer", {duration: 2000});
       },
@@ -145,9 +167,9 @@ export class ProfilComponent implements OnInit {
     );
   };
 
-  //ne plus aimer un post (à assembler avec likePost + ajout au html et css)
+  //ne plus aimer un post (à assembler avec likePost)
   unlikePost(postId: string) {
-    this.postService.unlikePost(postId,this.loggedInUser?._id!).subscribe(
+    this.postService.unlikePost(postId,this.loggedInUserId?.user!).subscribe(
       (response: Post) => {
         this.snackBar.open("Vous n'aimez plus cette publication", "Fermer", {duration: 2000});
       },
@@ -158,15 +180,16 @@ export class ProfilComponent implements OnInit {
   };
 
   
-  //ajouter un commentaire ( ajout au html et css)
+  //ajouter un commentaire 
   addCommentPost(postId: string, comment: Comment) {
     if (comment?.text !== null && comment?.text !== "") {
       comment.commenterName = this.loggedInUser?.firstname! +" "+ this.loggedInUser?.name!;
-      comment.commenterId = this.loggedInUser?._id!;
+      comment.commenterId = this.loggedInUserId?.user!;
       this.postService.addCommentPost(postId, comment).subscribe(
         (response: Post) => {
-          this.getUserPosts();
-          this.snackBar.open("Commentaire publié", "Fermer", {duration: 2000});
+          this.snackBar.open("Commentaire publié", "Fermer", {duration: 2000}).afterDismissed().subscribe(() => {
+            location.reload();
+          });
         },
         (error: HttpErrorResponse) => {
           alert(error.message);
@@ -178,7 +201,7 @@ export class ProfilComponent implements OnInit {
     }
   };
 
-  //modifier un commentaire (à revérifier + ajout au html et css)
+  //modifier un commentaire (à revérifier)
   editCommentPost(postId: string, commentId: any) {
     this.postService.editCommentPost(postId,commentId).subscribe(
       (response: Post) => {
@@ -191,7 +214,7 @@ export class ProfilComponent implements OnInit {
     )
   };
 
-  //supprimer un commentaire (ajout au html et css)
+  //supprimer un commentaire
   deleteCommentPost(postId: string, commentId: any) {
     const dialogRef = this.dialog.open(AppComponentDialog);
 
@@ -199,7 +222,9 @@ export class ProfilComponent implements OnInit {
       if (result === true) {
         this.postService.deleteCommentPost(postId,commentId).subscribe(
           (response: Post) => {
-            this.getUserPosts();
+            this.snackBar.open("Commentaire supprimé", "Fermer", {duration: 2000}).afterDismissed().subscribe(() => {
+              location.reload();
+            });
           },
           (error: HttpErrorResponse) => {
             alert(error.message);
@@ -209,13 +234,25 @@ export class ProfilComponent implements OnInit {
     });
   };
 
+  isUserPost(post: Post): boolean {
+    let isUserPost: boolean = false;
+    if (this.loggedInUser?._id === post?.posterId) {
+      isUserPost = true;
+    }
+    return isUserPost;
+  }
+
   //déconnecter l'utilisateur connecté (à tester)
-  logoutUser(user : User) {
-    this.userService.logoutUser(user).subscribe(
+  logoutUser() {
+    this.userService.logoutUser(this.loggedInUser!).subscribe(
       (response: User) => {
-        localStorage.removeItem('loggedInUser');
+        localStorage.removeItem('loggedInUserId');
         this.loggedInUser = null;
-        //éventuellement renvoyer à la page de connexion
+        this.loggedInUserId = null;
+        location.href="/";
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
       }
     )
   };
