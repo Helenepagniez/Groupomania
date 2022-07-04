@@ -1,6 +1,8 @@
 <div class="profil">
-    <a (click)="logoutUser()" title="Se déconnecter"><i class="fas fa-sign-out-alt"></i></a>
-    <h2>Mon Profil</h2>
+    <div class="deconnexion">
+        <a (click)="logoutUser()" title="Se déconnecter"><i class="fas fa-sign-out-alt"></i></a>
+        <h2>Mon Profil</h2>
+    </div>
     <div class="photo">
         <label for="image"></label>
         <img type="file" id="image" src="https://media.istockphoto.com/photos/golden-retriever-with-computer-picture-id161955993?s=612x612" alt="photo de profil">
@@ -42,9 +44,11 @@
                     <div class="texte">
                         <input type="hidden" class="id" placeholder="{{post?._id}}" name="id" ngModel="{{post?._id}}">
                         <input type="hidden" class="posterId" placeholder="{{post?.posterId}}" name="posterId" ngModel="{{post?.posterId}}">
-                        <input *ngIf="!isUserPost(post)" type="text" class="message" placeholder="{{post?.message}}" name="message" ngModel="{{post?.message}}" disabled>
-                        <input *ngIf="isUserPost(post)" type="text" class="message" placeholder="{{post?.message}}" name="message" ngModel="{{post?.message}}">
-                        <a (click)="updatePost(post?._id,form.value)"><i class="fas fa-edit" id="modifier" title="modifier votre publication"></i></a>
+                        <div class="modifier-message">
+                            <input *ngIf="!isUserPost(post)" type="text" class="message" placeholder="{{post?.message}}" name="message" ngModel="{{post?.message}}" disabled>
+                            <input *ngIf="isUserPost(post)" type="text" class="message" placeholder="{{post?.message}}" name="message" ngModel="{{post?.message}}">
+                            <a (click)="updatePost(post?._id,form.value)"><i class="fas fa-edit" id="modifier" title="modifier votre publication"></i></a>
+                        </div>
                     </div>
                     <div class="image">
                         <img type="jpg" id="image" src="https://cdn.pixabay.com/photo/2016/09/07/11/37/tropical-1651423_960_720.jpg"  alt="image">

@@ -8,6 +8,20 @@ h2{
     flex-direction: column;
 }
 
+.profil .deconnexion {
+    background-color: #FFD7D7;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    width: 20%;
+    margin: auto;
+    align-items: center;
+}
+
+.profil .deconnexion a{
+    margin-left: 10%;
+}
+
 .form-group {
     margin: 10px auto;
     width: 50%;
@@ -76,6 +90,18 @@ h2{
 
 /************PUBLICATIONS***************/
 
+.mur h2{
+    background-color: #FFD7D7;
+    display: flex;
+    justify-content: center;
+    width: 20%;
+    margin: auto;
+    align-items: center;
+    height: 70px;
+    margin-bottom: 2%;
+    margin-top: 1%;
+}
+
 .colonne{
     flex-direction: column;
     width: 100%;
@@ -127,8 +153,24 @@ h2{
     margin-left: auto;
     background-color: white;
     border-bottom: #4E5166 2px solid;
-    height: auto;
 }
+
+.post .composition .texte .modifier-message{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.post .composition .texte .modifier-message .message{
+    width: 60%;
+    height: auto;
+    margin-bottom: 1%;
+    margin-top: 1%;
+    margin-right: 1%;
+}
+
 
 .post .composition .texte p{
     text-align: center;

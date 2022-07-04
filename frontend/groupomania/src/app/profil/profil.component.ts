@@ -87,7 +87,7 @@ export class ProfilComponent implements OnInit {
     return name;
   }
 
-  //modifier les posts de l'utilisateur (à revérifier et essayer avec ajout du bouton)
+  //modifier les posts de l'utilisateur
   updatePost(postId: number, post: Post) {
     if (post?.posterId === this.loggedInUserId?.user) {
       this.postService.updatePost(postId, post).subscribe(
@@ -150,7 +150,8 @@ export class ProfilComponent implements OnInit {
         },
         (error: HttpErrorResponse) => {
           alert(error.message);
-        });
+        }
+      );
     }
   };
 

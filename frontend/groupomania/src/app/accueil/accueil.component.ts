@@ -163,6 +163,7 @@ export class AccueilComponent implements OnInit {
         this.postService.deleteCommentPost(postId,commentId).subscribe(
           (response: Post) => {
             this.getPosts();
+            this.snackBar.open("Commentaire supprimé", "Fermer", {duration: 2000});
           },
           (error: HttpErrorResponse) => {
             alert(error.message);
