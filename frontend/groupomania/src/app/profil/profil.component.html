@@ -7,23 +7,23 @@
         <label for="image"></label>
         <img type="file" id="image" src="https://media.istockphoto.com/photos/golden-retriever-with-computer-picture-id161955993?s=612x612" alt="photo de profil">
     </div>
-    <form #form="ngForm" class="formulaire-utilisateur">
+    <form class="formulaire-utilisateur" [formGroup]="userForm" (ngSubmit)="updateUser(userForm.value)">
         <div class="form-group">
-            <input type="hidden" class="id" placeholder="{{loggedInUser?._id}}" name="_id" ngModel="{{loggedInUser?._id}}">
-            <input type="text" id="prenom" name="firstname" ngModel="{{loggedInUser?.firstname}}" placeholder="{{loggedInUser?.firstname}}">
-            <input type="text" id="nom" name="name" ngModel="{{loggedInUser?.name}}" placeholder="{{loggedInUser?.name}}">
-            <input type="text" id="poste" name="job" ngModel="{{loggedInUser?.job}}" placeholder="{{loggedInUser?.job}}">
-            <input type="text" id="email" name="email" ngModel="{{loggedInUser?.email}}" placeholder="{{loggedInUser?.email}}">
+            <input type="hidden" class="id" formControlName="_id" placeholder="{{loggedInUser?._id}}" name="_id" ngModel="{{loggedInUser?._id}}">
+            <input type="text" id="prenom" formControlName="firstname" name="firstname" ngModel="{{loggedInUser?.firstname}}" placeholder="{{loggedInUser?.firstname}}">
+            <input type="text" id="nom" formControlName="name" name="name" ngModel="{{loggedInUser?.name}}" placeholder="{{loggedInUser?.name}}">
+            <input type="text" id="poste" formControlName="job" name="job" ngModel="{{loggedInUser?.job}}" placeholder="{{loggedInUser?.job}}">
+            <input type="text" id="email" formControlName="email" name="email" ngModel="{{loggedInUser?.email}}" placeholder="{{loggedInUser?.email}}">
+        </div>
+        <div class="boutons">
+            <div class="modifier">
+                <button type="submit" title="modifier votre profil">Modifier</button>
+            </div>
+            <div class="supprimer">
+                <button type="submit" title="supprimer votre profil">Supprimer</button>
+            </div>
         </div>
     </form>
-    <div class="boutons">
-        <div class="modifier">
-            <button (click)="updateUser(form.value)" title="modifier votre profil">Modifier</button>
-        </div>
-        <div class="supprimer">
-            <button (click)="deleteUser(loggedInUser?._id!)" title="supprimer votre profil">Supprimer</button>
-        </div>
-    </div>
 </div>
 <div class="mur">
     <h2>Mes Publications</h2>
@@ -35,15 +35,14 @@
                 <p class="date">{{post?.createdAt | date: 'à HH:mm, le d MMMM yyyy'}}</p>
             </div>
             <div class="form-composition">
-                <form #form="ngForm">
+                <form class="formulaire-post" [formGroup]="postForm" (ngSubmit)="updatePost(postForm.value)">
                     <div class="composition">
                         <div class="texte">
-                            <input type="hidden" class="id" placeholder="{{post?._id}}" name="id" ngModel="{{post?._id}}">
-                            <input type="hidden" class="posterId" placeholder="{{post?.posterId}}" name="posterId" ngModel="{{post?.posterId}}">
                             <div class="modifier-message">
-                                <input *ngIf="!isUserPost(post)" type="text" class="message" placeholder="{{post?.message}}" name="message" ngModel="{{post?.message}}" disabled>
-                                <input *ngIf="isUserPost(post)" type="text" class="message" placeholder="{{post?.message}}" name="message" ngModel="{{post?.message}}">
-                                <a (click)="updatePost(post?._id,form.value)"><i class="fas fa-edit" id="modifier" title="modifier votre publication"></i></a>
+                                <input type="hidden" class="id" ngModel="{{post?._id}}" name="_id" formControlName="_id">
+                                <input type="hidden" class="posterId" ngModel="{{post?.posterId}}" name="posterId" formControlName="posterId">
+                                <input type="text" class="message" placeholder="{{post?.message}}" ngModel="{{post?.message}}" name="message" formControlName="message">
+                                <button type="submit" title="modifier votre publication">Modifier</button>
                             </div>
                         </div>
                         <div class="image">
@@ -56,7 +55,6 @@
                 <div class="boutons">
                     <button (click)="likePost(post?._id)" title="aimer ce post">J'aime</button>
                     <button (click)="unlikePost(post?._id)" title="ne plus aimer ce post">Je n'aime plus</button>
-                    <button (click)="addCommentPost(post?._id, form.value)" title="envoyer votre commentaire">Commenter</button>
                     <button (click)="deletePost(post?._id, post.posterId)" title="supprimer votre publication">Supprimer</button>
                 </div>
                 <div *ngFor="let comment of post?.comments" class="conteneur-commentaire">
@@ -68,8 +66,9 @@
                 </div>
                 <form #form="ngForm" class="formulaire-commentaire">
                     <div class="commentaire">
-                        <textarea placeholder="Votre commentaire..." name="text" ngModel="{{comment?.text}}"></textarea>
+                        <textarea placeholder="Votre commentaire..." name="text"></textarea>
                     </div>
+                    <button (click)="addCommentPost(post?._id, form.value)" title="envoyer votre commentaire">Commenter</button>
                 </form>
             </div>
         </div>

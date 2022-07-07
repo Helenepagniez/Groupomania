@@ -43,8 +43,8 @@
                     <input type="hidden" class="id" placeholder="{{comment?._id}}" name="id" ngModel="{{comment?._id}}">
                     <p class="commenterName"><i class="fas fa-user"></i>  {{comment?.commenterName}} : </p>
                     <p class="text">{{comment?.text}}</p>
-                    <a (click)="deleteCommentPost(post?._id, comment?._id)" title="supprimer votre commentaire"><i class="fas fa-trash-alt" id="supprimer"></i></a>
-                    <a (click)="editCommentPost(post?._id, comment?._id)" title="modifier votre commentaire"><i class="fas fa-edit" id="modifier"></i></a>
+                    <a *ngIf="comment?.commenterId === loggedInUser?._id" (click)="deleteCommentPost(post?._id, comment?._id)" title="supprimer votre commentaire"><i class="fas fa-trash-alt" id="supprimer"></i></a>
+                    <a *ngIf="comment?.commenterId === loggedInUser?._id" (click)="editCommentPost(post?._id, comment?._id)" title="modifier votre commentaire"><i class="fas fa-edit" id="modifier"></i></a>
                 </div>
                 <form #form="ngForm" class="formulaire-commentaire">
                     <div class="commentaire">

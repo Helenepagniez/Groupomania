@@ -10,6 +10,7 @@ import { MatDialog} from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AppComponentDialog } from '../dialog.component/dialog.component';
 import { LoggedInUserId } from '../core/models/loggedInUserId.model';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-profil',
@@ -22,16 +23,32 @@ export class ProfilComponent implements OnInit {
   loggedInUserId!: LoggedInUserId | null;
   users: User[]=[];
   user!: User;
-  comment!: Comment;
+  userForm!: FormGroup;
+  postForm!: FormGroup;
 
   constructor(private router: Router,
     private postService: PostService,
     private userService: UserService,
     private matDialog: MatDialog,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.userForm = this.fb.group({
+      _id: [''],
+      firstname: [''],
+      name: [''],
+      job: [''],
+      email: [''],
+    });
+
+    this.postForm = this.fb.group({
+      _id: [''],
+      posterId: [''],
+      message: ['']
+    });
+
     if (localStorage.getItem('loggedInUserId')===null) {
       this.loggedInUserId = null;
     }
@@ -89,9 +106,9 @@ export class ProfilComponent implements OnInit {
   }
 
   //modifier les posts de l'utilisateur
-  updatePost(postId: number, post: Post) {
+  updatePost(post: Post) {
     if (post?.posterId === this.loggedInUserId?.user) {
-      this.postService.updatePost(postId, post).subscribe(
+      this.postService.updatePost(post?._id, post).subscribe(
         (response: Post) => {
           this.snackBar.open("Message modifié", "Fermer", {duration: 2000});
         },
@@ -239,14 +256,6 @@ export class ProfilComponent implements OnInit {
       }
     });
   };
-
-  isUserPost(post: Post): boolean {
-    let isUserPost: boolean = false;
-    if (this.loggedInUser?._id === post?.posterId) {
-      isUserPost = true;
-    }
-    return isUserPost;
-  }
 
   //déconnecter l'utilisateur connecté (à tester)
   logoutUser() {
