@@ -7,6 +7,6 @@ export interface User {
     email: string;
     password: string;
     role: string;
-    follower: string|null;
-    following: string|null;
+    followers: string[]|null; //id
+    following: string[]|null; //id to follow ou id to unfollow
 }

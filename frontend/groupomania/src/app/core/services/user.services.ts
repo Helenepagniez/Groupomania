@@ -18,11 +18,11 @@ export class UserService {
         return this.http.post<User>(`${this.apiServerUrl}/api/user/register`, user);
     };
 
-    public updateUser(user: User, userId: number): Observable<User> {
+    public updateUser(user: User, userId: string): Observable<User> {
         return this.http.put<User>(`${this.apiServerUrl}/api/user/${userId}`, user);
     };
 
-    public deleteUser(userId: number): Observable<void> {
+    public deleteUser(userId: string): Observable<void> {
         return this.http.delete<void>(`${this.apiServerUrl}/api/user/${userId}`);
     };
 
@@ -34,11 +34,11 @@ export class UserService {
         return this.http.get<any>(`${this.apiServerUrl}/api/user/logout`);
     };
 
-    public followUser(userId: number, user: User): Observable<User> {
-        return this.http.patch<User>(`${this.apiServerUrl}/api/user/follow/${userId}`, user);
+    public followUser(IdFollower: string, IdToFollow: string): Observable<User> {
+        return this.http.patch<User>(`${this.apiServerUrl}/api/user/follow/${IdFollower}`, {"idToFollow":IdToFollow});
     };
 
-    public unfollowUser(userId: number, user: User): Observable<User> {
-        return this.http.patch<User>(`${this.apiServerUrl}/api/user/unfollow/${userId}`, user);
+    public unfollowUser(IdUnfollower: string, IdToUnfollow: string): Observable<User> {
+        return this.http.patch<User>(`${this.apiServerUrl}/api/user/unfollow/${IdUnfollower}`, {"idToUnfollow":IdToUnfollow});
     };
 }

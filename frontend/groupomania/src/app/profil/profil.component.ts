@@ -21,6 +21,7 @@ export class ProfilComponent implements OnInit {
   loggedInUser!: User | null;
   loggedInUserId!: LoggedInUserId | null;
   users: User[]=[];
+  user!: User;
   comment!: Comment;
 
   constructor(private router: Router,
@@ -120,17 +121,17 @@ export class ProfilComponent implements OnInit {
   };
 
   //Modifier l'utilisateur connecté (à tester)
-  updateUser(user : User, userId: number) {
+  updateUser(user : User) {
     if (this.loggedInUser?.role === "ADMIN") {
       user.role="ADMIN";
     }
     else {
       user.role="CLIENT";
     }
-    this.userService.updateUser(user, userId).subscribe(
+    this.userService.updateUser(user, user?._id).subscribe(
       (response: User) => {
-        localStorage.setItem('loggedInUserId', JSON.stringify(response));
-        this.loggedInUserId = JSON.parse(localStorage.getItem('loggedInUserId') || '{}');
+        this.getLoggedInUser();
+        this.snackBar.open("Vous avez modifié vos informations", "Fermer", {duration: 2000});
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -139,22 +140,25 @@ export class ProfilComponent implements OnInit {
   };
 
   //supprimer l'utilisateur connecté (à tester)
-  deleteUser(userId: number) {
-    if (userId.toString() === this.loggedInUserId?.user) {
-      this.userService.deleteUser(userId).subscribe(
-        (response: void) => {
-          localStorage.removeItem('loggedInUserId');
-          this.loggedInUser = null;
-          this.loggedInUserId = null;
-          location.href="/";
-        },
-        (error: HttpErrorResponse) => {
-          alert(error.message);
-        }
-      );
-    }
-  };
+  deleteUser(userId: string) {
+    const dialogRef = this.dialog.open(AppComponentDialog);
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.userService.deleteUser(userId).subscribe(
+          (response: void) => {
+            localStorage.removeItem('loggedInUserId');
+            this.loggedInUser = null;
+            this.loggedInUserId = null;
+            location.href="/";
+          },
+          (error: HttpErrorResponse) => {
+            alert(error.message);
+          }
+        );
+      }
+    });
+  };
   
   //aimer un post (à assembler avec unlikePost)
   likePost(postId: string) {
@@ -183,7 +187,8 @@ export class ProfilComponent implements OnInit {
   
   //ajouter un commentaire 
   addCommentPost(postId: string, comment: Comment) {
-    if (comment?.text !== null && comment?.text !== "") {
+    console.log(comment);
+    if (comment?.text !== null && comment?.text !== "" && comment?.text !== undefined) {
       comment.commenterName = this.loggedInUser?.firstname! +" "+ this.loggedInUser?.name!;
       comment.commenterId = this.loggedInUserId?.user!;
       this.postService.addCommentPost(postId, comment).subscribe(

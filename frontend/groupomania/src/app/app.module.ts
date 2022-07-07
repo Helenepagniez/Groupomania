@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppHeaderComponent } from './header.component/header.component';
 import { ProfilComponent } from './profil/profil.component';
-import { MessagerieComponent } from './messagerie/messagerie.component';
 import { ContactComponent } from './contact/contact.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
@@ -21,7 +20,6 @@ import fr from '@angular/common/locales/fr';
     AppComponent,
     AppHeaderComponent,
     ProfilComponent,
-    MessagerieComponent,
     ContactComponent,
     AccueilComponent,
     AuthentificationComponent

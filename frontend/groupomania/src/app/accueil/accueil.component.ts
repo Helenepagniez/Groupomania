@@ -123,7 +123,8 @@ export class AccueilComponent implements OnInit {
   
   //ajouter un commentaire
   addCommentPost(postId: string, comment: Comment) {
-    if (comment?.text !== null && comment?.text !== "") {
+    console.log(comment);
+    if (comment?.text !== null && comment?.text !== "" && comment?.text !== undefined) {
       comment.commenterName = this.loggedInUser?.firstname! +" "+ this.loggedInUser?.name!;
       comment.commenterId = this.loggedInUser?._id!;
       this.postService.addCommentPost(postId, comment).subscribe(

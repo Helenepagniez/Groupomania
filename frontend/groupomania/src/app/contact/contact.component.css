@@ -112,7 +112,7 @@
     display: block;
     margin: 10px auto;
     font-size: medium;
-    width: 30%;
+    width: auto;
     border-radius: 50px;
 }
 

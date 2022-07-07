@@ -1,3 +1,5 @@
+<p>Nombre followers : {{getFollowersNumber()}}</p>
+
 <div class="barre-de-recherche">
     <div class="info">
         <input class="recherche" type="text" name="recherche" placeholder="Recherchez ici !">
@@ -25,7 +27,8 @@
             </div>
         </div>
         <div class="boutons">
-            <button title="Suivre cet utilisateur">Me suivre</button>
+            <button *ngIf="!isFollowing(user)" (click)="followUser(user._id!)" title="Suivre cet utilisateur">Me suivre</button>
+            <button *ngIf="isFollowing(user)" (click)="unfollowUser(user._id!)" title="Ne plus suivre cet utilisateur">Ne plus me suivre</button>
         </div>
     </div>
 </div>
