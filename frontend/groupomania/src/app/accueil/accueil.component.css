@@ -155,7 +155,7 @@ a {
     margin: 10px;
 }
 
-.post .form-composition .composition{
+.post .composition{
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -167,9 +167,40 @@ a {
     height: auto;
 }
 
+.post .composition .texte {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
 .post .composition .texte p{
     text-align: center;
     padding-top: 5px;
+}
+
+.post .composition .texte .message{
+    height: auto;
+    margin-bottom: 1%;
+    margin-top: 2%;
+    margin-right: 1%;
+    width: 70%;
+    resize: none;
+    border: none;
+    color: black;
+    text-align: center;
+}
+
+.post .composition .texte .message-admin{
+    width: 70%;
+    height: auto;
+    margin-bottom: 1%;
+    margin-top: 2%;
+    margin-right: 1%;
+    color: black;
+    text-align: center;
+    resize: none;
 }
 
 .post .composition .image{

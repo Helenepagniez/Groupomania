@@ -21,10 +21,15 @@
                 <p class="date">{{post?.createdAt | date: 'à HH:mm, le d MMMM yyyy'}}</p>
             </div>
             <div class="composition">
-                <div class="texte">
-                    <input type="hidden" class="id" placeholder="{{post?._id}}" name="id" ngModel="{{post?._id}}">
-                    <p>{{post?.message}}</p>
-                </div>
+                <form #form="ngForm" (ngSubmit)="updatePost(form.value)">
+                    <div class="texte">
+                        <input type="hidden" class="id" ngModel="{{post?._id}}" name="_id">
+                        <input type="hidden" class="posterId" ngModel="{{post?.posterId}}" name="posterId">
+                        <textarea *ngIf="loggedInUser?.role === 'ADMIN'" type="text" class="message-admin" placeholder="{{post?.message}}" ngModel="{{post?.message}}" name="message"></textarea>
+                        <textarea *ngIf="loggedInUser?.role !== 'ADMIN'" type="text" class="message" placeholder="{{post?.message}}" ngModel="{{post?.message}}" name="message" disabled></textarea>
+                        <button *ngIf="loggedInUser?.role === 'ADMIN'" type="submit" title="modifier votre publication">Modifier</button>
+                    </div>
+                </form>
                 <div class="image">
                     <img type="jpg" id="image" src="https://cdn.pixabay.com/photo/2016/09/07/11/37/tropical-1651423_960_720.jpg"  alt="image">
                 </div>
@@ -39,6 +44,7 @@
                 <div class="boutons">
                     <button *ngIf="!isLiking(post)" (click)="likePost(post?._id)" title="aimer ce post">J'aime</button>
                     <button *ngIf="isLiking(post)" (click)="unlikePost(post?._id)" title="ne plus aimer ce post">Je n'aime plus</button>
+                    <button *ngIf="loggedInUser?.role === 'ADMIN'" (click)="deletePost(post?._id, post.posterId)" title="supprimer cette publication">Supprimer</button>
                 </div>
                 <div *ngFor="let comment of post?.comments" class="conteneur-commentaire">
                     <form class="formulaire-commentaire-poster" #form="ngForm" (ngSubmit)="editCommentPost(post?._id,form.value)">

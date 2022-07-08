@@ -105,6 +105,38 @@ export class AccueilComponent implements OnInit {
     )
   };
 
+    //modifier un post
+    updatePost(post: Post) {
+      if (this.loggedInUser?.role ==='ADMIN') {
+        this.postService.updatePost(post?._id, post).subscribe(
+          (response: Post) => {
+            this.snackBar.open("Message modifié", "Fermer", {duration: 2000});
+          },
+          (error: HttpErrorResponse) => {
+            alert(error.message);
+          }
+        );
+      }
+    };
+
+  //supprimer un post
+  deletePost(postId: number, posterId: string) {
+    const dialogRef = this.dialog.open(AppComponentDialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true && this.loggedInUser?.role ==='ADMIN') {
+        this.postService.deletePost(postId).subscribe(
+          (response: void) => {
+            location.reload();
+          },
+          (error: HttpErrorResponse) => {
+            alert(error.message);
+          }
+        );
+      }
+    });
+  };
+
   //aimer un post
   likePost(postId: string) {
     this.postService.likePost(postId,this.loggedInUser?._id!).subscribe(
