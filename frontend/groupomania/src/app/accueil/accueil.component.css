@@ -298,6 +298,7 @@ a {
     width: 100%;
     resize: none;
     border: none;
+    padding-top: 4%;
 }
 
 .conteneur-commentaire  .formulaire-commentaire-poster .commenterName{

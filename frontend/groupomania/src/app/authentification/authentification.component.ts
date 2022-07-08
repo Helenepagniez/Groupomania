@@ -59,8 +59,8 @@ export class AuthentificationComponent implements OnInit {
   };
 
   onLogin() {
-  this.auth.login();
-  this.router.navigateByUrl('/accueil');
+    this.auth.login();
+    this.router.navigateByUrl('/accueil');
   };
 
   onRegisterPage(){
@@ -77,10 +77,15 @@ export class AuthentificationComponent implements OnInit {
   //connecter un utilisateur
   loginUser(user : User) {    
     this.userService.loginUser(user).subscribe(
-      (response: User) => {
-        localStorage.setItem('loggedInUserId', JSON.stringify(response));
-        this.loggedInUserId = JSON.parse(localStorage.getItem('loggedInUserId') || '{}');
-        location.href="/accueil";
+      (response: any) => {
+        if (response?.user) {
+          localStorage.setItem('loggedInUserId', JSON.stringify(response));
+          this.loggedInUserId = JSON.parse(localStorage.getItem('loggedInUserId') || '{}');
+          location.href="/accueil";
+        }
+        else {
+          alert("Mauvais mot de passe ou email");
+        }
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
