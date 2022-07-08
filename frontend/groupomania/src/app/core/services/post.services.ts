@@ -39,8 +39,8 @@ export class PostService {
         return this.http.patch<Post>(`${this.apiServerUrl}/api/post/comment-post/${postId}`, comment);
     };
 
-    public editCommentPost(postId: string, commentId: any): Observable<Post> {
-        return this.http.patch<Post>(`${this.apiServerUrl}/api/post/edit-comment-post/${postId}`, {"commentId":commentId});
+    public editCommentPost(postId: string, comment: Comment): Observable<Post> {
+        return this.http.patch<Post>(`${this.apiServerUrl}/api/post/edit-comment-post/${postId}`, comment);
     };
 
     public deleteCommentPost(postId: string, commentId: any): Observable<Post> {

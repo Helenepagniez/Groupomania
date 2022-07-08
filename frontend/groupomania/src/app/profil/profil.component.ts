@@ -23,8 +23,10 @@ export class ProfilComponent implements OnInit {
   loggedInUserId!: LoggedInUserId | null;
   users: User[]=[];
   user!: User;
+  comment!: Comment;
   userForm!: FormGroup;
-  postForm!: FormGroup;
+  commentForm!: FormGroup;
+  
 
   constructor(private router: Router,
     private postService: PostService,
@@ -43,10 +45,8 @@ export class ProfilComponent implements OnInit {
       email: [''],
     });
 
-    this.postForm = this.fb.group({
-      _id: [''],
-      posterId: [''],
-      message: ['']
+    this.commentForm = this.fb.group({
+      text: ['']
     });
 
     if (localStorage.getItem('loggedInUserId')===null) {
@@ -67,7 +67,7 @@ export class ProfilComponent implements OnInit {
           for (let post of response) {
             if (post?.posterId === this.loggedInUserId?.user) {
               this.userPosts.unshift(post);
-              this.userPosts.sort((a, b) => b.updatedAt!.localeCompare(a.updatedAt!));
+              this.userPosts.sort((a, b) => b.createdAt!.localeCompare(a.createdAt!));
             }
           }
         }
@@ -225,8 +225,8 @@ export class ProfilComponent implements OnInit {
   };
 
   //modifier un commentaire (à revérifier)
-  editCommentPost(postId: string, commentId: any) {
-    this.postService.editCommentPost(postId,commentId).subscribe(
+  editCommentPost(postId: string, comment: Comment) {
+    this.postService.editCommentPost(postId,comment).subscribe(
       (response: Post) => {
         this.getUserPosts();
         this.snackBar.open("Commentaire modifié", "Fermer", {duration: 2000});

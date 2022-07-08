@@ -8,6 +8,6 @@ export class Post {
     comments!: Comment[] | null;
     posterId!: string;
     message!: string | null;
-    createdAt!: Date;
+    createdAt!: string| null;
     updatedAt!: string| null;
 }

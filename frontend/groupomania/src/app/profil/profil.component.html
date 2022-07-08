@@ -20,7 +20,7 @@
                 <button type="submit" title="modifier votre profil">Modifier</button>
             </div>
             <div class="supprimer">
-                <button type="submit" title="supprimer votre profil">Supprimer</button>
+                <button (click)="deleteUser(loggedInUser?._id!)" title="supprimer votre profil">Supprimer</button>
             </div>
         </div>
     </form>
@@ -35,13 +35,13 @@
                 <p class="date">{{post?.createdAt | date: 'à HH:mm, le d MMMM yyyy'}}</p>
             </div>
             <div class="form-composition">
-                <form class="formulaire-post" [formGroup]="postForm" (ngSubmit)="updatePost(postForm.value)">
+                <form class="formulaire-post" #form="ngForm" (ngSubmit)="updatePost(form.value)">
                     <div class="composition">
                         <div class="texte">
                             <div class="modifier-message">
-                                <input type="hidden" class="id" ngModel="{{post?._id}}" name="_id" formControlName="_id">
-                                <input type="hidden" class="posterId" ngModel="{{post?.posterId}}" name="posterId" formControlName="posterId">
-                                <input type="text" class="message" placeholder="{{post?.message}}" ngModel="{{post?.message}}" name="message" formControlName="message">
+                                <input type="hidden" class="id" ngModel="{{post?._id}}" name="_id">
+                                <input type="hidden" class="posterId" ngModel="{{post?.posterId}}" name="posterId">
+                                <input type="text" class="message" placeholder="{{post?.message}}" ngModel="{{post?.message}}" name="message">
                                 <button type="submit" title="modifier votre publication">Modifier</button>
                             </div>
                         </div>
@@ -58,17 +58,22 @@
                     <button (click)="deletePost(post?._id, post.posterId)" title="supprimer votre publication">Supprimer</button>
                 </div>
                 <div *ngFor="let comment of post?.comments" class="conteneur-commentaire">
-                    <input type="hidden" class="id" placeholder="{{comment?._id}}" name="id" ngModel="{{comment?._id}}">
-                    <p class="commenterName"><i class="fas fa-user"></i>  {{comment?.commenterName}} : </p>
-                    <p class="text">{{comment?.text}}</p>
-                    <a (click)="deleteCommentPost(post?._id, comment?._id)" title="supprimer votre commentaire"><i class="fas fa-trash-alt" id="supprimer"></i></a>
-                    <a (click)="editCommentPost(post?._id, comment?._id)" title="modifier votre commentaire"><i class="fas fa-edit" id="modifier"></i></a>
+                    <form class="formulaire-commentaire-poster" #form="ngForm" (ngSubmit)="editCommentPost(post?._id,form.value)">
+                        <input type="hidden" class="id" name="commentId" ngModel="{{comment?._id}}">
+                        <p class="commenterName"><i class="fas fa-user"></i>  {{comment?.commenterName}} : </p>
+                        <textarea *ngIf="comment?.commenterId === loggedInUser?._id" class="text" name="text" ngModel="{{comment?.text}}"></textarea>
+                        <textarea *ngIf="comment?.commenterId !== loggedInUser?._id" class="text" name="text" ngModel="{{comment?.text}}"></textarea>
+                        <button *ngIf="comment?.commenterId === loggedInUser?._id" type="submit" title="modifier votre commentaire"><i class="fas fa-edit" id="modifier"></i></button>
+                        <div class="suppression">
+                            <button *ngIf="comment?.commenterId === loggedInUser?._id" (click)="deleteCommentPost(post?._id, comment?._id)" title="supprimer votre commentaire"><i class="fas fa-trash-alt" id="supprimer"></i></button>
+                        </div>
+                    </form>
                 </div>
-                <form #form="ngForm" class="formulaire-commentaire">
+                <form class="formulaire-commentaire" [formGroup]="commentForm" (ngSubmit)="addCommentPost(post?._id,commentForm.value)">
                     <div class="commentaire">
-                        <textarea placeholder="Votre commentaire..." name="text"></textarea>
+                        <textarea placeholder="Votre commentaire..." name="text" formControlName="text"></textarea>
+                        <button type="submit" title="envoyer votre commentaire">Commenter</button>
                     </div>
-                    <button (click)="addCommentPost(post?._id, form.value)" title="envoyer votre commentaire">Commenter</button>
                 </form>
             </div>
         </div>

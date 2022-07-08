@@ -10,6 +10,7 @@ import { Comment } from '../core/models/comment.model';
 import { AppComponentDialog } from '../dialog.component/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { LoggedInUserId } from '../core/models/loggedInUserId.model';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-accueil',
@@ -23,14 +24,20 @@ export class AccueilComponent implements OnInit {
   loggedInUserId!: LoggedInUserId | null;
   users: User[] = [];
   comment!: Comment;
+  commentForm!: FormGroup;
 
   constructor(private router: Router,
      private postService: PostService,
      private userService: UserService, 
      private snackBar: MatSnackBar,
-     private dialog: MatDialog ) { }
+     private dialog: MatDialog,
+     private fb: FormBuilder ) { }
 
   ngOnInit() {
+    this.commentForm = this.fb.group({
+      text: ['']
+    });
+
     if (localStorage.getItem('loggedInUserId')===null) {
       this.loggedInUserId = null;
     }

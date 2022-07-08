@@ -1,3 +1,14 @@
+.follower-decompte{
+    margin-left: 30px;
+    color: #FD2D01;
+}
+
+.follower-decompte:hover{
+    cursor: pointer;
+    font-weight: 700;
+    text-decoration: underline #FD2D01;
+}
+
 /************BARRE DE RECHERCHE***************/
 .barre-de-recherche
 {

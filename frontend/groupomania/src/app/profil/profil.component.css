@@ -1,3 +1,7 @@
+a {
+    cursor: pointer;
+}
+
 h2{
     text-align: center;
     color: #FD2D01;
@@ -144,7 +148,7 @@ h2{
     margin: 10px;
 }
 
-.post .composition{
+.post .form-composition .formulaire-post .composition{
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -155,7 +159,7 @@ h2{
     border-bottom: #4E5166 2px solid;
 }
 
-.post .composition .texte .modifier-message{
+.post .form-composition .formulaire-post .composition .texte .modifier-message{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -163,7 +167,7 @@ h2{
     align-items: center;
 }
 
-.post .composition .texte .modifier-message .message{
+.post .form-composition .formulaire-post .composition .texte .modifier-message .message{
     width: 60%;
     height: auto;
     margin-bottom: 1%;
@@ -172,18 +176,18 @@ h2{
 }
 
 
-.post .composition .texte p{
+.post .form-composition .formulaire-post .composition .texte p{
     text-align: center;
     padding-top: 5px;
 }
 
-.post .composition .image{
+.post .form-composition .formulaire-post .composition .image{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.post .composition img{
+.post .form-composition .formulaire-post .composition img{
     width: 70%;
     height: auto;
     padding-bottom: 10px;
@@ -227,7 +231,7 @@ h2{
     cursor: pointer;
 }
 
-.conteneur-commentaire {
+.conteneur-commentaire .formulaire-commentaire-poster{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -240,7 +244,14 @@ h2{
     color: black;
 }
 
-.conteneur-commentaire .commenterName{
+.conteneur-commentaire .formulaire-commentaire-poster textarea{
+    height: auto;
+    width: 100%;
+    resize: none;
+    border: none;
+}
+
+.conteneur-commentaire .formulaire-commentaire-poster .commenterName{
     margin-right: 10px;
     margin-left: 10px;
     font-weight: 700;
@@ -248,7 +259,7 @@ h2{
     color: #FD2D01;
 }
 
-.conteneur-commentaire .text{
+.conteneur-commentaire .formulaire-commentaire-poster .text{
     margin-right: 10px;
     width: auto;
     max-width: 50%;
@@ -257,19 +268,24 @@ h2{
     flex-wrap: wrap;
 }
 
-.conteneur-commentaire #supprimer{
-    display: flex;
-    justify-content: space-between;
-}
-
-.conteneur-commentaire #modifier{
-    display: flex;
-    justify-content: space-between;
+.conteneur-commentaire button{
+    width: auto;
     margin-left: 10px;
-    margin-right: 10px;
 }
 
-.commentaire {
+.conteneur-commentaire .formulaire-commentaire-poster .suppression button #supprimer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteneur-commentaire .formulaire-commentaire-poster button #modifier{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulaire-commentaire .commentaire {
     margin: auto;
     margin-bottom: 10%;
     display: flex;
@@ -277,10 +293,15 @@ h2{
     align-content: center;
 }
 
-.commentaire textarea {
+.formulaire-commentaire .commentaire textarea {
     height: 50px;
     width: 62%;
     border-radius: 50px;
     padding-left: 20px;
     text-align: center;
+}
+
+.formulaire-commentaire .commentaire button{
+    margin-left: 10px;
+    width: auto;
 }
