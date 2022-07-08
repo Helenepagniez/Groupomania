@@ -65,6 +65,7 @@ export class AccueilComponent implements OnInit {
     ) 
   }
 
+  //récupérer l'identité du user qui a poster
   getPosterName(posterId: string) : string {
     let name: string = "";
     for (let user of this.users) {
@@ -79,8 +80,9 @@ export class AccueilComponent implements OnInit {
   getPosts() {
     this.postService.getPosts().subscribe(
       (response: Post[]) => {
+        this.posts = [];
         this.posts = response;
-        this.posts.sort((a, b) => b.updatedAt!.localeCompare(a.updatedAt!));
+        this.posts.sort((a, b) => b.createdAt!.localeCompare(a.createdAt!));
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -103,10 +105,11 @@ export class AccueilComponent implements OnInit {
     )
   };
 
-  //aimer un post (à assembler avec unlikePost)
+  //aimer un post
   likePost(postId: string) {
     this.postService.likePost(postId,this.loggedInUser?._id!).subscribe(
       (response: Post) => {
+        this.getPosts();
         this.snackBar.open("Vous aimez cette publication", "Fermer", {duration: 2000});
       },
       (error: HttpErrorResponse) => {
@@ -115,10 +118,11 @@ export class AccueilComponent implements OnInit {
     );
   };
 
-  //ne plus aimer un post (à assembler avec likePost)
+  //ne plus aimer un post
   unlikePost(postId: string) {
     this.postService.unlikePost(postId,this.loggedInUser?._id!).subscribe(
       (response: Post) => {
+        this.getPosts();
         this.snackBar.open("Vous n'aimez plus cette publication", "Fermer", {duration: 2000});
       },
       (error: HttpErrorResponse) => {
@@ -127,7 +131,35 @@ export class AccueilComponent implements OnInit {
     );
   };
 
-  
+  //Indique nombre de commentaires d'un post
+  getCommentsNumber(post : Post): number {
+    let commentsNumber: number = 0;
+    if (post?.comments?.length) {
+      commentsNumber = post?.comments?.length;
+    }
+    return commentsNumber;
+  }
+
+  //Indique nombre de likes d'un post
+  getLikesNumber(post : Post): number {
+    let likesNumber: number = 0;
+    if (post?.likers?.length) {
+      likesNumber = post?.likers?.length;
+    }
+    return likesNumber;
+  }
+
+  //indique si l'utilisateur a liker
+  isLiking(post: Post) : boolean {
+    let isLiking: boolean = false;
+    for (let liker of post?.likers!) {
+      if (this.loggedInUser?._id === liker) {
+        isLiking = true;
+      }
+    }
+    return isLiking;
+  }
+
   //ajouter un commentaire
   addCommentPost(postId: string, comment: Comment) {
     console.log(comment);
@@ -149,7 +181,7 @@ export class AccueilComponent implements OnInit {
     }
   };
 
-  //modifier un commentaire (à revérifier)
+  //modifier un commentaire
   editCommentPost(postId: string, commentId: any) {
     this.postService.editCommentPost(postId,commentId).subscribe(
       (response: Post) => {
@@ -190,4 +222,20 @@ export class AccueilComponent implements OnInit {
       }
     )
   };
+
+  //Barre de recherche de posts
+  searchPosts(key: string){
+    const results: Post[] = [];
+    for (const post of this.posts) {
+      if (post.posterId?.toLowerCase().indexOf(key.toLowerCase())!== -1
+      || post.message?.toLowerCase().indexOf(key.toLowerCase())!== -1) {
+        results.push(post);
+      }
+    }
+    this.posts = results;
+    if (results.length === 0 ||!key) {
+      this.getPosts();
+    }
+  };
+
 }

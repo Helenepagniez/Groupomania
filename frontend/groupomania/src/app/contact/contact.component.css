@@ -1,6 +1,8 @@
 .follower-decompte{
     margin-left: 30px;
     color: #FD2D01;
+    width: 170px;
+    text-align: center;
 }
 
 .follower-decompte:hover{

@@ -52,9 +52,15 @@
                 </form>
             </div>
             <div class="bas-post">
+                <div class="decompte">
+                    <p *ngIf="getLikesNumber(post) > 0">Nombre de J'aime : {{getLikesNumber(post)}}</p>
+                    <p *ngIf="getLikesNumber(post) === 0">Pas encore de J'aime</p>
+                    <p *ngIf="getCommentsNumber(post) > 0"> Nombre de commentaires : {{getCommentsNumber(post)}}</p>
+                    <p *ngIf="getCommentsNumber(post) === 0">Pas encore de commentaires</p>
+                </div>
                 <div class="boutons">
-                    <button (click)="likePost(post?._id)" title="aimer ce post">J'aime</button>
-                    <button (click)="unlikePost(post?._id)" title="ne plus aimer ce post">Je n'aime plus</button>
+                    <button *ngIf="!isLiking(post)" (click)="likePost(post?._id)" title="aimer ce post">J'aime</button>
+                    <button *ngIf="isLiking(post)" (click)="unlikePost(post?._id)" title="ne plus aimer ce post">Je n'aime plus</button>
                     <button (click)="deletePost(post?._id, post.posterId)" title="supprimer votre publication">Supprimer</button>
                 </div>
                 <div *ngFor="let comment of post?.comments" class="conteneur-commentaire">

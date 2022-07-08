@@ -10,7 +10,7 @@ import { MatDialog} from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AppComponentDialog } from '../dialog.component/dialog.component';
 import { LoggedInUserId } from '../core/models/loggedInUserId.model';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profil',
@@ -39,10 +39,10 @@ export class ProfilComponent implements OnInit {
   ngOnInit(): void {
     this.userForm = this.fb.group({
       _id: [''],
-      firstname: [''],
-      name: [''],
+      firstname: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(2)]],
+      name: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(2)]],
       job: [''],
-      email: [''],
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(50)]],
     });
 
     this.commentForm = this.fb.group({
@@ -64,6 +64,7 @@ export class ProfilComponent implements OnInit {
     this.postService.getPosts().subscribe(
       (response: Post[]) => {
         if (response !== []) {
+          this.userPosts= [];
           for (let post of response) {
             if (post?.posterId === this.loggedInUserId?.user) {
               this.userPosts.unshift(post);
@@ -95,6 +96,7 @@ export class ProfilComponent implements OnInit {
     ) 
   }
 
+  //indiquer personne qui publie
   getPosterName(posterId: string) : string {
     let name: string = "";
     for (let user of this.users) {
@@ -137,7 +139,7 @@ export class ProfilComponent implements OnInit {
     });
   };
 
-  //Modifier l'utilisateur connecté (à tester)
+  //Modifier l'utilisateur connecté
   updateUser(user : User) {
     if (this.loggedInUser?.role === "ADMIN") {
       user.role="ADMIN";
@@ -177,10 +179,11 @@ export class ProfilComponent implements OnInit {
     });
   };
   
-  //aimer un post (à assembler avec unlikePost)
+  //aimer un post 
   likePost(postId: string) {
     this.postService.likePost(postId,this.loggedInUserId?.user!).subscribe(
       (response: Post) => {
+        this.getUserPosts();
         this.snackBar.open("Vous aimez cette publication", "Fermer", {duration: 2000});
       },
       (error: HttpErrorResponse) => {
@@ -189,10 +192,11 @@ export class ProfilComponent implements OnInit {
     );
   };
 
-  //ne plus aimer un post (à assembler avec likePost)
+  //ne plus aimer un post 
   unlikePost(postId: string) {
     this.postService.unlikePost(postId,this.loggedInUserId?.user!).subscribe(
       (response: Post) => {
+        this.getUserPosts();
         this.snackBar.open("Vous n'aimez plus cette publication", "Fermer", {duration: 2000});
       },
       (error: HttpErrorResponse) => {
@@ -201,6 +205,34 @@ export class ProfilComponent implements OnInit {
     );
   };
 
+  //ajout nombre de commentaires à un post
+  getCommentsNumber(post : Post): number {
+    let commentsNumber: number = 0;
+    if (post?.comments?.length) {
+      commentsNumber = post?.comments?.length;
+    }
+    return commentsNumber;
+  }
+
+  //ajout nombre de likes à un post
+  getLikesNumber(post : Post): number {
+    let likesNumber: number = 0;
+    if (post?.likers?.length) {
+      likesNumber = post?.likers?.length;
+    }
+    return likesNumber;
+  }
+
+  //indique si déjà liker
+  isLiking(post: Post) : boolean {
+    let isLiking: boolean = false;
+    for (let liker of post?.likers!) {
+      if (this.loggedInUser?._id === liker) {
+        isLiking = true;
+      }
+    }
+    return isLiking;
+  }
   
   //ajouter un commentaire 
   addCommentPost(postId: string, comment: Comment) {
@@ -224,7 +256,7 @@ export class ProfilComponent implements OnInit {
     }
   };
 
-  //modifier un commentaire (à revérifier)
+  //modifier un commentaire 
   editCommentPost(postId: string, comment: Comment) {
     this.postService.editCommentPost(postId,comment).subscribe(
       (response: Post) => {

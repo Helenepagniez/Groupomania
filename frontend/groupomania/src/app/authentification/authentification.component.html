@@ -4,7 +4,7 @@
     <h2 (click)="onRegisterPage()" id="register" class="section" title="Inscrivez-vous">Incription</h2>
   </nav>
   <div *ngIf="registerActive" class="inscription">
-    <form class="form-group" [formGroup]="signinForm" (ngSubmit)="register(signinForm.value)">
+    <form class="form-group" [formGroup]="signinForm" (ngSubmit)="addUser(signinForm.value)">
         <input placeholder="Votre nom" formControlName="name">
         <span *ngIf="signinForm.get('name')!.hasError('required') && signinForm.get('name')!.touched">Votre nom est requis</span>
         <span *ngIf="signinForm.get('name')!.hasError('maxlength')">Votre nom est trop long</span>
@@ -19,6 +19,10 @@
         <span *ngIf="signinForm.get('email')!.hasError('required') && signinForm.get('email')!.touched">Votre email est requis</span>
         <span *ngIf="signinForm.get('email')!.hasError('email')">Votre email est invalide</span>
         <span *ngIf="signinForm.get('email')!.hasError('maxlength')">Votre email est trop long</span>
+
+        <input placeholder="Votre métier" formControlName="job">
+        <span *ngIf="signinForm.get('job')!.hasError('required') && signinForm.get('job')!.touched">Votre métier est requis</span>
+        <span *ngIf="signinForm.get('job')!.hasError('job')">Votre métier est invalide</span>
 
         <input type="password" placeholder="Votre mot de passe" formControlName="password">
         <span *ngIf="signinForm.get('password')!.hasError('required') && signinForm.get('password')!.touched">Votre mot de passe est requis</span>

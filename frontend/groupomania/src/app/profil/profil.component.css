@@ -204,6 +204,32 @@ h2{
     flex-wrap: wrap;
 }
 
+
+.post .bas-post .decompte{
+    width: auto;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 35px;
+    color: #4E5166;
+}
+
+.post .bas-post .decompte p:hover{
+    cursor: pointer;
+    font-weight: 700;
+    text-decoration: underline #FD2D01;
+}
+
+.post .bas-post .decompte p{
+    padding-left: 50px;
+    justify-content: center;
+}
+
 .post .boutons{
     display: flex;
     flex-direction: row;

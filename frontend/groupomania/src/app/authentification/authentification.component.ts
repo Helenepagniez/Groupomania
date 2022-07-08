@@ -34,6 +34,7 @@ export class AuthentificationComponent implements OnInit {
       name: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(2)]],
       firstname: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email, Validators.maxLength(50)]],
+      job: ['', [Validators.required,Validators.maxLength(50)]],
       password: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(5)]],
       confirmPassword: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(5)]]
     });
@@ -55,10 +56,6 @@ export class AuthentificationComponent implements OnInit {
       this.loggedInUserId = JSON.parse(localStorage.getItem('loggedInUserId') || '{}');
     }
     
-  };
-  
-  register(user: User){
-
   };
 
   onLogin() {
@@ -91,6 +88,7 @@ export class AuthentificationComponent implements OnInit {
     );
   };
 
+  //récupérer les utilisateurs
   getUsers() {
     this.userService.getUsers().subscribe(
       (response: User[]) => {
@@ -105,9 +103,10 @@ export class AuthentificationComponent implements OnInit {
   //Ajouter un utilisateur
   addUser(user : User) {
     user.role="CLIENT";
+    console.log(user);
     this.userService.addUser(user).subscribe(
       (response: User) => {
-        this.loginUser(response);
+        this.loginUser(user);
         this.getUsers();
       },
       (error: HttpErrorResponse) => {

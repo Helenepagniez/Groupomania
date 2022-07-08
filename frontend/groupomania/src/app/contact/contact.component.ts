@@ -32,6 +32,7 @@ export class ContactComponent implements OnInit {
     this.getLoggedInUser();
   }
 
+  //indique nombre de followers
   getFollowersNumber(): number {
     let followerNumber: number = 0;
     if (this.loggedInUser?.followers?.length) {
@@ -83,7 +84,7 @@ export class ContactComponent implements OnInit {
     )
   };
 
-  //suivre quelqu'un (à tester)
+  //suivre quelqu'un 
   followUser(IdToFollow: string){
     this.userService.followUser(this.loggedInUserId?.user!, IdToFollow).subscribe(
       (response: User) => {
@@ -96,7 +97,7 @@ export class ContactComponent implements OnInit {
     )
   };
 
-  //ne plus suivre quelqu'un (à tester)
+  //ne plus suivre quelqu'un 
   unfollowUser(IdToFollow: string){
     this.userService.unfollowUser(this.loggedInUserId?.user!, IdToFollow).subscribe(
       (response: User) => {
@@ -108,5 +109,21 @@ export class ContactComponent implements OnInit {
       }
     )
   };
+
+    //Barre de recherche d'utilisateurs
+    searchUsers(key: string){
+      const results: User[] = [];
+      for (const user of this.users) {
+        if (user.name?.toLowerCase().indexOf(key.toLowerCase())!== -1
+        || user.firstname?.toLowerCase().indexOf(key.toLowerCase())!== -1
+        || user.job?.toLowerCase().indexOf(key.toLowerCase())!== -1) {
+          results.push(user);
+        }
+      }
+      this.users = results;
+      if (results.length === 0 ||!key) {
+        this.getLoggedInUser();
+      }
+    };
   
 }
