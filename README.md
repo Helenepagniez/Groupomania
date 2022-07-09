@@ -48,16 +48,16 @@ Pour tester les droits d'ADMIN, l'utilisateur doit se connecter avec le compte s
 # Requêtes de l'application Groupomania
 
 ## Requêtes concernant les utilisateurs
-Ci-dessous, la liste des requêtes concernant les utilisateurs.
-● Inscription d'un utilisateur
-● Connexion d'un utilisateur
-● Déconnexion d'un utilisateur
-● Suppression d'un utilisateur
-● Modification d'un utilisateur
-● Suivre un utilisateur
-● Ne plus suivre un utilisateur
-● Voir les infos d'un utilisateur
-● Voir tous les utilisateurs
+Ci-dessous, la liste des requêtes concernant les utilisateurs. <br />
+● Inscription d'un utilisateur <br />
+● Connexion d'un utilisateur <br />
+● Déconnexion d'un utilisateur <br />
+● Suppression d'un utilisateur <br />
+● Modification d'un utilisateur <br />
+● Suivre un utilisateur <br />
+● Ne plus suivre un utilisateur <br />
+● Voir les infos d'un utilisateur <br />
+● Voir tous les utilisateurs <br />
 
 ### Inscription d'un utilisateur
     POST  : api/user/register
@@ -79,17 +79,17 @@ Ci-dessous, la liste des requêtes concernant les utilisateurs.
     GET  : api/user
     
 ## Requêtes concernant les publications
-Ci-dessous, la liste des requêtes concernant les publications.
-● Ajouter une publication
-● Modifier une publication
-● Supprimer une publication
-● Aimer une publication
-● Ne plus aimer une publication
-● Ajouter un commentaire
-● Modifier un commentaire
-● Supprimer un commentaire
-● Voir les infos d'une publication précise
-● Voir toutes les publications
+Ci-dessous, la liste des requêtes concernant les publications. <br />
+● Ajouter une publication <br />
+● Modifier une publication <br />
+● Supprimer une publication <br />
+● Aimer une publication <br />
+● Ne plus aimer une publication <br />
+● Ajouter un commentaire <br />
+● Modifier un commentaire <br />
+● Supprimer un commentaire <br />
+● Voir les infos d'une publication précise <br />
+● Voir toutes les publications <br />
 
 ### Ajouter une publication
     POST  : api/post
@@ -132,9 +132,9 @@ d’informations, la connexion doit se faire à partir de deux éléments : le m
 de l’employé, et un mot de passe. Rien de plus à prévoir pour le moment.
 
 ## Détails de la fonctionnalité de connexion
-● Un utilisateur doit avoir la possibilité de se déconnecter.
-● La session de l’utilisateur persiste pendant qu’il est connecté.
-● Les données de connexion doivent être sécurisées.
+● Un utilisateur doit avoir la possibilité de se déconnecter. <br />
+● La session de l’utilisateur persiste pendant qu’il est connecté. <br />
+● Les données de connexion doivent être sécurisées. <br />
 
 ## Page d’accueil
 La page d’accueil doit lister les posts créés par les différents utilisateurs.
@@ -142,9 +142,9 @@ On voudra que les posts soient listés de façon antéchronologique (du plus
 récent au plus ancien).
 
 ## Création d’un post
-● Un utilisateur doit pouvoir créer un post.
-● Un post doit pouvoir contenir du texte et une image.
-● Un utilisateur doit aussi pouvoir modifier et supprimer ses posts.
+● Un utilisateur doit pouvoir créer un post. <br />
+● Un post doit pouvoir contenir du texte et une image. <br />
+● Un utilisateur doit aussi pouvoir modifier et supprimer ses posts. <br />
 
 ## Système de like
 Un utilisateur doit pouvoir liker un post, une seule fois pour chaque post.
