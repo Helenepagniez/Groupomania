@@ -1,7 +1,7 @@
 # Projet 7 : Groupomania
 
-Le projet consiste à construire un réseau social interne pour les employés de Groupomania. <br>
-Le but de cet outil est de faciliter les interactions entre collègues. <br>
+Le projet consiste à construire un réseau social interne pour les employés de Groupomania. <br />
+Le but de cet outil est de faciliter les interactions entre collègues. <br />
  
 # Backend
 
@@ -47,7 +47,18 @@ Pour tester les droits d'ADMIN, l'utilisateur doit se connecter avec le compte s
 ```
 # Requêtes de l'application Groupomania
 
-## Requêtes utilisateurs
+## Requêtes concernant les utilisateurs
+Ci-dessous, la liste des requêtes concernant les utilisateurs.
+● Inscription d'un utilisateur
+● Connexion d'un utilisateur
+● Déconnexion d'un utilisateur
+● Suppression d'un utilisateur
+● Modification d'un utilisateur
+● Suivre un utilisateur
+● Ne plus suivre un utilisateur
+● Voir les infos d'un utilisateur
+● Voir tous les utilisateurs
+
 ### Inscription d'un utilisateur
     POST  : api/user/register
 ### Connexion d'un utilisateur
@@ -67,7 +78,19 @@ Pour tester les droits d'ADMIN, l'utilisateur doit se connecter avec le compte s
 ### Voir tous les utilisateurs
     GET  : api/user
     
-## Requêtes publications
+## Requêtes concernant les publications
+Ci-dessous, la liste des requêtes concernant les publications.
+● Ajouter une publication
+● Modifier une publication
+● Supprimer une publication
+● Aimer une publication
+● Ne plus aimer une publication
+● Ajouter un commentaire
+● Modifier un commentaire
+● Supprimer un commentaire
+● Voir les infos d'une publication précise
+● Voir toutes les publications
+
 ### Ajouter une publication
     POST  : api/post
 ### Modifier une publication
@@ -88,3 +111,46 @@ Pour tester les droits d'ADMIN, l'utilisateur doit se connecter avec le compte s
     GET  : api/post/{id de la publication voulu}
 ### Voir toutes les publications
     GET  : api/post
+
+# Chartes graphiques de l'application
+
+| Color             | Hex                                                                |
+| ----------------- | ------------------------------------------------------------------ |
+| Primaire | `#FD2D01` |
+| Secondaire | `#FFD7D7` |
+| Tertiaire | `#4E5166` |
+
+
+Police d'écriture : Lato
+
+# Spécifications fonctionnelles attendues
+
+## Page de connexion
+Une page de connexion permettant à l’utilisateur de se connecter, ou bien
+de créer un compte s’il n’en possède pas.Ici il faut demander le minimum
+d’informations, la connexion doit se faire à partir de deux éléments : le mail
+de l’employé, et un mot de passe. Rien de plus à prévoir pour le moment.
+
+## Détails de la fonctionnalité de connexion
+● Un utilisateur doit avoir la possibilité de se déconnecter.
+● La session de l’utilisateur persiste pendant qu’il est connecté.
+● Les données de connexion doivent être sécurisées.
+
+## Page d’accueil
+La page d’accueil doit lister les posts créés par les différents utilisateurs.
+On voudra que les posts soient listés de façon antéchronologique (du plus
+récent au plus ancien).
+
+## Création d’un post
+● Un utilisateur doit pouvoir créer un post.
+● Un post doit pouvoir contenir du texte et une image.
+● Un utilisateur doit aussi pouvoir modifier et supprimer ses posts.
+
+## Système de like
+Un utilisateur doit pouvoir liker un post, une seule fois pour chaque post.
+
+## Rôle administrateur
+Dans le but de pouvoir faire de la modération si nécessaire, il faudra créer
+un utilisateur “administrateur” ; celui-ci aura les droits de modification /
+suppression sur tous les posts du réseau social. Il faudra donc nous
+communiquer les identifiants de cet administrateur.
