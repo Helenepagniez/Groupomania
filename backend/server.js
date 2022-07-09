@@ -7,6 +7,8 @@ require('dotenv').config({path: './config/.env'});
 require('./config/db');
 const {checkUser, requireAuth} = require('./middleware/auth.middleware');
 const cors = require('cors');
+const mongoSanitize = require('express-mongo-sanitize');
+const helmet = require("helmet");
 
 const app = express();
 
@@ -25,6 +27,10 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
+app.use(mongoSanitize()); // En prévention des injections
+app.use(helmet()); // helmet
+
+app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }));
 
 //jwt
 app.get('*', checkUser);

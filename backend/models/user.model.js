@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const { isEmail } = require('validator');
 const bcrypt = require('bcrypt');
+const uniqueValidator = require('mongoose-unique-validator'); // package vérification d'un email unique
+
 
 const userSchema = new mongoose.Schema(
     {
@@ -22,7 +24,7 @@ const userSchema = new mongoose.Schema(
             required: true,
             validate: [isEmail],
             lowercase: true,
-            unique: true,
+            unique: true,  // unique -> une adresse mail = un user
             trim: true,
         },
         password : {
@@ -77,6 +79,7 @@ userSchema.statics.login = async function(email, password) {
     throw Error('incorrect email')
 };
 
+userSchema.plugin(uniqueValidator); // utilisation du package
 const UserModel = mongoose.model('user', userSchema);
 
 module.exports = UserModel;

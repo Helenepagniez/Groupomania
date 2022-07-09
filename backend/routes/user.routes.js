@@ -1,12 +1,18 @@
 const router= require('express').Router();
 const authController = require('../controllers/auth.controller');
 const userController = require('../controllers/user.controller');
+const rateLimit = require('express-rate-limit'); // package de prévention des forces brutes
 const multer = require('multer');
 const upload = multer();
 
+const passLimiter = rateLimit({
+    windowMs: 2 * 60 * 1000, // Temps défini (en minutes) pour tester l'application
+    max: 3 // essais max par adresse ip
+  });
+
 //auth
 router.post("/register", authController.signUp);//s'inscrire
-router.post('/login', authController.signIn);//se connecter
+router.post('/login',passLimiter, authController.signIn);//se connecter
 router.get('/logout', authController.logout);//se déconnecter
 
 //user display: 'block'

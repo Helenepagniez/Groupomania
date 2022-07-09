@@ -32,7 +32,8 @@ module.exports.updateUser = async (req, res) => {
           job: req.body.job,
           name: req.body.name,
           firstname: req.body.firstname,
-          email: req.body.email
+          email: req.body.email,
+          picture: req.body.picture
         },
       },
       { new: true, upsert: true, setDefaultsOnInsert: true },
