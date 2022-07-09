@@ -17,18 +17,24 @@ h2{
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
-    width: 20%;
+    max-width: 200px;
+    min-width: auto;
     margin: auto;
     align-items: center;
 }
 
 .profil .deconnexion a{
     margin-left: 10%;
+    margin-right: 10%;
+}
+
+.profil .deconnexion h2{
+    width: 200px;
 }
 
 .form-group {
     margin: 10px auto;
-    width: 50%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -41,7 +47,8 @@ h2{
 }
 
 .profil form .form-group input {
-    width: 40%;
+    width: 50%;
+    max-width: 400px;
     background-color: #FFD7D7;
     border-radius: 50px;
     text-align: center;
@@ -73,7 +80,7 @@ h2{
     margin-left: auto;
     margin-right: auto;
     justify-content: space-around;
-    width: 20%;
+    max-width: 300px;
 }
 
 .profil .boutons button{
@@ -98,7 +105,7 @@ h2{
     background-color: #FFD7D7;
     display: flex;
     justify-content: center;
-    width: 20%;
+    width: 200px;
     margin: auto;
     align-items: center;
     height: 70px;
@@ -123,6 +130,7 @@ h2{
 .post .utilisateur{
     display: flex;
     background-color:#FFD7D7;
+    flex-wrap: wrap;
     text-align: start;
     align-items: center;
     width: 100%;
@@ -138,6 +146,7 @@ h2{
     align-content: center;
     flex-wrap: wrap;
     width: 50%;
+    min-width: 200px;
     margin-left: 10%;
 }
 
@@ -206,7 +215,7 @@ h2{
 }
 
 .post .bas-post .decompte{
-    width: auto;
+    width: 100%;
     margin: auto;
     display: flex;
     flex-direction: row;
@@ -215,19 +224,20 @@ h2{
     margin-bottom: 0;
     padding-top: 0;
     padding-bottom: 0;
-    height: 35px;
+    max-height: 35px;
     color: #4E5166;
+    flex-wrap: wrap;
+}
+
+.post .bas-post .decompte p{
+    padding-left: 50px;
+    justify-content: center;
 }
 
 .post .bas-post .decompte p:hover{
     cursor: pointer;
     font-weight: 700;
     text-decoration: underline #FD2D01;
-}
-
-.post .bas-post .decompte p{
-    padding-left: 50px;
-    justify-content: center;
 }
 
 .post .boutons{
@@ -326,9 +336,15 @@ h2{
     border-radius: 50px;
     padding-left: 20px;
     text-align: center;
+    resize: none;
 }
 
 .formulaire-commentaire .commentaire button{
     margin-left: 10px;
     width: auto;
 }
+
+@media (max-width: 6OOpx) {
+   
+}
+    

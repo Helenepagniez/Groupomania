@@ -11,6 +11,7 @@ nav ul {
     display: flex;
     align-content: center;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 nav li {
@@ -50,6 +51,7 @@ nav li .lien.active i{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .logo {

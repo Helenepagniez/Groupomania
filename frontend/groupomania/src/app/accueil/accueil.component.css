@@ -145,6 +145,7 @@ a {
     align-content: center;
     flex-wrap: wrap;
     width: 50%;
+    min-width: 200px;
     margin-left: 10%;
 }
 
@@ -350,6 +351,7 @@ a {
     border-radius: 50px;
     padding-left: 20px;
     text-align: center;
+    resize: none;
 }
 
 .formulaire-commentaire .commentaire button{
