@@ -363,4 +363,34 @@ a {
     .formulaire-post{
         width: 90%;
     }
+
+    .formulaire-commentaire .commentaire{
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+
+    .conteneur-commentaire .formulaire-commentaire-poster{
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .post{
+        width: 90%;
+    }
+
+    .formulaire-post{
+        width: 90%;
+    }
+
+    .formulaire-commentaire .commentaire{
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+    
+    .conteneur-commentaire .formulaire-commentaire-poster{
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
 }
