@@ -216,22 +216,19 @@ h2{
 
 .post .bas-post .decompte{
     width: 100%;
-    margin: auto;
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     margin-top: 0;
     margin-bottom: 0;
     padding-top: 0;
     padding-bottom: 0;
-    max-height: 35px;
+    height: auto;
     color: #4E5166;
-    flex-wrap: wrap;
 }
 
 .post .bas-post .decompte p{
     padding-left: 50px;
-    justify-content: center;
 }
 
 .post .bas-post .decompte p:hover{
@@ -249,6 +246,8 @@ h2{
     justify-content: space-evenly;
     border-radius: 0 0 50px 50px;
     width: 100%;
+    height: auto;
+    margin: 20px 0;
 }
 
 .post button{
@@ -256,10 +255,10 @@ h2{
     color: white;
     text-align: center;
     transition: 0.5s;
-    display: block;
-    margin: 20px 0;
+    display: flex;
+    max-width: auto;
     border-radius: 50px;
-    width: 20%;
+    justify-content: center;
 }
 
 .post button:hover{
@@ -271,11 +270,14 @@ h2{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     margin: auto;
-    width: 65%;
+    max-width: 65%;
     border: #FD2D01 2px solid;
-    border-radius: 50px;
-    margin-bottom: 1%;
+    border-radius: 30px;
+    margin-bottom: 0.8%;
+    padding-bottom: 12px;
+    padding-top: 3px;
     background-color: white;
     color: black;
 }
@@ -310,13 +312,7 @@ h2{
     margin-left: 10px;
 }
 
-.conteneur-commentaire .formulaire-commentaire-poster .suppression button #supprimer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.conteneur-commentaire .formulaire-commentaire-poster button #modifier{
+.conteneur-commentaire .formulaire-commentaire-poster .boutons-commentaire{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -328,6 +324,7 @@ h2{
     display: flex;
     justify-content: center;
     align-content: center;
+    flex-wrap: wrap;
 }
 
 .formulaire-commentaire .commentaire textarea {
@@ -340,11 +337,13 @@ h2{
 }
 
 .formulaire-commentaire .commentaire button{
-    margin-left: 10px;
+    margin: 14px;
     width: auto;
 }
 
-@media (max-width: 6OOpx) {
-   
+@media screen and (max-width: 600px) {
+    .post{
+        width: 90%;
+    }
 }
     

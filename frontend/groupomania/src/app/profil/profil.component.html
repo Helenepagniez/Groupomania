@@ -69,9 +69,9 @@
                         <p class="commenterName"><i class="fas fa-user"></i>  {{comment?.commenterName}} : </p>
                         <textarea *ngIf="comment?.commenterId === loggedInUser?._id" class="text" name="text" ngModel="{{comment?.text}}"></textarea>
                         <textarea *ngIf="comment?.commenterId !== loggedInUser?._id" class="text" name="text" ngModel="{{comment?.text}}"></textarea>
-                        <button *ngIf="comment?.commenterId === loggedInUser?._id" type="submit" title="modifier votre commentaire"><i class="fas fa-edit" id="modifier"></i></button>
-                        <div class="suppression">
+                        <div class="boutons-commentaire">
                             <button *ngIf="comment?.commenterId === loggedInUser?._id" (click)="deleteCommentPost(post?._id, comment?._id)" title="supprimer votre commentaire"><i class="fas fa-trash-alt" id="supprimer"></i></button>
+                            <button *ngIf="comment?.commenterId === loggedInUser?._id" type="submit" title="modifier votre commentaire"><i class="fas fa-edit" id="modifier"></i></button>
                         </div>
                     </form>
                 </div>
