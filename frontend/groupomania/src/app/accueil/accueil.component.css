@@ -228,16 +228,15 @@ a {
 }
 
 .post .bas-post .decompte{
-    width: auto;
-    margin: auto;
+    width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     margin-top: 0;
     margin-bottom: 0;
     padding-top: 0;
     padding-bottom: 0;
-    height: 35px;
+    height: auto;
     color: #4E5166;
 }
 
@@ -248,8 +247,7 @@ a {
 }
 
 .post .bas-post .decompte p{
-    padding-left: 50px;
-    justify-content: center;
+    margin-left: 50px;
 }
 
 .post .boutons{
@@ -261,7 +259,8 @@ a {
     border-radius: 0 0 50px 50px;
     width: 100%;
     justify-content: space-evenly;
-
+    height: auto;
+    margin: 20px 0;
 }
 
 .post button{
@@ -270,8 +269,7 @@ a {
     text-align: center;
     transition: 0.5s;
     display: flex;
-    margin: 20px 0;
-    width: 30%;
+    max-width: auto;
     border-radius: 50px;
     justify-content: center;
 }
@@ -285,11 +283,14 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     margin: auto;
-    width: 65%;
+    max-width: 65%;
     border: #FD2D01 2px solid;
-    border-radius: 50px;
-    margin-bottom: 1%;
+    border-radius: 30px;
+    margin-bottom: 0.8%;
+    padding-bottom: 12px;
+    padding-top: 3px;
     background-color: white;
     color: black;
 }
@@ -312,26 +313,19 @@ a {
 
 .conteneur-commentaire .formulaire-commentaire-poster .text{
     margin-right: 10px;
-    width: auto;
+    width: 100%;
     max-width: 50%;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
-
 .conteneur-commentaire button{
     width: auto;
     margin-left: 10px;
 }
 
-.conteneur-commentaire .formulaire-commentaire-poster .suppression button #supprimer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.conteneur-commentaire .formulaire-commentaire-poster button #modifier{
+.conteneur-commentaire .formulaire-commentaire-poster .boutons-commentaire{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -343,6 +337,7 @@ a {
     display: flex;
     justify-content: center;
     align-content: center;
+    flex-wrap: wrap;
 }
 
 .formulaire-commentaire .commentaire textarea {
@@ -355,20 +350,17 @@ a {
 }
 
 .formulaire-commentaire .commentaire button{
-    margin-left: 10px;
+    margin: 14px;
     width: auto;
 }
 
 /************MEDIA QUERIES***********/
-@media (max-width: 6OOpx) {
-    .barre-de-recherche .boutons .loupe
-    {
-        display: block;
-        font-size: small;
+@media screen and (max-width: 600px) {
+    .post{
+        width: 90%;
     }
 
-    .barre-de-recherche .boutons .rechercher
-    {
-        display: none;
+    .formulaire-post{
+        width: 90%;
     }
 }
