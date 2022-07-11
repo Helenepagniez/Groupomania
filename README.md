@@ -20,13 +20,33 @@ Le backend a été crée avec **Node.js**, **Express.js** et **MongoDB** comme b
 ```
   PORT=5000
   CLIENT_URL=http://localhost:4200
-  DB_USER_PASS={identifiant}:{mot de passe}
+  DB_USER_PASS={lien url de connexion obtenu après étape de connexion de base de donnée}
   TOKEN_SECRET={random_string_to_encode_tokens}
 ```
 - Démarrer `npm start` pour avoir accès au serveur de développement. L'application va se recharger automatiquement si vous modifiez un fichier source.
 
 # Base de donnée
-    A remplir !!
+
+-   Se rendre sur `https://www.mongodb.com/atlas`.
+    <br />
+-   Se créer un compte et retenir les informations d'authentification.
+    <br />
+-   Créer une database et un cluster en cliquant sur `create` et en suivant les indications.
+    <br />
+-   Se rendre dans `Database Access` sur la gauche de l'écran et cliquer sur `Add new database user`.
+    <br />
+-   Indiquer les informations d'authentification et le type de droits autorisés (`readWriteAnyDatabase@admin`).
+    <br />
+-   Se rendre dans `Network Access` sur la gauche de l'écran et cliquer sur `Add IP adress`.
+    <br />
+-   Selectionner `0.0.0.0/0 (includes your current IP address)`.
+    <br />
+-   Se rendre dans `Database` sur la gauche de l'écran et cliquer sur `Connect`.
+    <br />
+-   Choisir `Connect your application` puis le driver (`Node.js`) et sa version (`4.1 or later`).
+    <br />
+-   Copier l'url de connexion de la base de donnée et l'indiquer comme `DB_USER_PASS` dans le fichier `/backend/config/.env`.
+    <br />
 
 # Frontend
 
@@ -40,11 +60,16 @@ Le frontend a été crée avec Angular.
 
 ## Droits Admin
 
-Pour tester les droits d'ADMIN, l'utilisateur doit se connecter avec le compte suivant : 
+Pour tester les droits d'ADMIN, l'utilisateur doit se connecter avec sa base de donnée et choisir la table des utilisateurs.
+<br />
+Puis il devra choisir ou créer un nouvel utilisateur qui prendra le role d'Administrateur.
+<br />
+Il faudra alors modifier l'utilisateur en lui ajoutant un role ADMIN.
+<br />
 ```
-  email : louis@gmail.com 
-  password: test 33
+  role : "ADMIN" 
 ```
+
 # Requêtes de l'application Groupomania
 
 ## Requêtes concernant les utilisateurs

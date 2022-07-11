@@ -1,0 +1,213 @@
+[{
+  "_id": {
+    "$oid": "62b58703cf8fe478d3f52b03"
+  },
+  "email": "patrice@gmail.com",
+  "password": "$2b$10$YHGLEj8Z4sc29b18j5O4fut5.9L7Kmwrw4L6grFR7orR6tEEGah8u",
+  "picture": "./uploads/profil/random-user.png",
+  "followers": [
+    "62b58774cf8fe478d3f52b05"
+  ],
+  "following": [
+    "62c489fb76f833adf98abe75"
+  ],
+  "likes": [
+    "62beadabe5630508e0b0607c",
+    "62bdd47db018e42c80b122ad"
+  ],
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1656063747018"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1657312513579"
+    }
+  },
+  "__v": 0,
+  "bio": " mes infos",
+  "job": "Business Analyst",
+  "firstname": "Patrice",
+  "name": "Dupont"
+},{
+  "_id": {
+    "$oid": "62b58774cf8fe478d3f52b05"
+  },
+  "email": "samia@gmail.com",
+  "password": "$2b$10$/sM42LgOvXBWvH1OxUAGuOG9vW7SArF.vXfF9kFYm6Y/t0B4umQxm",
+  "picture": "./uploads/profil/random-user.png",
+  "followers": [],
+  "following": [
+    "62b58703cf8fe478d3f52b03"
+  ],
+  "likes": [
+    "62bdb4c4c1599ff28eaea4ee"
+  ],
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1656063860909"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1657008642124"
+    }
+  },
+  "__v": 0,
+  "job": "Développeuse Fullstack",
+  "name": "Oliveira",
+  "firstname": "Samia"
+},{
+  "_id": {
+    "$oid": "62bc445c75c896fb474a619f"
+  },
+  "email": "charles@gmail.com",
+  "password": "$2b$10$pt7GSaP313Ij4v2ZvBNHFu8hdp1Tpqevuxof2vye.RGzBkGQyZRja",
+  "picture": "./uploads/profil/random-user.png",
+  "followers": [
+    "62bc6383bb433d24462c6d9b"
+  ],
+  "following": [],
+  "likes": [],
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1656505436460"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1657199304560"
+    }
+  },
+  "__v": 0,
+  "job": "Développeur Web",
+  "firstname": "Charles",
+  "name": "Dutronc"
+},{
+  "_id": {
+    "$oid": "62bc63a2bb433d24462c6d9d"
+  },
+  "email": "mathilde@gmail.com",
+  "password": "$2b$10$oczCnyXZESJWYBawhNURWOy0Atu5RWvNf6zWQ9YtcjquWRpCCmyxO",
+  "job": "UX  DesignerUI",
+  "picture": "./uploads/profil/random-user.png",
+  "followers": [
+    "62bc6383bb433d24462c6d9b"
+  ],
+  "following": [],
+  "likes": [],
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1656513442111"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1657223425842"
+    }
+  },
+  "__v": 0,
+  "firstname": "mathilde",
+  "name": "De Sousa",
+  "role": "CLIENT"
+},{
+  "_id": {
+    "$oid": "62bd5a22eec2d8f8962e7486"
+  },
+  "email": "toto@gmail.com",
+  "password": "$2b$10$S4hdMEQ0RyOXhft.oTvDAO4HsmCl5sVXzvD8hgepcEAEDI5/tVadq",
+  "job": "Business Analyst",
+  "picture": "./uploads/profil/random-user.png",
+  "followers": [],
+  "following": [],
+  "likes": [],
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1656576546733"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1657268135230"
+    }
+  },
+  "__v": 0,
+  "firstname": "Toto",
+  "name": "Delacour",
+  "role": "CLIENT"
+},{
+  "_id": {
+    "$oid": "62bda9c70440bb774426e99b"
+  },
+  "name": "Luggi",
+  "firstname": "mélanie",
+  "email": "melanie@gmail.com",
+  "password": "$2b$10$uqRNmd9pe3P.j5d8TQG0rOy6zXkfX/FwER3gRWiJNknszX8xK/XLC",
+  "job": "Developpeuse web",
+  "picture": "./uploads/profil/random-user.png",
+  "followers": [],
+  "following": [],
+  "likes": [],
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1656596935761"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1657046365373"
+    }
+  },
+  "__v": 0,
+  "role": "CLIENT"
+},{
+  "_id": {
+    "$oid": "62c8398bbd35da7f0e77649e"
+  },
+  "name": "Fernando",
+  "firstname": "Louis",
+  "email": "louis@gmail.com",
+  "password": "$2b$10$v6pFxCnAAaSQQYDCfHlqM.ogflkl7tWKmtgK5Pjqbb4JZjzW43KPq",
+  "job": "Directeur d'agence",
+  "picture": "./uploads/profil/random-user.png",
+  "followers": [],
+  "following": [],
+  "likes": [],
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1657289099553"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1657310037405"
+    }
+  },
+  "__v": 0,
+  "role": "ADMIN"
+},{
+  "_id": {
+    "$oid": "62c88231bd35da7f0e776737"
+  },
+  "name": "Doré",
+  "firstname": "Julien",
+  "email": "julien@gmail.com",
+  "password": "$2b$10$OjJszCLiHMHAUyK.6pHNK.fzAHbeN..D9bwNZju7XqtRGVyprhwXu",
+  "job": "animateur",
+  "picture": "./uploads/profil/random-user.png",
+  "followers": [],
+  "following": [],
+  "likes": [],
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1657307697786"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1657307697786"
+    }
+  },
+  "__v": 0
+}]

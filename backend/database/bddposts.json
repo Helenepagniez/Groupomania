@@ -1,0 +1,98 @@
+[{
+  "_id": {
+    "$oid": "62bdd47db018e42c80b122ad"
+  },
+  "posterId": "62b58703cf8fe478d3f52b03",
+  "message": "la montagne est belle ici",
+  "likers": [
+    "62b58703cf8fe478d3f52b03"
+  ],
+  "comments": [
+    {
+      "commenterId": "62bc63a2bb433d24462c6d9d",
+      "commenterName": "mathilde De Sousa",
+      "text": "coucou patrice comment ça va ?",
+      "timestamp": {
+        "$numberLong": "1656837884416"
+      },
+      "_id": {
+        "$oid": "62c156fc2b574dd98ae492e9"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1656607869117"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1657312513561"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62beadabe5630508e0b0607c"
+  },
+  "posterId": "62b58703cf8fe478d3f52b03",
+  "message": "Inspecteur gadget ouhou je suis la",
+  "likers": [
+    "62bc6383bb433d24462c6d9b",
+    "62b58703cf8fe478d3f52b03"
+  ],
+  "comments": [
+    {
+      "commenterId": "62b58703cf8fe478d3f52b03",
+      "commenterName": "Patrice Dupont",
+      "text": "je suis  là et me voila",
+      "timestamp": {
+        "$numberLong": "1657269508574"
+      },
+      "_id": {
+        "$oid": "62c7ed04bd35da7f0e7762ba"
+      }
+    },
+    {
+      "commenterId": "62b58703cf8fe478d3f52b03",
+      "commenterName": "Patrice Dupont",
+      "text": "coucou les loulous",
+      "timestamp": {
+        "$numberLong": "1657287964911"
+      },
+      "_id": {
+        "$oid": "62c8351cbd35da7f0e776464"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1656663467761"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1657310402028"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62cafe218192a69b85400a23"
+  },
+  "posterId": "62b58703cf8fe478d3f52b03",
+  "message": "Bienvenue à tous !",
+  "likers": [],
+  "comments": [],
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1657470497147"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1657470497147"
+    }
+  },
+  "__v": 0
+}]
