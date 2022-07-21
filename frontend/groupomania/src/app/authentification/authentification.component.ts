@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { LoggedInUserId } from '../core/models/loggedInUserId.model';
 import { User } from '../core/models/user.model';
 import { AuthService } from '../core/services/auth.services';
@@ -27,7 +28,8 @@ export class AuthentificationComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
-    private userService: UserService){}
+    private userService: UserService,
+    private cookieService: CookieService){}
 
   ngOnInit() {
     this.signinForm = this.fb.group({
@@ -58,11 +60,6 @@ export class AuthentificationComponent implements OnInit {
     
   };
 
-  onLogin() {
-    this.auth.login();
-    this.router.navigateByUrl('/accueil');
-  };
-
   onRegisterPage(){
     document.getElementById("register")?.classList.add("active");
     document.getElementById("login")?.classList.remove("active");
@@ -79,9 +76,10 @@ export class AuthentificationComponent implements OnInit {
     this.userService.loginUser(user).subscribe(
       (response: any) => {
         if (response?.user) {
+          //this.cookieService.set("jwt",response.cookie);
           localStorage.setItem('loggedInUserId', JSON.stringify(response));
           this.loggedInUserId = JSON.parse(localStorage.getItem('loggedInUserId') || '{}');
-          location.href="/accueil";
+          //location.href="/accueil";
         }
         else {
           alert("Mauvais mot de passe ou email");

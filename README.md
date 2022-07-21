@@ -31,7 +31,7 @@ Le backend a été crée avec **Node.js**, **Express.js** et **MongoDB** comme b
     <br />
 -   Se créer un compte et retenir les informations d'authentification.
     <br />
--   Créer une database et un cluster en cliquant sur `create` et en suivant les indications.
+-   Créer la database  `groupomania` et un cluster en cliquant sur `create` et en suivant les indications.
     <br />
 -   Se rendre dans `Database Access` sur la gauche de l'écran et cliquer sur `Add new database user`.
     <br />
