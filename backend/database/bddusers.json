@@ -1,5 +1,29 @@
 [{
   "_id": {
+    "$oid": "62d9623deaa1b67fe33d19ff"
+  },
+  "name": "toto",
+  "firstname": "tata",
+  "email": "toto20@gmail.com",
+  "password": "$2b$10$mZg4XMFp4ijLoVSOD2yB9OEozVQUdd1S.0XeQuxQ1lFhU2zK0IZUS",
+  "job": "chomeur",
+  "picture": "./uploads/profil/random-user.png",
+  "followers": [],
+  "following": [],
+  "likes": [],
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1658413629156"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1658413629156"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
     "$oid": "62b58703cf8fe478d3f52b03"
   },
   "email": "patrice@gmail.com",
