@@ -33,7 +33,7 @@ module.exports.updateUser = async (req, res) => {
           name: req.body.name,
           firstname: req.body.firstname,
           email: req.body.email,
-          picture: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+          picture: req.body.picture,
         },
       },
       { new: true, upsert: true, setDefaultsOnInsert: true },

@@ -291,9 +291,16 @@ export class ProfilComponent implements OnInit {
 
   //déconnecter l'utilisateur connecté (à tester)
   logoutUser() {
-    localStorage.removeItem('loggedInUserId');
-    this.loggedInUser = null;
-    this.loggedInUserId = null;
-    location.href="/";
+    this.userService.logoutUser(this.loggedInUser!).subscribe(
+      (response: User) => {
+        localStorage.removeItem('loggedInUserId');
+        this.loggedInUser = null;
+        this.loggedInUserId = null;
+        location.href="/";
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   };
 }

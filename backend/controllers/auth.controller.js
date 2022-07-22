@@ -27,7 +27,6 @@ module.exports.signUp = async (req, res) => {
 //connexion
 module.exports.signIn = async (req, res) => {
     const {email, password} = req.body
-
     try{
         const user = await UserModel.login(email, password);
         const token = createToken(user._id);
@@ -42,5 +41,6 @@ module.exports.signIn = async (req, res) => {
 //déconnexion
 module.exports.logout = (req, res) => {
     res.cookie('jwt', '', {maxAge: 1});
-    res.redirect('/');
+    res.clearCookie('jwt');
+    res.status(200).json({message:'Réussi'});
 };

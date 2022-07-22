@@ -1,12 +1,11 @@
 const router = require('express').Router();
 const postController = require('../controllers/post.controller');
 //const multer = require('../middleware/multer-config');
-const multer = require('multer');
-const upload = multer();
+//const multer = require('multer');
 const {requireAuth} = require('../middleware/auth.middleware');
 
 router.get('/', requireAuth, postController.readPost);//lire post
-router.post('/', requireAuth, upload.single('file') , postController.createPost);//écrire post
+router.post('/', requireAuth, postController.createPost);//écrire post
 router.put('/:id', requireAuth, postController.updatePost);//modifier post
 router.delete('/:id', requireAuth, postController.deletePost);//supprimer post
 router.patch('/like-post/:id', requireAuth, postController.likePost);//aimer post

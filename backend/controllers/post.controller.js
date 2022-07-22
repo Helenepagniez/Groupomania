@@ -21,7 +21,7 @@ module.exports.createPost = async (req, res) => {
     posterId: req.body.posterId,
     message: req.body.message,
     video: req.body.video,
-    picture: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+    picture: req.body.picture,
     likers: [],
     comments: [],
   });
