@@ -9,6 +9,7 @@ const {checkUser, requireAuth} = require('./middleware/auth.middleware');
 const cors = require('cors');
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require("helmet");
+const path = require('path');
 
 const app = express();
 
@@ -44,7 +45,7 @@ app.use('/api/user', userRoutes);
 app.use('/api/post', postRoutes);
 
 
-//app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 //server
 app.listen(process.env.PORT, ()=>{

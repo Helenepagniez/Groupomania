@@ -1,4 +1,4 @@
-/*const multer = require('multer');
+const multer = require('multer');
 
 const MIME_TYPES = { // dictionnaire d'extensions d'images
     'image/jpg': 'jpg',
@@ -17,4 +17,3 @@ const storage = multer.diskStorage({
     }
 });
 module.exports = multer({ storage: storage}).single('image'); 
-*/
