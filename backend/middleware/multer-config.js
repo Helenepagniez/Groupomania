@@ -8,7 +8,7 @@ const MIME_TYPES = { // dictionnaire d'extensions d'images
 
 const storage = multer.diskStorage({
     destination: (req, file, callback) => { // destination des images
-        callback(null, 'images');
+        callback(null, 'pictures');
     },
     filename: (req, file, callback) => { // nouveau nom du fichier image pour éviter les doublons
         const name = file.originalname.split(' ').join('_');
@@ -16,4 +16,4 @@ const storage = multer.diskStorage({
         callback(null, name + Date.now() + '.' + extension);
     }
 });
-module.exports = multer({ storage: storage}).single('image'); 
+module.exports = multer({ storage: storage}).single('picture'); 
