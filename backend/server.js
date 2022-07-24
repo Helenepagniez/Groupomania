@@ -45,7 +45,7 @@ app.use('/api/user', userRoutes);
 app.use('/api/post', postRoutes);
 
 
-app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/pictures', express.static(path.join(__dirname, 'pictures')));
 
 //server
 app.listen(process.env.PORT, ()=>{
