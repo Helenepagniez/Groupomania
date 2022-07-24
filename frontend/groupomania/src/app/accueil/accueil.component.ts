@@ -22,9 +22,11 @@ export class AccueilComponent implements OnInit {
   post!: Post;
   loggedInUser!: User | null;
   loggedInUserId!: LoggedInUserId | null;
+  user!: User;
   users: User[] = [];
   comment!: Comment;
   commentForm!: FormGroup;
+  file!: File | null;
 
   constructor(private router: Router,
      private postService: PostService,
@@ -93,10 +95,12 @@ export class AccueilComponent implements OnInit {
   //Ajouter un post
   addPost(post: Post) {
     post.posterId=this.loggedInUser?._id!;
+    post.picture=this.file;
+    console.log(post);
     this.postService.addPost(post).subscribe(
       (response: Post) => {
         this.getPosts();
-        location.reload();
+        //location.reload();
         this.snackBar.open("Message publié", "Fermer", {duration: 2000});
       },
       (error: HttpErrorResponse) => {
@@ -104,6 +108,11 @@ export class AccueilComponent implements OnInit {
       }
     )
   };
+
+  onFileAdded(event: Event) {
+    const file = (event.target as HTMLInputElement).files![0];
+    this.file=file;
+  }
 
     //modifier un post
     updatePost(post: Post) {

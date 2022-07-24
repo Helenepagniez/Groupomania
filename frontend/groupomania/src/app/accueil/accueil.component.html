@@ -9,6 +9,7 @@
             <div class="conteneur-input">
                 <input type="hidden" class="id" placeholder="{{post?._id}}" name="id" ngModel="{{post?._id}}">
                 <textarea placeholder="Ecrivez une publication..." name="message" ngModel="{{post?.message}}"></textarea>
+                <input type="file" accept="image/*" #imageInput (change)="onFileAdded($event)">
             </div>
             <button class="publier" title="publier" (click)="addPost(form.value)">Publier</button>
         </form>
@@ -31,7 +32,7 @@
                     </div>
                 </form>
                 <div class="image">
-                    <img type="jpg" id="image" src="https://cdn.pixabay.com/photo/2016/09/07/11/37/tropical-1651423_960_720.jpg"  alt="image">
+                    <img type="jpg" id="image" [src]="post?.picture" alt="image">
                 </div>
             </div>
             <div class="bas-post">
