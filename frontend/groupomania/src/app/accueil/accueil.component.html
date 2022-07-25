@@ -10,7 +10,7 @@
                 <input type="hidden" class="id" placeholder="{{post?._id}}" name="id" form="postForm" formControlName="_id">
                 <textarea placeholder="Ecrivez une publication..." name="message" form="postForm" formControlName="message"></textarea>
                 <input type="file" accept="image/*" #imageInput (change)="onFileAdded($event)" form="postForm" formControlName="image">
-                <button mat-raised-button color="primary" (click)="imageInput.click()">ADD IMAGE</button>
+                <button mat-raised-button color="primary" (click)="imageInput.click()">Ajout Image</button>
                 <img [src]="imagePreview" *ngIf="imagePreview" style="max-height: 100px;display:block;margin-top:10px">
             </div>
             <button class="publier">Publier</button>
