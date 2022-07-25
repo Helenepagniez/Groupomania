@@ -81,6 +81,10 @@ a {
     border-radius: 10px;
 }
 
+.formulaire-post .formulaire .conteneur-input input[type="file"] {
+    display: none;
+}
+
 .formulaire-post .formulaire button {
     margin-top: 20px;
     background-color: #4E5166;

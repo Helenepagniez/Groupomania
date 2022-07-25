@@ -26,7 +26,9 @@ export class AccueilComponent implements OnInit {
   users: User[] = [];
   comment!: Comment;
   commentForm!: FormGroup;
+  postForm!: FormGroup;
   file!: File | null;
+  imagePreview!: string;
 
   constructor(private router: Router,
      private postService: PostService,
@@ -36,6 +38,12 @@ export class AccueilComponent implements OnInit {
      private fb: FormBuilder ) { }
 
   ngOnInit() {
+    this.postForm = this.fb.group({
+      _id: [''],
+      message: [''],
+      image: ['']
+    });
+
     this.commentForm = this.fb.group({
       text: ['']
     });
@@ -94,13 +102,14 @@ export class AccueilComponent implements OnInit {
 
   //Ajouter un post
   addPost(post: Post) {
+    var { id, message, image } = this.postForm.value;
     post.posterId=this.loggedInUser?._id!;
     post.picture=this.file;
     console.log(post);
     this.postService.addPost(post).subscribe(
       (response: Post) => {
         this.getPosts();
-        //location.reload();
+        location.reload();
         this.snackBar.open("Message publié", "Fermer", {duration: 2000});
       },
       (error: HttpErrorResponse) => {
@@ -112,6 +121,13 @@ export class AccueilComponent implements OnInit {
   onFileAdded(event: Event) {
     const file = (event.target as HTMLInputElement).files![0];
     this.file=file;
+    this.postForm.get('picture')!.setValue(file);
+    this.postForm.updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
   }
 
     //modifier un post
