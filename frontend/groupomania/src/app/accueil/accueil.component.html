@@ -4,16 +4,16 @@
     </div>
 </div>
 <div class="milieu">
-    <div class="formulaire-post" [formGroup]="postForm" (ngSubmit)="addPost(postForm.value)" >
-        <form class="formulaire">
+    <div class="formulaire-post" >
+        <form class="formulaire" [formGroup]="postForm">
             <div class="conteneur-input">
-                <input type="hidden" class="id" placeholder="{{post?._id}}" name="id" form="postForm" formControlName="_id">
-                <textarea placeholder="Ecrivez une publication..." name="message" form="postForm" formControlName="message"></textarea>
-                <input type="file" accept="image/*" #imageInput (change)="onFileAdded($event)" form="postForm" formControlName="image">
+                <input type="hidden" class="id" placeholder="{{post?._id}}" name="id"  formControlName="_id">
+                <textarea placeholder="Ecrivez une publication..." name="message"  formControlName="message"></textarea>
+                <input type="file" accept="image/*" #imageInput (change)="onFileAdded($event)"  formControlName="picture">
                 <button mat-raised-button color="primary" (click)="imageInput.click()">Ajout Image</button>
                 <img [src]="imagePreview" *ngIf="imagePreview" style="max-height: 100px;display:block;margin-top:10px">
             </div>
-            <button class="publier">Publier</button>
+            <button class="publier" (click)="submitPost()" >Publier</button>
         </form>
     </div>
     <div *ngFor="let post of posts" class="colonne">
