@@ -16,7 +16,8 @@ module.exports.readPost = (req, res) => {
 
 //créer post
 module.exports.createPost = async (req, res) => {
-  
+  //const imageUrl =  req.file ?  `${req.protocol}://${req.get('host')}/pictures/${req.file.filename}` : null 
+
   const newPost = new postModel({
     posterId: req.body.posterId,
     message: req.body.message,

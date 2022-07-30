@@ -1,4 +1,5 @@
 /backend/node_modules
+/backend/pictures
 /frontend/groupomania/node_modules
 /frontend/groupomania/.vscode
 /frontend/groupomania/.angular

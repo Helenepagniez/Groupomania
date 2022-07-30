@@ -1,12 +1,11 @@
 const router = require('express').Router();
 const postController = require('../controllers/post.controller');
-//const multer = require('../middleware/multer-config');
-//const multer = require('multer');
+const multer = require('../middleware/multer-config');
 const {requireAuth} = require('../middleware/auth.middleware');
 
 router.get('/', requireAuth, postController.readPost);//lire post
-router.post('/', requireAuth, postController.createPost);//écrire post
-router.put('/:id', requireAuth, postController.updatePost);//modifier post
+router.post('/', requireAuth, multer, postController.createPost);//écrire post
+router.put('/:id', requireAuth,multer, postController.updatePost);//modifier post
 router.delete('/:id', requireAuth, postController.deletePost);//supprimer post
 router.patch('/like-post/:id', requireAuth, postController.likePost);//aimer post
 router.patch('/unlike-post/:id', requireAuth, postController.unlikePost);//ne plus aimer post

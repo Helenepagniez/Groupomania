@@ -22,18 +22,28 @@ export class AccueilComponent implements OnInit {
   post!: Post;
   loggedInUser!: User | null;
   loggedInUserId!: LoggedInUserId | null;
+  user!: User;
   users: User[] = [];
   comment!: Comment;
   commentForm!: FormGroup;
+  postForm!: FormGroup;
+  file!: File | null;
+  imagePreview!: string;
 
   constructor(private router: Router,
      private postService: PostService,
-     private userService: UserService, 
+     private userService: UserService,
      private snackBar: MatSnackBar,
      private dialog: MatDialog,
      private fb: FormBuilder ) { }
 
   ngOnInit() {
+    this.postForm = this.fb.group({
+      _id: [''],
+      message: [''],
+      picture: ['']
+    });
+
     this.commentForm = this.fb.group({
       text: ['']
     });
@@ -52,17 +62,17 @@ export class AccueilComponent implements OnInit {
   getLoggedInUser() {
     this.userService.getUsers().subscribe(
       (response: User[]) => {
-        this.users=response;   
+        this.users=response;
         for (let user of response) {
           if (user?._id === this.loggedInUserId?.user) {
             this.loggedInUser = user;
           }
-        }   
+        }
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
       }
-    ) 
+    )
   }
 
   //récupérer l'identité du user qui a poster
@@ -90,20 +100,45 @@ export class AccueilComponent implements OnInit {
     )
   };
 
-  //Ajouter un post
-  addPost(post: Post) {
-    post.posterId=this.loggedInUser?._id!;
-    this.postService.addPost(post).subscribe(
-      (response: Post) => {
-        this.getPosts();
-        location.reload();
-        this.snackBar.open("Message publié", "Fermer", {duration: 2000});
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    )
-  };
+  /**
+    creer un post a partir du formulaire et envoie au backend
+  */
+    submitPost() {
+      const post = new Post();
+      post.posterId=this.loggedInUser?._id!;
+      post.picture=this.imagePreview;
+      post.message=this.postForm.get('message')!.value;
+      this.addPost(post);
+    }
+    //Ajouter un post
+    addPost(post: Post) {   
+      console.log(post);
+      this.postService.addPost(post).subscribe(
+        (response: Post) => {
+          this.getPosts();
+                
+          this.snackBar.open("Message publié", "Fermer", {duration: 2000});
+          location.reload();
+          console.log(response);
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
+      )
+    };
+  
+    onFileAdded(event: Event) {
+    console.log('onFileAdded');
+      const file = (event.target as HTMLInputElement).files![0];
+      this.file=file;
+                           
+                         
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+    }  
 
     //modifier un post
     updatePost(post: Post) {
