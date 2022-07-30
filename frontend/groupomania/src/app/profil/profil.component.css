@@ -198,9 +198,9 @@ h2{
 }
 
 .post .form-composition .formulaire-post .composition img{
-    width: 70%;
+    width: 50%;
     height: auto;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 }
 
 .post .bas-post{
@@ -320,7 +320,6 @@ h2{
 
 .formulaire-commentaire .commentaire {
     margin: auto;
-    margin-bottom: 10%;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -337,7 +336,9 @@ h2{
 }
 
 .formulaire-commentaire .commentaire button{
-    margin: 14px;
+    margin-left: 14px;
+    height: 25px;
+    margin-top: 14px;
     width: auto;
 }
 
