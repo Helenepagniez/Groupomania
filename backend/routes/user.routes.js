@@ -16,8 +16,8 @@ router.post('/login', passLimiter, authController.signIn);//se connecter
 router.get('/logout', requireAuth, authController.logout);//se déconnecter
 
 //user display: 'block'
-router.get('/',requireAuth, userController.getAllUsers);//voir liste des utilisateurs
-router.get('/:id', requireAuth, userController.userInfo);// voir infos d'un utilisateur(profil)
+router.get('/',requireAuth, multer, userController.getAllUsers);//voir liste des utilisateurs
+router.get('/:id', requireAuth,multer, userController.userInfo);// voir infos d'un utilisateur(profil)
 router.put('/:id', requireAuth, multer,userController.updateUser);//modifier un utilisateur
 router.delete('/:id', requireAuth, userController.deleteUser);//supprimer un utilisateur
 router.patch('/follow/:id', requireAuth, userController.follow);//suivre un utilisateur

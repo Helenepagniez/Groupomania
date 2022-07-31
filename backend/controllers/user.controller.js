@@ -21,7 +21,7 @@ module.exports.userInfo = (req, res) => {
 
 //mettre à jour ou modifier un utilisateur
 module.exports.updateUser = async (req, res) => {
-  const imageUrl =  req.file ?  `${req.protocol}://${req.get('host')}/pictures/${req.file.filename}` : null 
+  //const imageUrl =  req.file ?  `${req.protocol}://${req.get('host')}/pictures/${req.file.filename}` : null 
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknow : " + req.params.id);
 
@@ -34,7 +34,7 @@ module.exports.updateUser = async (req, res) => {
           name: req.body.name,
           firstname: req.body.firstname,
           email: req.body.email,
-          picture: imageUrl,
+          picture: req.body.picture
         },
       },
       { new: true, upsert: true, setDefaultsOnInsert: true },

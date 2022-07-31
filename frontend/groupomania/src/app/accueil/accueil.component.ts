@@ -86,6 +86,17 @@ export class AccueilComponent implements OnInit {
     return name;
   }
 
+  //récupérer la photo du user qui a poster
+  getPosterPicture(posterId: string) : string|null {
+    let picture: string|null = null;
+    for (let user of this.users) {
+      if (user?._id === posterId) {
+        picture = user?.picture;
+      }
+    }
+    return picture;
+  }
+
   //Afficher tous les posts
   getPosts() {
     this.postService.getPosts().subscribe(
@@ -294,7 +305,7 @@ export class AccueilComponent implements OnInit {
   searchPosts(key: string){
     const results: Post[] = [];
     for (const post of this.posts) {
-      if (post.posterId?.toLowerCase().indexOf(key.toLowerCase())!== -1
+      if (this.getPosterName(post.posterId)?.toLowerCase().indexOf(key.toLowerCase())!== -1
       || post.message?.toLowerCase().indexOf(key.toLowerCase())!== -1) {
         results.push(post);
       }

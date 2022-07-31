@@ -107,6 +107,17 @@ export class ProfilComponent implements OnInit {
     return name;
   }
 
+  //récupérer la photo du user qui a poster
+  getPosterPicture(posterId: string) : string|null {
+    let picture: string|null = null;
+    for (let user of this.users) {
+      if (user?._id === posterId) {
+        picture = user?.picture;
+      }
+    }
+    return picture;
+  }
+
   //modifier les posts de l'utilisateur
   updatePost(post: Post) {
     if (post?.posterId === this.loggedInUserId?.user) {

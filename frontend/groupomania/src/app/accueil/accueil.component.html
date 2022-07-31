@@ -19,7 +19,8 @@
     <div *ngFor="let post of posts" class="colonne">
         <div class="post">
             <div class="utilisateur">
-                <img src="https://cdn.pixabay.com/photo/2021/09/25/15/46/step-by-step-6655274_960_720.jpg" alt="photo profil">
+                <img *ngIf="!getPosterPicture(post.posterId)" src="../../assets/images/profil/random-user.png" alt="photo profil">
+                <img *ngIf="getPosterPicture(post.posterId)" [src]="getPosterPicture(post.posterId)" alt="photo profil">
                 <p>{{getPosterName(post.posterId)}}</p>
                 <p class="date">{{post?.createdAt | date: 'à HH:mm, le d MMMM yyyy'}}</p>
             </div>
@@ -33,7 +34,7 @@
                         <button *ngIf="loggedInUser?.role === 'ADMIN'" type="submit" title="modifier votre publication">Modifier</button>
                     </div>
                 </form>
-                <div class="image">
+                <div *ngIf="post?.picture" class="image">
                     <img type="jpg" id="image" [src]="post?.picture" alt="image">
                 </div>
             </div>

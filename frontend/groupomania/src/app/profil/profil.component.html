@@ -5,7 +5,8 @@
     </div>
     <div class="photo">
         <label for="image"></label>
-        <img type="file" id="image" src="https://media.istockphoto.com/photos/golden-retriever-with-computer-picture-id161955993?s=612x612" alt="photo de profil">
+        <img *ngIf="!loggedInUser?.picture" type="file" id="image" src="../../assets/images/profil/random-user.png" alt="photo de profil">
+        <img *ngIf="loggedInUser?.picture" type="file" id="image" [src]="loggedInUser?.picture" alt="photo de profil">
     </div>
     <form class="formulaire-utilisateur" [formGroup]="userForm" (ngSubmit)="updateUser(userForm.value)">
         <div class="form-group">
@@ -30,7 +31,8 @@
     <div *ngFor="let post of userPosts" class="colonne">
         <div class="post">
             <div class="utilisateur">
-                <img src="https://cdn.pixabay.com/photo/2021/09/25/15/46/step-by-step-6655274_960_720.jpg" alt="photo profil">
+                <img *ngIf="!getPosterPicture(post.posterId)" src="../../assets/images/profil/random-user.png" alt="photo">
+                <img *ngIf="getPosterPicture(post.posterId)" [src]="getPosterPicture(post.posterId)" alt="photo">
                 <p>{{getPosterName(post.posterId)}}</p>
                 <p class="date">{{post?.createdAt | date: 'à HH:mm, le d MMMM yyyy'}}</p>
             </div>
@@ -45,7 +47,7 @@
                                 <button type="submit" title="modifier votre publication">Modifier</button>
                             </div>
                         </div>
-                        <div class="image">
+                        <div *ngIf="post?.picture" class="image">
                             <img type="jpg" id="image" [src]="post?.picture" alt="image">
                         </div>
                     </div>

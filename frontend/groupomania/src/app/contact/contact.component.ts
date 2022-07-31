@@ -65,7 +65,7 @@ export class ContactComponent implements OnInit {
           if (user?._id === this.loggedInUserId?.user) {
             this.loggedInUser = user;
           }
-        }   
+        } 
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -73,13 +73,12 @@ export class ContactComponent implements OnInit {
     ) 
   }
 
-  //déconnecter l'utilisateur connecté (à tester)
+  //déconnecter l'utilisateur connecté 
   logoutUser(user : User) {
     this.userService.logoutUser(user).subscribe(
       (response: User) => {
         localStorage.removeItem('loggedInUser');
         this.loggedInUser = null;
-        //éventuellement renvoyer à la page de connexion
       }
     )
   };

@@ -9,7 +9,8 @@
 <div class="nouveaux">
     <div *ngFor="let user of users" class="profil">
         <div class="photo">
-            <img src="https://cdn.pixabay.com/photo/2021/09/25/15/46/step-by-step-6655274_960_720.jpg" alt="photo profil">
+            <img *ngIf="user.picture" type="jpg" id="image" [src]="user.picture" alt="photo de profil">
+            <img *ngIf="!user.picture" type="jpg" id="image" src="../../assets/images/profil/random-user.png" alt="photo de profil">
         </div>
         <div class="description">
             <div class="name">
