@@ -55,7 +55,7 @@ a {
 .formulaire-post {
     margin: 10px auto;
     background-color: #FFD7D7;
-    height: 180px;
+    height: auto;
     width: 60%;
     border-radius: 50px;
     border: #4E5166 3px solid;
@@ -73,11 +73,10 @@ a {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: white;
     width: 80%;
     margin : auto;
     margin-top: 20px;
-    height: 100px;
+    height: auto;
     border-radius: 10px;
 }
 
@@ -92,7 +91,7 @@ a {
     text-align: center;
     transition: 0.5s;
     display: block;
-    margin: 20px auto;
+    margin: 15px auto;
     border-radius: 50px;
     width: 25%;
 }
@@ -137,8 +136,6 @@ a {
     text-align: start;
     align-items: center;
     width: 100%;
-    margin-right: auto;
-    margin-left: auto;
     border-bottom: #4E5166 2px solid;
     border-radius: 50px 50px 0 0px;
 }
@@ -165,11 +162,8 @@ a {
     flex-direction: column;
     width: 100%;
     height: auto;
-    margin-right: auto;
-    margin-left: auto;
     background-color: white;
     border-bottom: #4E5166 2px solid;
-    height: auto;
 }
 
 .post .composition .texte {
@@ -212,12 +206,16 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+    max-height: 280px;
+    height: auto;
+    margin: 0;
+    padding: 0;
 }
 
 .post .composition img{
-    width: 50%;
-    height: auto;
-    padding-bottom: 20px;
+    width: auto;
+    height: 90%;
+    max-height: 300px;
 }
 
 .post .bas-post{
@@ -236,10 +234,6 @@ a {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-top: 0;
-    padding-bottom: 0;
     height: auto;
     color: #4E5166;
 }
@@ -264,7 +258,7 @@ a {
     width: 100%;
     justify-content: space-evenly;
     height: auto;
-    margin: 20px 0;
+    margin-bottom: 15px;
 }
 
 .post button{
