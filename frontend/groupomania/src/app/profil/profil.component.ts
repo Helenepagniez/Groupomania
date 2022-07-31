@@ -26,6 +26,7 @@ export class ProfilComponent implements OnInit {
   comment!: Comment;
   userForm!: FormGroup;
   commentForm!: FormGroup;
+  file!: File | null;
   
 
   constructor(private router: Router,
@@ -314,4 +315,10 @@ export class ProfilComponent implements OnInit {
       }
     );
   };
+
+  onFileAdded(event: Event) {
+    console.log('onFileAdded');
+      const file = (event.target as HTMLInputElement).files![0];
+      this.file=file;
+  }  
 }

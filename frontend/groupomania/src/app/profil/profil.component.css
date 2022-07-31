@@ -68,8 +68,16 @@ h2{
 }
 
 .profil .photo img{
-    width: 230px;
+    width: 205px;
     height: auto;
+}
+
+.profil .photo input[type="file"] {
+    display: none;
+}
+
+.profil .photo button{
+    margin: 0;
 }
 
 .profil .boutons{
@@ -83,7 +91,7 @@ h2{
     max-width: 300px;
 }
 
-.profil .boutons button{
+.profil button{
     background-color: #4E5166;
     color: white;
     text-align: center;
@@ -94,7 +102,7 @@ h2{
     width: 80px;
 }
 
-.profil .boutons button:hover{
+.profil button:hover{
     box-shadow: #FD2D01 4px 4px 10px;
     cursor: pointer;
 }
