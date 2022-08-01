@@ -27,6 +27,7 @@ export class ProfilComponent implements OnInit {
   userForm!: FormGroup;
   commentForm!: FormGroup;
   file!: File | null;
+  imagePreview!: string|null;
   
 
   constructor(private router: Router,
@@ -44,6 +45,8 @@ export class ProfilComponent implements OnInit {
       name: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(2)]],
       job: [''],
       email: ['', [Validators.required, Validators.email, Validators.maxLength(50)]],
+      picture: [''],
+      role: ['']
     });
 
     this.commentForm = this.fb.group({
@@ -151,16 +154,24 @@ export class ProfilComponent implements OnInit {
     });
   };
 
+  submitUser() {
+    const user = new User();
+    user._id=this.loggedInUser?._id!;
+    user.role = this.loggedInUser!.role;
+    if (this.imagePreview) user.picture=this.imagePreview;
+    if (this.userForm.get('firstname')!.value) user.firstname=this.userForm.get('firstname')!.value;
+    if (this.userForm.get('name')!.value) user.name=this.userForm.get('name')!.value;
+    if (this.userForm.get('job')!.value) user.job=this.userForm.get('job')!.value;
+    if (this.userForm.get('email')!.value) user.email=this.userForm.get('email')!.value;
+    this.updateUser(user);
+  }
+
   //Modifier l'utilisateur connecté
-  updateUser(user : User) {
-    if (this.loggedInUser?.role === "ADMIN") {
-      user.role="ADMIN";
-    }
-    else {
-      user.role="CLIENT";
-    }
+  updateUser(user : User) {    
     this.userService.updateUser(user, user?._id).subscribe(
       (response: User) => {
+        console.log(response);
+        this.imagePreview=null;
         this.getLoggedInUser();
         this.snackBar.open("Vous avez modifié vos informations", "Fermer", {duration: 2000});
       },
@@ -320,5 +331,10 @@ export class ProfilComponent implements OnInit {
     console.log('onFileAdded');
       const file = (event.target as HTMLInputElement).files![0];
       this.file=file;
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
   }  
 }

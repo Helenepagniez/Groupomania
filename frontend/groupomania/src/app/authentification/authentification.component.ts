@@ -105,7 +105,7 @@ export class AuthentificationComponent implements OnInit {
   //Ajouter un utilisateur
   addUser(user : User) {
     user.role="CLIENT";
-    console.log(user);
+    user.picture=null;
     this.userService.addUser(user).subscribe(
       (response: User) => {
         this.loginUser(user);

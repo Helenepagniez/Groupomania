@@ -7,13 +7,13 @@
     <div class="formulaire-post" >
         <form class="formulaire" [formGroup]="postForm">
             <div class="conteneur-input">
-                <input type="hidden" class="id" placeholder="{{post?._id}}" name="id"  formControlName="_id">
+                <input type="hidden" class="id" placeholder="{{post?._id}}" name="id" formControlName="_id">
                 <textarea placeholder="Ecrivez une publication..." name="message"  formControlName="message"></textarea>
-                <input type="file" accept="image/*" #imageInput (change)="onFileAdded($event)"  formControlName="picture">
+                <input type="file" accept="image/*" #imageInput (change)="onFileAdded($event)" formControlName="picture">
                 <button mat-raised-button color="primary" (click)="imageInput.click()">Ajout Image</button>
                 <img [src]="imagePreview" *ngIf="imagePreview" style="max-height: 100px;display:block;margin-top:10px">
             </div>
-            <button class="publier" (click)="submitPost()" >Publier</button>
+            <button class="publier" (click)="submitPost()">Publier</button>
         </form>
     </div>
     <div *ngFor="let post of posts" class="colonne">

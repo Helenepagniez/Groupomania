@@ -3,24 +3,25 @@
         <a (click)="logoutUser()" title="Se déconnecter"><i class="fas fa-sign-out-alt"></i></a>
         <h2>Mon Profil</h2>
     </div>
-    <div class="photo">
-        <label for="image"></label>
-        <img *ngIf="!loggedInUser?.picture" type="file" id="image" src="../../assets/images/profil/random-user.png" alt="photo de profil">
-        <img *ngIf="loggedInUser?.picture" type="file" id="image" [src]="loggedInUser?.picture" alt="photo de profil">
-        <input type="file" accept="image/*" #imageInput (change)="onFileAdded($event)"  formControlName="picture">
-        <button mat-raised-button color="primary" (click)="imageInput.click()">Modifie ton image</button>
-    </div>
-    <form class="formulaire-utilisateur" [formGroup]="userForm" (ngSubmit)="updateUser(userForm.value)">
+    <form class="formulaire-utilisateur" [formGroup]="userForm">
         <div class="form-group">
-            <input type="hidden" class="id" formControlName="_id" placeholder="{{loggedInUser?._id}}" name="_id" ngModel="{{loggedInUser?._id}}">
-            <input type="text" id="prenom" formControlName="firstname" name="firstname" ngModel="{{loggedInUser?.firstname}}" placeholder="{{loggedInUser?.firstname}}">
-            <input type="text" id="nom" formControlName="name" name="name" ngModel="{{loggedInUser?.name}}" placeholder="{{loggedInUser?.name}}">
-            <input type="text" id="poste" formControlName="job" name="job" ngModel="{{loggedInUser?.job}}" placeholder="{{loggedInUser?.job}}">
-            <input type="text" id="email" formControlName="email" name="email" ngModel="{{loggedInUser?.email}}" placeholder="{{loggedInUser?.email}}">
+            <div class="photo">
+                <img *ngIf="!loggedInUser?.picture" type="file" id="image" src="../../assets/images/profil/random-user.png" alt="photo de profil">
+                <img *ngIf="loggedInUser?.picture" type="file" id="image" [src]="loggedInUser?.picture" alt="photo de profil">
+                <input type="file" accept="image/*" #imageInput (change)="onFileAdded($event)" formControlName="picture">
+                <button mat-raised-button color="primary" (click)="imageInput.click()">Modifie ton image</button>
+                <img [src]="imagePreview" *ngIf="imagePreview" style="max-height: 100px;display:block;margin-top:10px">
+            </div>
+            <input type="hidden" class="id" formControlName="_id" name="_id">
+            <input type="hidden" class="role" formControlName="role" name="role">
+            <input type="text" id="prenom" formControlName="firstname" name="firstname" placeholder="{{loggedInUser?.firstname}}">
+            <input type="text" id="nom" formControlName="name" name="name" placeholder="{{loggedInUser?.name}}">
+            <input type="text" id="poste" formControlName="job" name="job" placeholder="{{loggedInUser?.job}}">
+            <input type="text" id="email" formControlName="email" name="email" placeholder="{{loggedInUser?.email}}">
         </div>
         <div class="boutons">
             <div class="modifier">
-                <button type="submit" title="modifier votre profil">Modifier</button>
+                <button class="submit" title="modifier votre profil" (click)="submitUser()">Modifier</button>
             </div>
             <div class="supprimer">
                 <button (click)="deleteUser(loggedInUser?._id!)" title="supprimer votre profil">Supprimer</button>

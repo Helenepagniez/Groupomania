@@ -127,10 +127,8 @@ export class AccueilComponent implements OnInit {
       this.postService.addPost(post).subscribe(
         (response: Post) => {
           this.getPosts();
-                
           this.snackBar.open("Message publié", "Fermer", {duration: 2000});
           location.reload();
-          console.log(response);
         },
         (error: HttpErrorResponse) => {
           alert(error.message);

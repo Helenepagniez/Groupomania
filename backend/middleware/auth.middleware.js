@@ -35,6 +35,6 @@ module.exports.requireAuth = (req, res, next) => {
             }
         })
     } else {
-        return res.status(401).send(err);
+        return res.status(401).send(Error);
     }
 };
