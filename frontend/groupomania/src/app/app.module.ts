@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { registerLocaleData } from '@angular/common';
+import {AutosizeModule} from 'ngx-autosize';
 import fr from '@angular/common/locales/fr';
 
 @NgModule({
@@ -32,7 +33,8 @@ import fr from '@angular/common/locales/fr';
     HttpClientModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    AutosizeModule
   ],
   providers: [ { provide: LOCALE_ID, useValue: 'fr-FR'}],
   bootstrap: [AppComponent]

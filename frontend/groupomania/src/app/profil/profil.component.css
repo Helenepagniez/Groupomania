@@ -184,11 +184,12 @@ h2{
 
 .post .form-composition .formulaire-post .composition .texte .modifier-message .message{
     width: 60%;
-    height: auto;
+    height: 100%;
     margin-bottom: 1%;
     margin-top: 1%;
     margin-right: 1%;
     resize: none;
+    flex-wrap: wrap;
 }
 
 
@@ -306,7 +307,7 @@ h2{
 
 .conteneur-commentaire .formulaire-commentaire-poster .text{
     margin-right: 10px;
-    width: auto;
+    width: 100%;
     max-width: 50%;
     display: flex;
     justify-content: space-between;

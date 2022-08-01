@@ -46,7 +46,7 @@
                             <div class="modifier-message">
                                 <input type="hidden" class="id" ngModel="{{post?._id}}" name="_id">
                                 <input type="hidden" class="posterId" ngModel="{{post?.posterId}}" name="posterId">
-                                <textarea type="text" class="message" placeholder="{{post?.message}}" ngModel="{{post?.message}}" name="message"></textarea>
+                                <textarea autosize type="text" class="message" placeholder="{{post?.message}}" ngModel="{{post?.message}}" name="message"></textarea>
                                 <button type="submit" title="modifier votre publication">Modifier</button>
                             </div>
                         </div>

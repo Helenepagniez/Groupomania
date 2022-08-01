@@ -29,8 +29,8 @@
                     <div class="texte">
                         <input type="hidden" class="id" ngModel="{{post?._id}}" name="_id">
                         <input type="hidden" class="posterId" ngModel="{{post?.posterId}}" name="posterId">
-                        <textarea *ngIf="loggedInUser?.role === 'ADMIN'" type="text" class="message-admin" placeholder="{{post?.message}}" ngModel="{{post?.message}}" name="message"></textarea>
-                        <textarea *ngIf="loggedInUser?.role !== 'ADMIN'" type="text" class="message" placeholder="{{post?.message}}" ngModel="{{post?.message}}" name="message" disabled></textarea>
+                        <textarea autosize *ngIf="loggedInUser?.role === 'ADMIN'" type="text" class="message-admin" placeholder="{{post?.message}}" ngModel="{{post?.message}}" name="message"></textarea>
+                        <textarea autosize *ngIf="loggedInUser?.role !== 'ADMIN'" type="text" class="message" placeholder="{{post?.message}}" ngModel="{{post?.message}}" name="message" disabled></textarea>
                         <button *ngIf="loggedInUser?.role === 'ADMIN'" type="submit" title="modifier votre publication">Modifier</button>
                     </div>
                 </form>
