@@ -71,8 +71,8 @@
 }
 
 .nouveaux .profil .photo{
-    width: 260px;
-    height: auto;
+    width: 280px;
+    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -81,8 +81,8 @@
 }
 
 .nouveaux .profil .photo img{
-    width: 100%;
-    height: auto;
+    width: 270px;
+    height: 200px;
     border: #4E5166 3px solid;
     border-radius: 50px;
 }

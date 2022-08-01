@@ -122,8 +122,7 @@ export class AccueilComponent implements OnInit {
       this.addPost(post);
     }
     //Ajouter un post
-    addPost(post: Post) {   
-      console.log(post);
+    addPost(post: Post) {
       this.postService.addPost(post).subscribe(
         (response: Post) => {
           this.getPosts();
@@ -137,7 +136,6 @@ export class AccueilComponent implements OnInit {
     };
   
     onFileAdded(event: Event) {
-    console.log('onFileAdded');
       const file = (event.target as HTMLInputElement).files![0];
       this.file=file;
                            
@@ -238,7 +236,6 @@ export class AccueilComponent implements OnInit {
 
   //ajouter un commentaire
   addCommentPost(postId: string, comment: Comment) {
-    console.log(comment);
     if (comment?.text !== null && comment?.text !== "" && comment?.text !== undefined) {
       comment.commenterName = this.loggedInUser?.firstname! +" "+ this.loggedInUser?.name!;
       comment.commenterId = this.loggedInUser?._id!;

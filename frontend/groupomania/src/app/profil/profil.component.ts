@@ -170,7 +170,6 @@ export class ProfilComponent implements OnInit {
   updateUser(user : User) {    
     this.userService.updateUser(user, user?._id).subscribe(
       (response: User) => {
-        console.log(response);
         this.imagePreview=null;
         this.getLoggedInUser();
         this.snackBar.open("Vous avez modifié vos informations", "Fermer", {duration: 2000});
@@ -259,7 +258,6 @@ export class ProfilComponent implements OnInit {
   
   //ajouter un commentaire 
   addCommentPost(postId: string, comment: Comment) {
-    console.log(comment);
     if (comment?.text !== null && comment?.text !== "" && comment?.text !== undefined) {
       comment.commenterName = this.loggedInUser?.firstname! +" "+ this.loggedInUser?.name!;
       comment.commenterId = this.loggedInUserId?.user!;
@@ -328,7 +326,6 @@ export class ProfilComponent implements OnInit {
   };
 
   onFileAdded(event: Event) {
-    console.log('onFileAdded');
       const file = (event.target as HTMLInputElement).files![0];
       this.file=file;
     const reader = new FileReader();

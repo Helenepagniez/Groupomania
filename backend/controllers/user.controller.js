@@ -20,8 +20,7 @@ module.exports.userInfo = (req, res) => {
 };
 
 //mettre à jour ou modifier un utilisateur
-module.exports.updateUser = async (req, res) => {
-  //const imageUrl =  req.file ?  `${req.protocol}://${req.get('host')}/pictures/${req.file.filename}` : null 
+module.exports.updateUser = async (req, res) => { 
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknow : " + req.params.id);
 
@@ -86,7 +85,6 @@ module.exports.follow = async (req, res) => {
       { $addToSet: { followers: req.params.id } },
       { new: true, upsert: true },
       (err, docs) => {
-        //if(!err) res.status(201).json(docs);
         if (err) return res.status(400).json(err);
       }
     ).clone();
@@ -120,7 +118,6 @@ module.exports.unfollow = async (req, res) => {
       { $pull: { followers: req.params.id } },
       { new: true, upsert: true },
       (err, docs) => {
-        //if(!err) res.status(201).json(docs);
         if (err) return res.status(400).json(err);
       }
     ).clone();
