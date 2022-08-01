@@ -151,10 +151,10 @@ a {
 }
 
 .post .utilisateur img{
-    width: 70px;
-    height: auto;
+    width: auto;
+    height: 70px;
     border-radius: 50px;
-    margin: 10px;
+    margin: 12px;
 }
 
 .post .composition{
@@ -209,7 +209,7 @@ a {
     max-height: 280px;
     height: auto;
     margin: 0;
-    padding: 0;
+    padding: 15px;
 }
 
 .post .composition img{

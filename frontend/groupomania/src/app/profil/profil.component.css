@@ -70,6 +70,8 @@ h2{
 .profil .photo img{
     width: 205px;
     height: auto;
+    margin-bottom: 10px;
+    border-radius: 20%;
 }
 
 .profil .photo input[type="file"] {
@@ -157,10 +159,10 @@ h2{
 }
 
 .post .utilisateur img{
-    width: 70px;
-    height: auto;
+    width: auto;
+    height: 70px;
     border-radius: 50px;
-    margin: 10px;
+    margin: 12px;
 }
 
 .post .form-composition .formulaire-post .composition{
@@ -202,7 +204,7 @@ h2{
     max-height: 280px;
     height: auto;
     margin: 0;
-    padding: 2px;
+    padding: 15px;
 }
 
 .post .form-composition .formulaire-post .composition img{
