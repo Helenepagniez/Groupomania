@@ -173,6 +173,7 @@ a {
     align-content: center;
     align-items: center;
     height: auto;
+    background-color: white;
 }
 
 .post .composition .texte .message{
@@ -185,6 +186,7 @@ a {
     color: black;
     text-align: center;
     padding-top: 5px;
+    background-color: white;
 }
 
 .post .composition .texte .message-admin{
@@ -196,6 +198,7 @@ a {
     text-align: center;
     resize: none;
     border: none;
+    background-color: white;
 }
 
 .post .composition .image{
