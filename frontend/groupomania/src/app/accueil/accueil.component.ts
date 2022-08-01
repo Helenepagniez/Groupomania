@@ -242,6 +242,7 @@ export class AccueilComponent implements OnInit {
       this.postService.addCommentPost(postId, comment).subscribe(
         (response: Post) => {
           this.getPosts();
+          this.commentForm.get("text")?.reset();
           this.snackBar.open("Commentaire publié", "Fermer", {duration: 2000});
         },
         (error: HttpErrorResponse) => {
