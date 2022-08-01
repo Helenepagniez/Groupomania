@@ -2,15 +2,23 @@
   "_id": {
     "$oid": "62d9623deaa1b67fe33d19ff"
   },
-  "name": "toto",
-  "firstname": "tata",
-  "email": "toto20@gmail.com",
+  "name": "Martin",
+  "firstname": "Gérard",
+  "email": "gerard@gmail.com",
   "password": "$2b$10$mZg4XMFp4ijLoVSOD2yB9OEozVQUdd1S.0XeQuxQ1lFhU2zK0IZUS",
-  "job": "chomeur",
-  "picture": "./uploads/profil/random-user.png",
-  "followers": [],
-  "following": [],
-  "likes": [],
+  "job": "Graphiste",
+  "followers": [
+    "62b58703cf8fe478d3f52b03"
+  ],
+  "following": [
+    "62bda9c70440bb774426e99b",
+    "62c88231bd35da7f0e776737"
+  ],
+  "likes": [
+    "62e7cc7ca381e01ec5ed7afd",
+    "62e7d8f1c1712b5b510ebbc3",
+    "62e7dcaec1712b5b510ebc8e"
+  ],
   "createdAt": {
     "$date": {
       "$numberLong": "1658413629156"
@@ -18,26 +26,32 @@
   },
   "updatedAt": {
     "$date": {
-      "$numberLong": "1658413629156"
+      "$numberLong": "1659362778570"
     }
   },
-  "__v": 0
+  "__v": 0,
+  "role": "CLIENT",
+  "picture": "https://media.istockphoto.com/photos/graphic-designer-drawing-sketches-logo-design-picture-id1191609321?k=20&m=1191609321&s=612x612&w=0&h=kp75ky45AGsFeilDGr2F7-O7JbjdjaOtOSd2PHGxXEk="
 },{
   "_id": {
     "$oid": "62b58703cf8fe478d3f52b03"
   },
   "email": "patrice@gmail.com",
   "password": "$2b$10$YHGLEj8Z4sc29b18j5O4fut5.9L7Kmwrw4L6grFR7orR6tEEGah8u",
-  "picture": "./uploads/profil/random-user.png",
+  "picture": "https://media.istockphoto.com/photos/project-manager-meeting-with-team-for-decision-on-planning-milestones-picture-id1057690406?k=20&m=1057690406&s=612x612&w=0&h=Kveg0FWaRXz_3hUZjv7fK_QWlo8l8GtcZo_bMTOLCh8=",
   "followers": [
-    "62b58774cf8fe478d3f52b05"
+    "62b58774cf8fe478d3f52b05",
+    "62c88231bd35da7f0e776737"
   ],
   "following": [
-    "62c489fb76f833adf98abe75"
+    "62c489fb76f833adf98abe75",
+    "62c88231bd35da7f0e776737",
+    "62d9623deaa1b67fe33d19ff"
   ],
   "likes": [
     "62beadabe5630508e0b0607c",
-    "62bdd47db018e42c80b122ad"
+    "62bdd47db018e42c80b122ad",
+    "62e7cc7ca381e01ec5ed7afd"
   ],
   "createdAt": {
     "$date": {
@@ -46,27 +60,29 @@
   },
   "updatedAt": {
     "$date": {
-      "$numberLong": "1657312513579"
+      "$numberLong": "1659363170723"
     }
   },
   "__v": 0,
   "bio": " mes infos",
-  "job": "Business Analyst",
+  "job": "Chef de Projet",
   "firstname": "Patrice",
-  "name": "Dupont"
+  "name": "Moreau",
+  "role": "CLIENT"
 },{
   "_id": {
     "$oid": "62b58774cf8fe478d3f52b05"
   },
   "email": "samia@gmail.com",
   "password": "$2b$10$/sM42LgOvXBWvH1OxUAGuOG9vW7SArF.vXfF9kFYm6Y/t0B4umQxm",
-  "picture": "./uploads/profil/random-user.png",
   "followers": [],
   "following": [
     "62b58703cf8fe478d3f52b03"
   ],
   "likes": [
-    "62bdb4c4c1599ff28eaea4ee"
+    "62bdb4c4c1599ff28eaea4ee",
+    "62e7cc7ca381e01ec5ed7afd",
+    "62e7d8f1c1712b5b510ebbc3"
   ],
   "createdAt": {
     "$date": {
@@ -75,25 +91,29 @@
   },
   "updatedAt": {
     "$date": {
-      "$numberLong": "1657008642124"
+      "$numberLong": "1659362523417"
     }
   },
   "__v": 0,
   "job": "Développeuse Fullstack",
   "name": "Oliveira",
-  "firstname": "Samia"
+  "firstname": "Samia",
+  "role": "CLIENT",
+  "picture": "https://media.istockphoto.com/photos/profile-side-photo-of-concentrated-skilled-web-expert-afro-american-picture-id1218017051?k=20&m=1218017051&s=612x612&w=0&h=5jAlNN4zwt2JDE4eLRPRKYpjXitrEyoG0uT_a4h0RV8="
 },{
   "_id": {
     "$oid": "62bc445c75c896fb474a619f"
   },
   "email": "charles@gmail.com",
   "password": "$2b$10$pt7GSaP313Ij4v2ZvBNHFu8hdp1Tpqevuxof2vye.RGzBkGQyZRja",
-  "picture": "./uploads/profil/random-user.png",
   "followers": [
     "62bc6383bb433d24462c6d9b"
   ],
   "following": [],
-  "likes": [],
+  "likes": [
+    "62e7cc7ca381e01ec5ed7afd",
+    "62e7d8f1c1712b5b510ebbc3"
+  ],
   "createdAt": {
     "$date": {
       "$numberLong": "1656505436460"
@@ -101,26 +121,30 @@
   },
   "updatedAt": {
     "$date": {
-      "$numberLong": "1657199304560"
+      "$numberLong": "1659362305376"
     }
   },
   "__v": 0,
   "job": "Développeur Web",
   "firstname": "Charles",
-  "name": "Dutronc"
+  "name": "Dutronc",
+  "role": "CLIENT",
+  "picture": "https://media.istockphoto.com/photos/diverse-office-enthusiastic-white-it-programmer-working-on-desktop-picture-id1354205065?k=20&m=1354205065&s=612x612&w=0&h=ZxUTMN71Sa9Q0nKHRTCtHeeUnyhNchL5a0uT7uMZXJE="
 },{
   "_id": {
     "$oid": "62bc63a2bb433d24462c6d9d"
   },
   "email": "mathilde@gmail.com",
   "password": "$2b$10$oczCnyXZESJWYBawhNURWOy0Atu5RWvNf6zWQ9YtcjquWRpCCmyxO",
-  "job": "UX  DesignerUI",
-  "picture": "./uploads/profil/random-user.png",
+  "job": "UX/UI Designer",
   "followers": [
     "62bc6383bb433d24462c6d9b"
   ],
   "following": [],
-  "likes": [],
+  "likes": [
+    "62e7cc7ca381e01ec5ed7afd",
+    "62e7d8f1c1712b5b510ebbc3"
+  ],
   "createdAt": {
     "$date": {
       "$numberLong": "1656513442111"
@@ -128,24 +152,29 @@
   },
   "updatedAt": {
     "$date": {
-      "$numberLong": "1657223425842"
+      "$numberLong": "1659362138578"
     }
   },
   "__v": 0,
-  "firstname": "mathilde",
+  "firstname": "Mathilde",
   "name": "De Sousa",
-  "role": "CLIENT"
+  "role": "CLIENT",
+  "picture": "https://media.istockphoto.com/photos/closeup-of-unrecognizable-designer-sitting-at-desk-with-papers-and-picture-id1192947841?k=20&m=1192947841&s=612x612&w=0&h=IDVNpdsfjzvrMrIJleVl0ULvFiVZy5UcJ0xZjSONvqk="
 },{
   "_id": {
     "$oid": "62bd5a22eec2d8f8962e7486"
   },
-  "email": "toto@gmail.com",
+  "email": "thomas@gmail.com",
   "password": "$2b$10$S4hdMEQ0RyOXhft.oTvDAO4HsmCl5sVXzvD8hgepcEAEDI5/tVadq",
   "job": "Business Analyst",
-  "picture": "./uploads/profil/random-user.png",
-  "followers": [],
+  "followers": [
+    "62c88231bd35da7f0e776737"
+  ],
   "following": [],
-  "likes": [],
+  "likes": [
+    "62e7d8f1c1712b5b510ebbc3",
+    "62e7cc7ca381e01ec5ed7afd"
+  ],
   "createdAt": {
     "$date": {
       "$numberLong": "1656576546733"
@@ -153,26 +182,31 @@
   },
   "updatedAt": {
     "$date": {
-      "$numberLong": "1657268135230"
+      "$numberLong": "1659363165772"
     }
   },
   "__v": 0,
-  "firstname": "Toto",
+  "firstname": "Thomas",
   "name": "Delacour",
-  "role": "CLIENT"
+  "role": "CLIENT",
+  "picture": "https://media.istockphoto.com/photos/handsome-latin-businessman-examining-sales-data-picture-id1179581697?k=20&m=1179581697&s=612x612&w=0&h=NXaLH7Pgt0l9MpUmo_D_F5wjxd5AK3flXQfspcGGTuc="
 },{
   "_id": {
     "$oid": "62bda9c70440bb774426e99b"
   },
   "name": "Luggi",
-  "firstname": "mélanie",
+  "firstname": "Mélanie",
   "email": "melanie@gmail.com",
   "password": "$2b$10$uqRNmd9pe3P.j5d8TQG0rOy6zXkfX/FwER3gRWiJNknszX8xK/XLC",
   "job": "Developpeuse web",
-  "picture": "./uploads/profil/random-user.png",
-  "followers": [],
+  "followers": [
+    "62d9623deaa1b67fe33d19ff"
+  ],
   "following": [],
-  "likes": [],
+  "likes": [
+    "62e7cc7ca381e01ec5ed7afd",
+    "62e7d8f1c1712b5b510ebbc3"
+  ],
   "createdAt": {
     "$date": {
       "$numberLong": "1656596935761"
@@ -180,11 +214,12 @@
   },
   "updatedAt": {
     "$date": {
-      "$numberLong": "1657046365373"
+      "$numberLong": "1659362775295"
     }
   },
   "__v": 0,
-  "role": "CLIENT"
+  "role": "CLIENT",
+  "picture": "https://media.istockphoto.com/photos/programmer-woman-coding-on-computer-picture-id1322050853?k=20&m=1322050853&s=612x612&w=0&h=s0TjuZlzDHaSb5oioCA3EYirROfxiS90VKN1rjJHRRw="
 },{
   "_id": {
     "$oid": "62c8398bbd35da7f0e77649e"
@@ -194,7 +229,6 @@
   "email": "louis@gmail.com",
   "password": "$2b$10$v6pFxCnAAaSQQYDCfHlqM.ogflkl7tWKmtgK5Pjqbb4JZjzW43KPq",
   "job": "Directeur d'agence",
-  "picture": "./uploads/profil/random-user.png",
   "followers": [],
   "following": [],
   "likes": [],
@@ -205,24 +239,34 @@
   },
   "updatedAt": {
     "$date": {
-      "$numberLong": "1657310037405"
+      "$numberLong": "1659358200645"
     }
   },
   "__v": 0,
-  "role": "ADMIN"
+  "role": "ADMIN",
+  "picture": "https://cdn.pixabay.com/photo/2019/08/14/09/53/consulting-4405260__340.jpg"
 },{
   "_id": {
     "$oid": "62c88231bd35da7f0e776737"
   },
-  "name": "Doré",
+  "name": "Lefevre",
   "firstname": "Julien",
   "email": "julien@gmail.com",
   "password": "$2b$10$OjJszCLiHMHAUyK.6pHNK.fzAHbeN..D9bwNZju7XqtRGVyprhwXu",
-  "job": "animateur",
-  "picture": "./uploads/profil/random-user.png",
-  "followers": [],
-  "following": [],
-  "likes": [],
+  "job": "stagiaire",
+  "followers": [
+    "62b58703cf8fe478d3f52b03",
+    "62d9623deaa1b67fe33d19ff"
+  ],
+  "following": [
+    "62bd5a22eec2d8f8962e7486",
+    "62b58703cf8fe478d3f52b03"
+  ],
+  "likes": [
+    "62e7cc7ca381e01ec5ed7afd",
+    "62e7d8f1c1712b5b510ebbc3",
+    "62e7dcaec1712b5b510ebc8e"
+  ],
   "createdAt": {
     "$date": {
       "$numberLong": "1657307697786"
@@ -230,8 +274,10 @@
   },
   "updatedAt": {
     "$date": {
-      "$numberLong": "1657307697786"
+      "$numberLong": "1659363170702"
     }
   },
-  "__v": 0
+  "__v": 0,
+  "role": "CLIENT",
+  "picture": "https://media.istockphoto.com/photos/geek-spilling-coffee-cups-everywhere-picture-id511103944?k=20&m=511103944&s=612x612&w=0&h=PicDVqASwewV0dS1F-YlexshdV_hUTPM5Wjg4T7z7aY="
 }]
