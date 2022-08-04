@@ -13,7 +13,6 @@ const createToken = (id) => {
 //inscription
 module.exports.signUp = async (req, res) => {
     const { body } = req.body;
-    console.log(body);
     const { error } = userValidation(body);
     if (error){
     return res.status(500).json({msg: error.details[0].message});

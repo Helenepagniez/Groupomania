@@ -2,41 +2,46 @@ const Joi = require('joi');
 
 const userValidation = (body) => {
     const UserShema = Joi.object({
-        name: Joi.string()
+      name: Joi.string()
         .regex(/^[a-zA-ZÀ-ÿ -]{2,40}$/)
         .lowercase()
         .trim()
         .required(),
 
-        firstname: Joi.string()
+      firstname: Joi.string()
         .regex(/^[a-zA-ZÀ-ÿ -]{2,40}$/)
         .trim()
         .required(),
 
-        email: Joi.string()
+      email: Joi.string()
         .lowercase()
         .trim()
         .email({ minDomainSegments: 2 })
         .required(),
 
-        password: Joi.string()
+      password: Joi.string()
         .required()
         .regex(/^[a-zA-ZÀ-ÿ -]{6,40}$/),
 
-        job: Joi.string()
-        .required(),
+      confirmPassword: Joi.string()
+        .required()
+        .regex(/^[a-zA-ZÀ-ÿ0-9 -]{6,40}$/),
 
-        picture: Joi.string(),
+      job: Joi.string().required(),
 
-        bio: Joi.string(),
+      picture: Joi.string().allow(null),
 
-        followers: Joi.string(),
+      role: Joi.string(),
 
-        following: Joi.string(),
+      bio: Joi.string(),
 
-        likes: Joi.string(),
+      followers: Joi.string(),
+
+      following: Joi.string(),
+
+      likes: Joi.string(),
     });
     return UserShema.validate(body)
 };
 
-module.export = userValidation
+module.exports = userValidation
