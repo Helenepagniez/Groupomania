@@ -1,6 +1,7 @@
 const UserModel =  require('../models/user.model');
 const jwt = require('jsonwebtoken');
 const { signUpErrors, signInErrors } = require('../utils/errors.utils');
+const userValidation = require("../utils/userValidation.utils");
 
 const maxAge =  3 * 24 * 60 * 60 * 1000;
 const createToken = (id) => {
@@ -11,6 +12,12 @@ const createToken = (id) => {
 
 //inscription
 module.exports.signUp = async (req, res) => {
+    const { body } = req.body;
+    const { error } = userValidation(body);
+    if (error){
+    return res.status(500).json({msg: error.details[0].message});
+    };
+
     const {name, firstname, email, password, job} = req.body
 
     try{
