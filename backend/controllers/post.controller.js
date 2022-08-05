@@ -40,22 +40,23 @@ module.exports.updatePost = (req, res) => {
   const token = req.cookies.jwt;
   const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
   const role = decodedToken.role;
-  if (decodedToken.id != req.params.id && role != "ADMIN")
-    return res.status(403).send("Vous n'avez pas le droit de modifier la publication");
 
-  const updatedRecord = {
-    message: req.body.message,
-  };
+  try {
+    return PostModel.findById(req.params.id, (err, docs) => {
+      const thePost = docs;
 
-  PostModel.findByIdAndUpdate(
-    req.params.id,
-    { $set: updatedRecord },
-    { new: true },
-    (err, docs) => {
-      if (!err) res.send(docs);
-      else console.log("Update error : " + err);
-    }
-  );
+      if (!thePost) return res.status(404).send("Post not found");
+      if (decodedToken.id != thePost.posterId && role != "ADMIN") return res.status(403).send("Vous n'avez pas le droit de modifier cette publication");
+      thePost.message = req.body.message;
+
+      return docs.save((err) => {
+        if (!err) return res.status(200).send(docs);
+        return res.status(500).send(err);
+      });
+    });
+  } catch (err) {
+    return res.status(400).send(err);
+  }
 };
 
 //supprimer post
@@ -63,13 +64,22 @@ module.exports.deletePost = (req, res) => {
   const token = req.cookies.jwt;
   const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
   const role = decodedToken.role;
-  if (decodedToken.id != req.params.id && role != "ADMIN")
-    return res.status(403).send("Vous n'avez pas le droit de supprimer la publication");
 
-  PostModel.findByIdAndRemove(req.params.id, (err, docs) => {
-    if (!err) res.send(docs);
-    else console.log("Delete error : " + err);
-  });
+  try {
+    return PostModel.findById(req.params.id, (err, docs) => {
+      const thePost = docs;
+
+      if (!thePost) return res.status(404).send("Post not found");
+      if (decodedToken.id != thePost.posterId && role != "ADMIN") return res.status(403).send("Vous n'avez pas le droit de supprimer ce post");
+
+      PostModel.remove(thePost, (err, docs) => {
+        if (!err) res.send(docs);
+        else console.log("Delete error : " + err);
+      });
+    });
+  } catch (err) {
+    return res.status(400).send(err);
+  }
 };
 
 //aimer un post
@@ -204,25 +214,21 @@ module.exports.deleteCommentPost = (req, res) => {
   const token = req.cookies.jwt;
   const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
   const role = decodedToken.role;
-  if (decodedToken.id != req.params.id && role != "ADMIN")
-    return res.status(403).send("Vous n'avez pas le droit de supprimer le commentaire");
 
   try {
-    return PostModel.findByIdAndUpdate(
-      req.params.id,
-      {
-        $pull: {
-          comments: {
-            _id: req.body.commentId,
-          },
-        },
-      },
-      { new: true },
-      (err, docs) => {
-        if (!err) return res.send(docs);
-        else return res.status(400).send(err);
-      }
-    );
+    return PostModel.findById(req.params.id, (err, docs) => {
+      const theComment = docs.comments.find((comment) =>
+        comment._id.equals(req.body.commentId)
+      );
+
+      if (!theComment) return res.status(404).send("Comment not found");
+      if (decodedToken.id != theComment.commenterId && role != "ADMIN") return res.status(403).send("Vous n'avez pas le droit de modifier ce commentaire");
+      
+      PostModel.remove(theComment, (err, docs) => {
+        if (!err) res.send(docs);
+        else console.log("Delete error : " + err);
+      });
+    });
   } catch (err) {
     return res.status(400).send(err);
   }
