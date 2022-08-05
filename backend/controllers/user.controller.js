@@ -1,5 +1,7 @@
 const UserModel = require("../models/user.model");
 const ObjectID = require("mongoose").Types.ObjectId;
+require("dotenv").config();
+const jwt = require("jsonwebtoken");
 
 //voir liste des utilisateurs
 module.exports.getAllUsers = async (req, res) => {
@@ -21,8 +23,11 @@ module.exports.userInfo = (req, res) => {
 
 //mettre à jour ou modifier un utilisateur
 module.exports.updateUser = async (req, res) => { 
-  if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknow : " + req.params.id);
+  const token = req.cookies.jwt;
+  const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
+  const role = decodedToken.role;
+  if (decodedToken.id != req.params.id && role != "ADMIN")
+    return res.status(403).send("Vous n'avez pas le droit de modifier le profil");
 
   try {
     await UserModel.findOneAndUpdate(
@@ -49,8 +54,11 @@ module.exports.updateUser = async (req, res) => {
 
 //supprimer un utilisateur
 module.exports.deleteUser = async (req, res) => {
-  if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknow : " + req.params.id);
+  const token = req.cookies.jwt;
+  const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
+  const role = decodedToken.role;
+  if (decodedToken.id != req.params.id && role != "ADMIN")
+    return res.status(400).send("Vous n'avez pas le droit de supprimer cet utilisateur");
 
   try {
     await UserModel.remove({ _id: req.params.id }).exec();
