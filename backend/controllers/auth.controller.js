@@ -12,7 +12,6 @@ const createToken = (id) => {
 //inscription
 module.exports.signUp = async (req, res) => {
     const {name, firstname, email, password, job} = req.body
-
     try{
         const user = await UserModel.create({name, firstname, email, password, job});
         res.status(201).json({user: user._id});

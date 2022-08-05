@@ -1,15 +1,15 @@
 <nav>
     <ul>
         <div class="logo">
-            <img src="../../assets/images/logo.png" alt="logo">
+            <img src="../../assets/images/logo.png" alt="logo de Groupomania">
         </div>
-        <div class="pages">
+        <div class="pages" role="navigation">
             <li title="Accueil"><a *ngIf="loggedInUserId" class="lien" routerLink="/accueil" routerLinkActive="active" [routerLinkActiveOptions]={exact:true}><i class="fas fa-home"></i></a></li>
             <li title="Profil"><a *ngIf="loggedInUserId" class="lien" routerLink="/profil" routerLinkActive="active"><i class="fas fa-user"></i></a></li>
             <li title="Contacts"><a *ngIf="loggedInUserId" class="lien" routerLink="/contact" routerLinkActive="active"><i class="fas fa-users"></i></a></li>
         </div>
         <div class="logo">
-            <img src="../../assets/images/logo.png" alt="logo">
+            <img src="../../assets/images/logo.png" alt="logo de Groupomania">
         </div>
     </ul>
 </nav>
