@@ -5,6 +5,8 @@ const ObjectID = require("mongoose").Types.ObjectId;
 const fs = require("fs");
 const { promisify } = require("util");
 const pipeline = promisify(require("stream").pipeline);
+require("dotenv").config();
+const jwt = require("jsonwebtoken");
 
 //lire post
 module.exports.readPost = (req, res) => {
@@ -35,8 +37,11 @@ module.exports.createPost = async (req, res) => {
 
 //modifier post
 module.exports.updatePost = (req, res) => {
-  if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknow : " + req.params.id);
+  const token = req.cookies.jwt;
+  const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
+  const role = decodedToken.role;
+  if (decodedToken.id != req.params.id && role != "ADMIN")
+    return res.status(403).send("Vous n'avez pas le droit de modifier la publication");
 
   const updatedRecord = {
     message: req.body.message,
@@ -55,8 +60,11 @@ module.exports.updatePost = (req, res) => {
 
 //supprimer post
 module.exports.deletePost = (req, res) => {
-  if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknow : " + req.params.id);
+  const token = req.cookies.jwt;
+  const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
+  const role = decodedToken.role;
+  if (decodedToken.id != req.params.id && role != "ADMIN")
+    return res.status(403).send("Vous n'avez pas le droit de supprimer la publication");
 
   PostModel.findByIdAndRemove(req.params.id, (err, docs) => {
     if (!err) res.send(docs);
@@ -165,10 +173,11 @@ module.exports.commentPost = (req, res) => {
   }
 };
 
-//modifier un post
+//modifier un commentaire
 module.exports.editCommentPost = (req, res) => {
-  if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknow : " + req.params.id);
+  const token = req.cookies.jwt;
+  const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
+  const role = decodedToken.role;
 
   try {
     return PostModel.findById(req.params.id, (err, docs) => {
@@ -177,6 +186,7 @@ module.exports.editCommentPost = (req, res) => {
       );
 
       if (!theComment) return res.status(404).send("Comment not found");
+      if (decodedToken.id != theComment.commenterId && role != "ADMIN") return res.status(403).send("Vous n'avez pas le droit de modifier ce commentaire");
       theComment.text = req.body.text;
 
       return docs.save((err) => {
@@ -189,10 +199,13 @@ module.exports.editCommentPost = (req, res) => {
   }
 };
 
-//supprimer un post
+//supprimer un commentaire
 module.exports.deleteCommentPost = (req, res) => {
-  if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknow : " + req.params.id);
+  const token = req.cookies.jwt;
+  const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
+  const role = decodedToken.role;
+  if (decodedToken.id != req.params.id && role != "ADMIN")
+    return res.status(403).send("Vous n'avez pas le droit de supprimer le commentaire");
 
   try {
     return PostModel.findByIdAndUpdate(
