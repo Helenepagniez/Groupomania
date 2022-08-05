@@ -7,6 +7,7 @@ import { LoggedInUserId } from '../core/models/loggedInUserId.model';
 import { User } from '../core/models/user.model';
 import { AuthService } from '../core/services/auth.services';
 import { UserService } from '../core/services/user.services';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-authentification',
@@ -29,7 +30,8 @@ export class AuthentificationComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
     private userService: UserService,
-    private cookieService: CookieService){}
+    private cookieService: CookieService,
+    private snackBar: MatSnackBar){}
 
   ngOnInit() {
     this.signinForm = this.fb.group({
@@ -108,8 +110,8 @@ export class AuthentificationComponent implements OnInit {
     user.picture=null;
     this.userService.addUser(user).subscribe(
       (response: User) => {
-        this.loginUser(user);
-        this.getUsers();
+        location.reload();
+        this.snackBar.open("Compte créé", "Fermer", {duration: 2000});
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
