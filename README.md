@@ -179,3 +179,11 @@ Dans le but de pouvoir faire de la modération si nécessaire, il faudra créer
 un utilisateur “administrateur” ; celui-ci aura les droits de modification /
 suppression sur tous les posts du réseau social. Il faudra donc nous
 communiquer les identifiants de cet administrateur.
+
+#Lancer l'application
+Afin d'afficher la page, suivez les étapes suivantes :
+
+1-Cliquez sur le bouton vert "Code"
+2-Cliquez sur "Download ZIP"
+3-Extraire du zip et ouvrir dossier sur votre éditeur de code
+4-Suivre procédure d'INSTALLATION décrite précédemment
