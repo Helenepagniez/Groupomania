@@ -183,7 +183,7 @@ communiquer les identifiants de cet administrateur.
 # Lancer l'application
 Afin d'afficher la page, suivez les étapes suivantes :
 
-1-Cliquez sur le bouton vert "Code"
-2-Cliquez sur "Download ZIP"
-3-Extraire du zip et ouvrir dossier sur votre éditeur de code
-4-Suivre procédure d'INSTALLATION décrite précédemment
+1. Cliquez sur le bouton vert "Code"
+2. Cliquez sur "Download ZIP"
+3. Extraire du zip et ouvrir dossier sur votre éditeur de code
+4. Suivre procédure d'INSTALLATION décrite précédemment
